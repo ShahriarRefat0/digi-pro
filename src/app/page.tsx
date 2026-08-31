@@ -14,6 +14,7 @@ import { Footer } from "@/components/footer";
 import { Hero } from "@/components/hero";
 import { TechStackLoopSection } from "@/components/tech-stack-loop";
 import { ProductCard, ProductItem } from "@/components/product-card";
+import { ReviewsSection } from "@/components/reviews";
 import { Badge } from "@/components/ui/badge";
 
 const FEATURED_PRODUCTS: ProductItem[] = [
@@ -216,6 +217,9 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* Creator Reviews DriftWall Section */}
+        <ReviewsSection />
       </main>
 
       {/* Interactive Footer */}
