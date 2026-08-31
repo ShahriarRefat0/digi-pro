@@ -88,6 +88,9 @@ export function Footer() {
 
             {/* Column 2 */}
             <div className="flex flex-col space-y-3.5">
+              <Link href="/contact" className="text-sm text-neutral-300 transition-colors hover:text-white hover:underline underline-offset-4">
+                Contact Us
+              </Link>
               <Link href="/help" className="text-sm text-neutral-300 transition-colors hover:text-white hover:underline underline-offset-4">
                 Help
               </Link>

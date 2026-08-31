@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { motion } from "motion/react";
-import { Sparkles, Lightbulb, Palette, Code2, Rocket } from "lucide-react";
+import { Lightbulb, Palette, Code2, Rocket } from "lucide-react";
 
 const TIMELINE_STEPS = [
   {
@@ -44,11 +44,6 @@ export function OurStory() {
             transition={{ duration: 0.5, ease: "easeOut" }}
             className="lg:col-span-6"
           >
-            <div className="inline-flex items-center gap-2 rounded-full border border-neutral-800 bg-neutral-950 px-3.5 py-1 text-xs font-semibold text-[#EEF35F] mb-4">
-              <Sparkles className="size-3.5 text-[#EEF35F]" />
-              <span>Our Origins</span>
-            </div>
-
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight font-heading text-white leading-tight">
               Why DigiForge Exists
             </h2>

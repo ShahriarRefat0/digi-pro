@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { motion } from "motion/react";
-import { Package, Code2, BookOpen, ArrowRight, Sparkles } from "lucide-react";
+import { Package, Code2, BookOpen, ArrowRight } from "lucide-react";
 
 const WHAT_WE_DO_CARDS = [
   {
@@ -47,10 +47,6 @@ export function WhatWeDo() {
           transition={{ duration: 0.5, ease: "easeOut" }}
           className="text-center max-w-2xl mx-auto mb-16"
         >
-          <div className="inline-flex items-center gap-2 rounded-full border border-neutral-800 bg-neutral-950 px-3.5 py-1 text-xs font-semibold text-[#EEF35F] mb-3">
-            <Sparkles className="size-3.5" />
-            <span>Core Pillars</span>
-          </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight font-heading text-white">
             What We Do
           </h2>

@@ -4,7 +4,6 @@ import * as React from "react";
 import Link from "next/link";
 import { motion } from "motion/react";
 import {
-  Sparkles,
   CalendarDays,
   Clock3,
   User,
@@ -79,10 +78,9 @@ export function FeaturedArticle({ article }: FeaturedArticleProps) {
             <div className="lg:col-span-6 p-8 sm:p-12 lg:p-14 flex flex-col justify-between bg-neutral-950">
               <div>
                 <div className="flex items-center gap-3 mb-5">
-                  <div className="inline-flex items-center gap-1.5 rounded-full border border-[#EEF35F]/30 bg-[#EEF35F]/10 px-3 py-0.5 text-xs font-semibold text-[#EEF35F]">
-                    <Sparkles className="size-3" />
-                    <span>Featured Article</span>
-                  </div>
+                  <span className="inline-flex items-center rounded-full border border-[#EEF35F]/30 bg-[#EEF35F]/10 px-3 py-0.5 text-xs font-semibold text-[#EEF35F]">
+                    Featured Article
+                  </span>
                   <span className="text-xs font-mono font-medium text-neutral-400 bg-neutral-900 border border-neutral-800 px-2.5 py-0.5 rounded-full">
                     {article.category}
                   </span>

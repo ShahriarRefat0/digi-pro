@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { motion } from "motion/react";
-import { Sparkles, Terminal, Code2, Layers, Box } from "lucide-react";
+import { Terminal, Code2, Layers, Box } from "lucide-react";
 
 export function BlogHero() {
   return (
@@ -18,16 +18,6 @@ export function BlogHero() {
       </div>
 
       <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center">
-        {/* Category Pill */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45, ease: "easeOut" }}
-          className="inline-flex items-center gap-2 rounded-full border border-neutral-800 bg-neutral-950 px-3.5 py-1 text-xs font-semibold text-[#EEF35F] mb-6 shadow-sm"
-        >
-          <Sparkles className="size-3.5 text-[#EEF35F]" />
-          <span>The Developer & Creator Journal</span>
-        </motion.div>
 
         {/* Hero Heading */}
         <motion.h1

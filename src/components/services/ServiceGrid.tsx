@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { motion } from "motion/react";
-import { Sparkles, Layers, ArrowRight } from "lucide-react";
+import { Layers, ArrowRight } from "lucide-react";
 import { SERVICES_DATA } from "@/lib/services";
 import { ServiceCard } from "./ServiceCard";
 
@@ -23,10 +23,6 @@ export function ServiceGrid() {
           className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12 sm:mb-16"
         >
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-neutral-800 bg-neutral-950 px-3.5 py-1 text-xs font-semibold text-[#EEF35F] mb-3">
-              <Sparkles className="size-3.5 text-[#EEF35F]" />
-              <span>Available Services</span>
-            </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight font-heading text-white">
               What I Can Help You Build
             </h2>

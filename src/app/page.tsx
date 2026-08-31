@@ -5,18 +5,16 @@ import Link from "next/link";
 import { motion } from "motion/react";
 import {
   Flame,
-  Layers,
-  Box,
-  Smile,
-  Layout,
 } from "lucide-react";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { Hero } from "@/components/hero";
 import { TechStackLoopSection } from "@/components/tech-stack-loop";
+import { CategoriesSection } from "@/components/categories";
 import { ProductCard, ProductItem } from "@/components/product-card";
 import { ReviewsSection } from "@/components/reviews";
 import { StatsSection } from "@/components/stats-section";
+import { FAQSection } from "@/components/faq";
 
 const FEATURED_PRODUCTS: ProductItem[] = [
   {
@@ -93,37 +91,6 @@ const FEATURED_PRODUCTS: ProductItem[] = [
   },
 ];
 
-const POPULAR_CATEGORIES = [
-  {
-    name: "Design Systems & UI Kits",
-    count: "140+ Packs",
-    icon: Layers,
-    description: "Production-ready Figma files, tokens & web design assets",
-    color: "text-blue-400 bg-blue-500/10",
-  },
-  {
-    name: "3D Illustrations & Icons",
-    count: "85+ Packs",
-    icon: Box,
-    description: "High-resolution 3D renders, GLTF & Blender assets",
-    color: "text-amber-400 bg-amber-500/10",
-  },
-  {
-    name: "Vector & Glyphs",
-    count: "320+ Packs",
-    icon: Smile,
-    description: "Pixel-perfect SVGs, icon libraries & animated web icons",
-    color: "text-emerald-400 bg-emerald-500/10",
-  },
-  {
-    name: "Web & SaaS Starters",
-    count: "90+ Templates",
-    icon: Layout,
-    description: "Full-stack Next.js 16, Tailwind, and Auth boilerplates",
-    color: "text-purple-400 bg-purple-500/10",
-  },
-];
-
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-black text-white selection:bg-[#EEF35F] selection:text-black">
@@ -138,72 +105,8 @@ export default function Home() {
         {/* Logo Loop - Digital Product Tools & Ecosystem */}
         <TechStackLoopSection />
 
-        {/* Popular Categories Grid */}
-        <section className="py-16 sm:py-24 border-b border-neutral-900 bg-black">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-              className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-12"
-            >
-              <div>
-                <div className="inline-flex items-center gap-2 rounded-full border border-neutral-800 bg-neutral-950 px-3.5 py-1 text-xs font-semibold text-[#EEF35F] mb-3">
-                  <span>Categories</span>
-                </div>
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight font-heading text-white">
-                  Explore by Creative Discipline
-                </h2>
-              </div>
-              <Link
-                href="/products"
-                className="text-xs font-semibold text-neutral-400 hover:text-white transition-colors inline-flex items-center gap-1 group"
-              >
-                <span>View all categories</span>
-                <span className="transition-transform duration-200 group-hover:translate-x-1">&rarr;</span>
-              </Link>
-            </motion.div>
-
-            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-              {POPULAR_CATEGORIES.map((cat, idx) => {
-                const Icon = cat.icon;
-                return (
-                  <motion.div
-                    key={cat.name}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-40px" }}
-                    transition={{ duration: 0.45, delay: idx * 0.08, ease: "easeOut" }}
-                    whileHover={{ y: -6, transition: { duration: 0.2, ease: "easeOut" } }}
-                  >
-                    <Link
-                      href="/products"
-                      className="group block h-full rounded-2xl border border-neutral-800 bg-neutral-950 p-6 transition-colors duration-200 hover:border-neutral-700 hover:bg-neutral-900/80 hover:shadow-xl hover:shadow-black/60"
-                    >
-                      <div
-                        className={`size-12 rounded-xl flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110 ${cat.color}`}
-                      >
-                        <Icon className="size-6" />
-                      </div>
-                      <div className="flex items-center justify-between mb-1.5">
-                        <h3 className="font-bold text-sm text-white group-hover:text-[#EEF35F] transition-colors">
-                          {cat.name}
-                        </h3>
-                        <span className="text-[10px] font-mono font-medium text-neutral-400 bg-neutral-900 border border-neutral-800 px-2 py-0.5 rounded-full">
-                          {cat.count}
-                        </span>
-                      </div>
-                      <p className="text-xs text-neutral-400 leading-relaxed">
-                        {cat.description}
-                      </p>
-                    </Link>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </div>
-        </section>
+        {/* Digital Products Interactive Carousel Section */}
+        <CategoriesSection />
 
         {/* Featured Products */}
         <section className="py-16 sm:py-24 bg-black">
@@ -246,6 +149,9 @@ export default function Home() {
 
         {/* Creator Reviews DriftWall Section */}
         <ReviewsSection />
+
+        {/* Interactive FAQ Section */}
+        <FAQSection />
       </main>
 
       {/* Interactive Footer */}

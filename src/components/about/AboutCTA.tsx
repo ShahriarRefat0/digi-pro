@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { motion } from "motion/react";
-import { Sparkles, Package, MessageSquare, ArrowRight } from "lucide-react";
+import { Package, MessageSquare, ArrowRight } from "lucide-react";
 
 export function AboutCTA() {
   return (
@@ -26,11 +26,6 @@ export function AboutCTA() {
           </div>
 
           <div className="relative z-10 max-w-2xl mx-auto">
-            <div className="inline-flex items-center gap-2 rounded-full border border-neutral-800 bg-neutral-900 px-3.5 py-1 text-xs font-semibold text-[#EEF35F] mb-4">
-              <Sparkles className="size-3.5" />
-              <span>Get Started Today</span>
-            </div>
-
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight font-heading text-white">
               Let&apos;s Build Something Useful
             </h2>

@@ -8,7 +8,7 @@ import {
   Check,
   Copy,
   Layers,
-  Sparkles,
+  Lightbulb,
   ArrowRight,
   Code2,
   Terminal,
@@ -101,7 +101,7 @@ export function ArticleContent({ article }: ArticleContentProps) {
                 {sec.callout && (
                   <div className="my-6 rounded-2xl border-l-4 border-[#EEF35F] bg-neutral-950 border-r border-t border-b border-neutral-800/80 p-5 text-xs sm:text-sm text-neutral-300 leading-relaxed">
                     <p className="font-medium text-white flex items-center gap-2 mb-1">
-                      <Sparkles className="size-4 text-[#EEF35F]" />
+                      <Lightbulb className="size-4 text-[#EEF35F]" />
                       <span>Key Takeaway</span>
                     </p>
                     <p className="text-neutral-400">{sec.callout}</p>
@@ -161,10 +161,6 @@ export function ArticleContent({ article }: ArticleContentProps) {
 
           {/* Product & Service Subtle Crossover CTA */}
           <div className="mt-14 rounded-3xl border border-neutral-800 bg-gradient-to-b from-neutral-950 to-neutral-900/60 p-8 sm:p-10 shadow-2xl">
-            <div className="flex items-center gap-2 text-xs font-semibold text-[#EEF35F] mb-2">
-              <Sparkles className="size-4" />
-              <span>Next Steps</span>
-            </div>
             <h3 className="text-xl sm:text-2xl font-bold font-heading text-white mb-2">
               Accelerate Your Product Development
             </h3>

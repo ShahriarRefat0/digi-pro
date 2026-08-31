@@ -6,7 +6,7 @@ import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { ProductCard, ProductItem } from "@/components/product-card";
 import { Button } from "@/components/ui/button";
-import { Filter, Sparkles } from "lucide-react";
+import { Filter } from "lucide-react";
 
 const ALL_PRODUCTS: ProductItem[] = [
   {
@@ -109,10 +109,6 @@ export default function ProductsPage() {
           className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-8 border-b border-neutral-900"
         >
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-neutral-800 bg-neutral-950 px-3.5 py-1 text-xs font-semibold text-[#EEF35F] mb-3">
-              <Sparkles className="size-3.5 text-[#EEF35F]" />
-              <span>Explore Marketplace</span>
-            </div>
             <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight font-heading text-white">
               All Digital Assets & Resources
             </h1>

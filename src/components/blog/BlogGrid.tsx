@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { SearchX, Sparkles, BookOpen } from "lucide-react";
+import { SearchX, BookOpen } from "lucide-react";
 import { BlogPost, BlogCategory } from "@/lib/blog";
 import { BlogCard } from "./BlogCard";
 import { BlogCategoryFilter } from "./BlogCategoryFilter";

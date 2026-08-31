@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { motion } from "motion/react";
-import { Mail, Sparkles, CheckCircle2 } from "lucide-react";
+import { Mail, CheckCircle2 } from "lucide-react";
 
 export function BlogCTA() {
   const [email, setEmail] = React.useState("");
@@ -31,11 +31,6 @@ export function BlogCTA() {
           </div>
 
           <div className="relative z-10 max-w-xl mx-auto">
-            <div className="inline-flex items-center gap-2 rounded-full border border-neutral-800 bg-neutral-900 px-3.5 py-1 text-xs font-semibold text-[#EEF35F] mb-4">
-              <Sparkles className="size-3.5" />
-              <span>Developer Newsletter</span>
-            </div>
-
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight font-heading text-white">
               Stay in the Loop
             </h2>

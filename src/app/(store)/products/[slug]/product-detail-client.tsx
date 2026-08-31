@@ -2,26 +2,16 @@
 
 import * as React from "react";
 import { motion } from "motion/react";
-import { Download, Sparkles, ShieldCheck, Zap } from "lucide-react";
+import { Download, ShieldCheck, Zap, RefreshCw } from "lucide-react";
 
 export function ProductDetailClient({ slug }: { slug: string }) {
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.96, y: 20 }}
-      animate={{ opacity: 1, scale: 1, y: 0 }}
-      transition={{ duration: 0.55, ease: "easeOut" }}
-      className="rounded-2xl border border-neutral-800 bg-neutral-950 p-8 sm:p-12 shadow-2xl"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8 bg-black text-white"
     >
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, delay: 0.1 }}
-        className="inline-flex items-center gap-2 rounded-full border border-neutral-800 bg-neutral-900 px-3.5 py-1 text-xs font-semibold text-[#EEF35F] mb-4"
-      >
-        <Sparkles className="size-3.5 text-[#EEF35F]" />
-        <span>Digital Asset Details</span>
-      </motion.div>
-
       <motion.h1
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
@@ -70,7 +60,7 @@ export function ProductDetailClient({ slug }: { slug: string }) {
           <span>Commercial License Included</span>
         </div>
         <div className="flex items-center gap-2">
-          <Sparkles className="size-4 text-[#EEF35F]" />
+          <RefreshCw className="size-4 text-[#EEF35F]" />
           <span>Free Future Updates</span>
         </div>
       </motion.div>

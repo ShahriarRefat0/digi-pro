@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import dynamic from "next/dynamic";
-import { Star, ShieldCheck, Sparkles, Heart } from "lucide-react";
+import { Star, ShieldCheck, Heart } from "lucide-react";
 import { ReviewItem } from "./drift-wall";
 
 // Dynamically import DriftWall with SSR disabled

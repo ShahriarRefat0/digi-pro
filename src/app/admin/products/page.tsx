@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion } from "motion/react";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
-import { Plus, ArrowLeft, UploadCloud, Sparkles } from "lucide-react";
+import { Plus, ArrowLeft, UploadCloud } from "lucide-react";
 
 export default function AdminProductsPage() {
   return (
@@ -38,10 +38,6 @@ export default function AdminProductsPage() {
         >
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-neutral-900">
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-neutral-800 bg-neutral-900 px-3.5 py-1 text-xs font-semibold text-[#EEF35F] mb-3">
-                <Sparkles className="size-3.5" />
-                <span>Creator Studio</span>
-              </div>
               <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight font-heading text-white">
                 Publish Digital Asset
               </h1>

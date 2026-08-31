@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { motion } from "motion/react";
-import { Sparkles, ArrowRight, Package, Code2, Layers } from "lucide-react";
+import { ArrowRight, Package, Code2, Layers } from "lucide-react";
 
 export function AboutHero() {
   return (
@@ -22,15 +22,6 @@ export function AboutHero() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           {/* Left Column: Hero Content */}
           <div className="lg:col-span-7 text-center lg:text-left">
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.45, ease: "easeOut" }}
-              className="inline-flex items-center gap-2 rounded-full border border-neutral-800 bg-neutral-950 px-3.5 py-1 text-xs font-semibold text-[#EEF35F] mb-6 shadow-sm"
-            >
-              <Sparkles className="size-3.5 text-[#EEF35F]" />
-              <span>ABOUT DIGIFORGE</span>
-            </motion.div>
 
             <motion.h1
               initial={{ opacity: 0, y: 20 }}

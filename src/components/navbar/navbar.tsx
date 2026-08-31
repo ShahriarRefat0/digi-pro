@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, ArrowRight, Sparkles } from "lucide-react";
+import { Menu, X, ArrowRight } from "lucide-react";
 import { PillNav, PillNavItem } from "./pill-nav";
 
 export function Navbar() {
@@ -14,8 +14,8 @@ export function Navbar() {
     { label: "Discover", href: "/products" },
     { label: "Services", href: "/services" },
     { label: "Blog", href: "/blog" },
-    { label: "Pricing", href: "/pricing" },
     { label: "About", href: "/about" },
+    { label: "Contact", href: "/contact" },
   ];
 
   // Close mobile menu on route change

@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { Sparkles, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { BlogPost } from "@/lib/blog";
 import { BlogCard } from "./BlogCard";
 
@@ -18,10 +18,6 @@ export function RelatedArticles({ articles }: RelatedArticlesProps) {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-neutral-800 bg-neutral-950 px-3.5 py-1 text-xs font-semibold text-[#EEF35F] mb-3">
-              <Sparkles className="size-3.5" />
-              <span>Recommended Reading</span>
-            </div>
             <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight font-heading text-white">
               Related Articles
             </h2>
