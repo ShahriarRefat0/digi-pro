@@ -96,7 +96,7 @@ const AntigravityInner: React.FC<AntigravityProps> = ({
 
     const mouseDist = Math.sqrt(
       Math.pow(m.x - lastMousePos.current.x, 2) +
-        Math.pow(m.y - lastMousePos.current.y, 2)
+      Math.pow(m.y - lastMousePos.current.y, 2)
     )
 
     if (mouseDist > 0.001) {
@@ -162,7 +162,7 @@ const AntigravityInner: React.FC<AntigravityProps> = ({
 
       const currentDistToMouse = Math.sqrt(
         Math.pow(particle.cx - projectedTargetX, 2) +
-          Math.pow(particle.cy - projectedTargetY, 2)
+        Math.pow(particle.cy - projectedTargetY, 2)
       )
 
       const distFromRing = Math.abs(currentDistToMouse - ringRadius)
