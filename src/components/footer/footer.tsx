@@ -75,9 +75,6 @@ export function Footer() {
               <Link href="/pricing" className="text-sm text-neutral-300 transition-colors hover:text-white hover:underline underline-offset-4">
                 Pricing
               </Link>
-              <Link href="/features" className="text-sm text-neutral-300 transition-colors hover:text-white hover:underline underline-offset-4">
-                Features
-              </Link>
               <Link href="/about" className="text-sm text-neutral-300 transition-colors hover:text-white hover:underline underline-offset-4">
                 About
               </Link>

@@ -19,7 +19,7 @@ const STATS_DATA: StatCardProps[] = [
   {
     value: "99.99%",
     description: "reliability",
-    href: "/features",
+    href: "/services",
   },
   {
     value: "86%",
