@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
+import { motion } from "motion/react";
 import { Star, ArrowRight } from "lucide-react";
 
 export interface ProductItem {
@@ -25,14 +26,27 @@ export interface ProductItem {
   tags?: string[];
 }
 
-export function ProductCard({ product }: { product: ProductItem }) {
+export function ProductCard({
+  product,
+  index = 0,
+}: {
+  product: ProductItem;
+  index?: number;
+}) {
   const authorName =
     product.creator?.name || product.authorName || "Silas Mercer";
   const canvasBg = product.canvasBg || "#FBF6EA";
   const slug = product.id || "1";
 
   return (
-    <div className="group relative flex flex-col rounded-2xl border border-neutral-800 bg-neutral-950 overflow-hidden transition-all duration-300 hover:border-neutral-700 hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/70">
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-30px" }}
+      transition={{ duration: 0.5, delay: index * 0.06, ease: "easeOut" }}
+      whileHover={{ y: -6, transition: { duration: 0.25, ease: "easeOut" } }}
+      className="group relative flex flex-col rounded-2xl border border-neutral-800 bg-neutral-950 overflow-hidden transition-colors duration-300 hover:border-neutral-700 hover:shadow-2xl hover:shadow-black/80"
+    >
       {/* Top Visual Panel with Artwork / 3D Book Cover Canvas */}
       <Link
         href={`/products/${slug}`}
@@ -84,7 +98,7 @@ export function ProductCard({ product }: { product: ProductItem }) {
       <div className="p-5 flex flex-col flex-1 bg-black text-white">
         {/* Title */}
         <Link href={`/products/${slug}`}>
-          <h3 className="text-base sm:text-lg font-bold text-white leading-snug group-hover:text-[#FF90E8] transition-colors line-clamp-2">
+          <h3 className="text-base sm:text-lg font-bold text-white leading-snug group-hover:text-[#EEF35F] transition-colors line-clamp-2">
             {product.title}
           </h3>
         </Link>
@@ -114,10 +128,10 @@ export function ProductCard({ product }: { product: ProductItem }) {
 
       {/* Footer / Price Tag Ribbon */}
       <div className="border-t border-neutral-900 bg-black px-5 py-3.5 flex items-center justify-between">
-        {/* Iconic Pink Ribbon Price Tag */}
+        {/* Iconic Lime Ribbon Price Tag */}
         <div className="relative inline-flex items-center">
           <div
-            className="bg-[#FF90E8] text-black font-extrabold text-sm sm:text-base px-3.5 py-1.5 flex items-center justify-center font-mono tracking-tight"
+            className="bg-[#EEF35F] text-black font-black text-sm sm:text-base px-3.5 py-1.5 flex items-center justify-center font-mono tracking-tight"
             style={{
               clipPath:
                 "polygon(0 0, 100% 0, calc(100% - 9px) 50%, 100% 100%, 0 100%)",
@@ -131,13 +145,13 @@ export function ProductCard({ product }: { product: ProductItem }) {
         {/* Quick View Link */}
         <Link
           href={`/products/${slug}`}
-          className="text-xs font-semibold text-neutral-400 hover:text-white inline-flex items-center gap-1 transition-colors"
+          className="text-xs font-semibold text-neutral-400 hover:text-white inline-flex items-center gap-1 transition-colors group/view"
         >
           <span>View</span>
-          <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" />
+          <ArrowRight className="size-3.5 transition-transform group-hover/view:translate-x-1" />
         </Link>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

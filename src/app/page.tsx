@@ -1,8 +1,9 @@
+"use client";
+
 import * as React from "react";
 import Link from "next/link";
+import { motion } from "motion/react";
 import {
-  Download,
-  Star,
   Flame,
   Layers,
   Box,
@@ -15,7 +16,7 @@ import { Hero } from "@/components/hero";
 import { TechStackLoopSection } from "@/components/tech-stack-loop";
 import { ProductCard, ProductItem } from "@/components/product-card";
 import { ReviewsSection } from "@/components/reviews";
-import { Badge } from "@/components/ui/badge";
+import { StatsSection } from "@/components/stats-section";
 
 const FEATURED_PRODUCTS: ProductItem[] = [
   {
@@ -68,6 +69,18 @@ const FEATURED_PRODUCTS: ProductItem[] = [
   },
   {
     id: "5",
+    title: "Apex Glyphs - 1,400+ Vector Icons",
+    category: "Icons & SVGs",
+    price: "$19",
+    rating: 4.9,
+    reviews: 210,
+    authorName: "VectorForge",
+    badge: "Popular",
+    canvasBg: "#FEF3C7",
+    tags: ["SVG", "Figma", "IconJar"],
+  },
+  {
+    id: "6",
     title: "MonoFont Pro - Variable Coding Typeface",
     category: "Typography & Fonts",
     price: "$24",
@@ -78,54 +91,42 @@ const FEATURED_PRODUCTS: ProductItem[] = [
     canvasBg: "#F5F3FF",
     tags: ["OTF", "TTF", "WOFF2"],
   },
-  {
-    id: "6",
-    title: "SaaS Rocket - Full-Stack Starter Kit",
-    category: "Code & Boilerplates",
-    price: "$79",
-    rating: 4.9,
-    reviews: 156,
-    authorName: "Alex Rivers",
-    badge: "Top Rated",
-    canvasBg: "#FDF2F8",
-    tags: ["Next.js", "Supabase", "Stripe"],
-  },
 ];
 
 const POPULAR_CATEGORIES = [
   {
-    name: "UI Kits & Systems",
-    count: "140+ Items",
+    name: "Design Systems & UI Kits",
+    count: "140+ Packs",
     icon: Layers,
-    description: "Production ready Figma & React design systems",
-    color: "text-blue-500 bg-blue-500/10",
+    description: "Production-ready Figma files, tokens & web design assets",
+    color: "text-blue-400 bg-blue-500/10",
   },
   {
     name: "3D Illustrations & Icons",
     count: "85+ Packs",
     icon: Box,
-    description: "High-resolution 3D renders, GLTF & OBJ assets",
-    color: "text-amber-500 bg-amber-500/10",
+    description: "High-resolution 3D renders, GLTF & Blender assets",
+    color: "text-amber-400 bg-amber-500/10",
   },
   {
     name: "Vector & Glyphs",
     count: "320+ Packs",
     icon: Smile,
-    description: "Pixel-perfect SVGs, animated web icons",
-    color: "text-emerald-500 bg-emerald-500/10",
+    description: "Pixel-perfect SVGs, icon libraries & animated web icons",
+    color: "text-emerald-400 bg-emerald-500/10",
   },
   {
     name: "Web & SaaS Starters",
     count: "90+ Templates",
     icon: Layout,
-    description: "Full-stack Next.js, Tailwind, and Auth boilerplates",
-    color: "text-purple-500 bg-purple-500/10",
+    description: "Full-stack Next.js 16, Tailwind, and Auth boilerplates",
+    color: "text-purple-400 bg-purple-500/10",
   },
 ];
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col bg-black text-white selection:bg-[#FF90E8] selection:text-black">
+    <div className="min-h-screen flex flex-col bg-black text-white selection:bg-[#EEF35F] selection:text-black">
       {/* Top Navbar */}
       <Navbar />
 
@@ -140,9 +141,15 @@ export default function Home() {
         {/* Popular Categories Grid */}
         <section className="py-16 sm:py-24 border-b border-neutral-900 bg-black">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-12">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-12"
+            >
               <div>
-                <div className="inline-flex items-center gap-2 rounded-full border border-neutral-800 bg-neutral-950 px-3.5 py-1 text-xs font-semibold text-[#FF90E8] mb-3">
+                <div className="inline-flex items-center gap-2 rounded-full border border-neutral-800 bg-neutral-950 px-3.5 py-1 text-xs font-semibold text-[#EEF35F] mb-3">
                   <span>Categories</span>
                 </div>
                 <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight font-heading text-white">
@@ -151,38 +158,47 @@ export default function Home() {
               </div>
               <Link
                 href="/products"
-                className="text-xs font-semibold text-neutral-400 hover:text-white transition-colors inline-flex items-center gap-1"
+                className="text-xs font-semibold text-neutral-400 hover:text-white transition-colors inline-flex items-center gap-1 group"
               >
-                View all categories &rarr;
+                <span>View all categories</span>
+                <span className="transition-transform duration-200 group-hover:translate-x-1">&rarr;</span>
               </Link>
-            </div>
+            </motion.div>
 
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-              {POPULAR_CATEGORIES.map((cat) => {
+              {POPULAR_CATEGORIES.map((cat, idx) => {
                 const Icon = cat.icon;
                 return (
-                  <Link
+                  <motion.div
                     key={cat.name}
-                    href="/products"
-                    className="group relative rounded-2xl border border-neutral-800 bg-neutral-950 p-6 transition-all duration-200 hover:-translate-y-1 hover:border-neutral-700 hover:bg-neutral-900/80 hover:shadow-xl hover:shadow-black/60"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-40px" }}
+                    transition={{ duration: 0.45, delay: idx * 0.08, ease: "easeOut" }}
+                    whileHover={{ y: -6, transition: { duration: 0.2, ease: "easeOut" } }}
                   >
-                    <div
-                      className={`size-12 rounded-xl flex items-center justify-center mb-4 transition-transform group-hover:scale-110 ${cat.color}`}
+                    <Link
+                      href="/products"
+                      className="group block h-full rounded-2xl border border-neutral-800 bg-neutral-950 p-6 transition-colors duration-200 hover:border-neutral-700 hover:bg-neutral-900/80 hover:shadow-xl hover:shadow-black/60"
                     >
-                      <Icon className="size-6" />
-                    </div>
-                    <div className="flex items-center justify-between mb-1.5">
-                      <h3 className="font-bold text-sm text-white group-hover:text-[#FF90E8] transition-colors">
-                        {cat.name}
-                      </h3>
-                      <span className="text-[10px] font-mono font-medium text-neutral-400 bg-neutral-900 border border-neutral-800 px-2 py-0.5 rounded-full">
-                        {cat.count}
-                      </span>
-                    </div>
-                    <p className="text-xs text-neutral-400 leading-relaxed">
-                      {cat.description}
-                    </p>
-                  </Link>
+                      <div
+                        className={`size-12 rounded-xl flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110 ${cat.color}`}
+                      >
+                        <Icon className="size-6" />
+                      </div>
+                      <div className="flex items-center justify-between mb-1.5">
+                        <h3 className="font-bold text-sm text-white group-hover:text-[#EEF35F] transition-colors">
+                          {cat.name}
+                        </h3>
+                        <span className="text-[10px] font-mono font-medium text-neutral-400 bg-neutral-900 border border-neutral-800 px-2 py-0.5 rounded-full">
+                          {cat.count}
+                        </span>
+                      </div>
+                      <p className="text-xs text-neutral-400 leading-relaxed">
+                        {cat.description}
+                      </p>
+                    </Link>
+                  </motion.div>
                 );
               })}
             </div>
@@ -192,10 +208,16 @@ export default function Home() {
         {/* Featured Products */}
         <section className="py-16 sm:py-24 bg-black">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-12">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-12"
+            >
               <div>
-                <div className="inline-flex items-center gap-2 rounded-full border border-neutral-800 bg-neutral-950 px-3.5 py-1 text-xs font-semibold text-[#FF90E8] mb-3">
-                  <Flame className="size-3.5 text-[#FF90E8] fill-[#FF90E8]" />
+                <div className="inline-flex items-center gap-2 rounded-full border border-neutral-800 bg-neutral-950 px-3.5 py-1 text-xs font-semibold text-[#EEF35F] mb-3">
+                  <Flame className="size-3.5 text-[#EEF35F] fill-[#EEF35F]" />
                   <span>Curated Drops</span>
                 </div>
                 <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight font-heading text-white">
@@ -204,19 +226,23 @@ export default function Home() {
               </div>
               <Link
                 href="/products"
-                className="text-xs font-semibold text-neutral-400 hover:text-white transition-colors inline-flex items-center gap-1"
+                className="text-xs font-semibold text-neutral-400 hover:text-white transition-colors inline-flex items-center gap-1 group"
               >
-                Browse all products &rarr;
+                <span>Browse all products</span>
+                <span className="transition-transform duration-200 group-hover:translate-x-1">&rarr;</span>
               </Link>
-            </div>
+            </motion.div>
 
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {FEATURED_PRODUCTS.map((prod) => (
-                <ProductCard key={prod.id} product={prod} />
+              {FEATURED_PRODUCTS.map((prod, idx) => (
+                <ProductCard key={prod.id} product={prod} index={idx} />
               ))}
             </div>
           </div>
         </section>
+
+        {/* Impact & Performance Stats Section */}
+        <StatsSection />
 
         {/* Creator Reviews DriftWall Section */}
         <ReviewsSection />

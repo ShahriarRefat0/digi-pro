@@ -1,10 +1,12 @@
+"use client";
+
 import * as React from "react";
+import { motion } from "motion/react";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { ProductCard, ProductItem } from "@/components/product-card";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Filter } from "lucide-react";
+import { Filter, Sparkles } from "lucide-react";
 
 const ALL_PRODUCTS: ProductItem[] = [
   {
@@ -95,13 +97,20 @@ const ALL_PRODUCTS: ProductItem[] = [
 
 export default function ProductsPage() {
   return (
-    <div className="min-h-screen flex flex-col bg-black text-white selection:bg-[#FF90E8] selection:text-black">
+    <div className="min-h-screen flex flex-col bg-black text-white selection:bg-[#EEF35F] selection:text-black">
       <Navbar />
 
       <main className="flex-1 mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 w-full bg-black">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-8 border-b border-neutral-900">
+        {/* Animated Page Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-8 border-b border-neutral-900"
+        >
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-neutral-800 bg-neutral-950 px-3.5 py-1 text-xs font-semibold text-[#FF90E8] mb-3">
+            <div className="inline-flex items-center gap-2 rounded-full border border-neutral-800 bg-neutral-950 px-3.5 py-1 text-xs font-semibold text-[#EEF35F] mb-3">
+              <Sparkles className="size-3.5 text-[#EEF35F]" />
               <span>Explore Marketplace</span>
             </div>
             <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight font-heading text-white">
@@ -119,15 +128,16 @@ export default function ProductsPage() {
               size="sm"
               className="gap-1.5 text-xs border-neutral-800 bg-neutral-950 text-white hover:bg-neutral-900 hover:text-white"
             >
-              <Filter className="size-3.5 text-[#FF90E8]" />
+              <Filter className="size-3.5 text-[#EEF35F]" />
               Filter & Sort
             </Button>
           </div>
-        </div>
+        </motion.div>
 
+        {/* Staggered Products Grid */}
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 mt-10">
-          {ALL_PRODUCTS.map((prod) => (
-            <ProductCard key={prod.id} product={prod} />
+          {ALL_PRODUCTS.map((prod, idx) => (
+            <ProductCard key={prod.id} product={prod} index={idx} />
           ))}
         </div>
       </main>

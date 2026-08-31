@@ -173,11 +173,6 @@ export function ReviewsSection() {
                 Based on 2,800+ creator reviews
               </span>
             </div>
-
-            {/* Right: Badge Emblem */}
-            <div className="hidden sm:flex size-10 rounded-xl bg-[#EEF35F]/10 border border-[#EEF35F]/30 items-center justify-center text-[#EEF35F] shrink-0">
-              <Sparkles className="size-5" />
-            </div>
           </div>
         </div>
       </div>

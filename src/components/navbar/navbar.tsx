@@ -1,31 +1,30 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { Menu, X } from "lucide-react"
+import * as React from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { PillNav, PillNavItem } from "./pill-nav";
 
 export function Navbar() {
-  const pathname = usePathname()
-  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false)
+  const pathname = usePathname();
 
-  const navLinks = [
-    { name: "Discover", href: "/products" },
-    { name: "Blog", href: "/blog" },
-    { name: "Pricing", href: "/pricing" },
-    { name: "Features", href: "/features" },
-    { name: "About", href: "/about" },
-    { name: "Gumclaw", href: "/gumclaw" },
-  ]
+  const navItems: PillNavItem[] = [
+    { label: "Discover", href: "/products" },
+    { label: "Services", href: "/services" },
+    { label: "Blog", href: "/blog" },
+    { label: "Pricing", href: "/pricing" },
+    { label: "Features", href: "/features" },
+    { label: "About", href: "/about" },
+  ];
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-neutral-900 bg-black text-white selection:bg-[#FF90E8] selection:text-black">
+    <header className="sticky top-0 z-50 w-full border-b border-neutral-900 bg-black/95 backdrop-blur-md text-white selection:bg-[#EEF35F] selection:text-black">
       <div className="flex h-16 w-full items-center justify-between pl-6 sm:pl-8 pr-0">
         {/* Left: Brand Logo + GitHub Stars Badge */}
         <div className="flex items-center gap-3.5">
           <Link
             href="/"
-            className="text-2xl font-bold tracking-tight text-white hover:opacity-90 transition-opacity"
+            className="text-2xl font-bold tracking-tight text-white hover:text-[#EEF35F] transition-colors font-heading"
           >
             gumroad
           </Link>
@@ -43,95 +42,38 @@ export function Navbar() {
           </a>
         </div>
 
-        {/* Right Desktop Nav */}
-        <div className="hidden lg:flex h-full items-center">
-          <nav className="flex items-center gap-7 mr-8">
-            {navLinks.map((link) => {
-              const isAbout = link.name === "About"
-
-              if (isAbout) {
-                return (
-                  <Link
-                    key={link.name}
-                    href={link.href}
-                    className="rounded-full bg-white px-4 py-1.5 text-sm font-semibold text-black transition-colors hover:bg-neutral-200"
-                  >
-                    {link.name}
-                  </Link>
-                )
-              }
-
-              return (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className="text-sm font-medium text-neutral-300 transition-colors hover:text-white"
-                >
-                  {link.name}
-                </Link>
-              )
-            })}
-          </nav>
-
-          <Link
-            href="/login"
-            className="text-sm font-medium text-white transition-colors hover:text-neutral-300 mr-6"
-          >
-            Log in
-          </Link>
-
-          <Link
-            href="/admin/products"
-            className="flex h-full items-center justify-center bg-[#FF90E8] px-7 text-sm font-semibold text-black transition-colors hover:bg-[#ff7be3] border-l border-neutral-900"
-          >
-            Start selling
-          </Link>
+        {/* Center: React Bits PillNav */}
+        <div className="hidden lg:flex items-center">
+          <PillNav
+            items={navItems}
+            activeHref={pathname}
+            baseColor="#EEF35F"
+            pillColor="#0d0e0e"
+            pillTextColor="#ffffff"
+            hoveredPillTextColor="#000000"
+            ease="power2.out"
+          />
         </div>
 
-        {/* Mobile Menu Button & Action */}
-        <div className="flex h-full items-center lg:hidden">
+        {/* Right Desktop Nav Actions */}
+        <div className="flex h-full items-center">
+          <Link
+            href="/admin"
+            className="hidden sm:inline-flex text-xs font-semibold text-neutral-300 transition-colors hover:text-white mr-6"
+          >
+            Dashboard
+          </Link>
+
           <Link
             href="/admin/products"
-            className="flex h-full items-center justify-center bg-[#FF90E8] px-4 text-xs font-semibold text-black transition-colors hover:bg-[#ff7be3] border-l border-neutral-900 mr-2"
+            className="flex h-full items-center justify-center bg-[#EEF35F] px-5 sm:px-7 text-xs sm:text-sm font-bold text-black transition-colors hover:bg-[#e5ea4e] border-l border-neutral-900 active:scale-95"
           >
             Start selling
           </Link>
-
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-3 mr-2 text-white hover:text-neutral-300 focus:outline-none"
-            aria-label="Toggle navigation menu"
-          >
-            {mobileMenuOpen ? <X className="size-6" /> : <Menu className="size-6" />}
-          </button>
         </div>
       </div>
-
-      {/* Mobile Drawer */}
-      {mobileMenuOpen && (
-        <div className="border-t border-neutral-800 bg-black px-6 py-6 lg:hidden animate-in slide-in-from-top duration-200">
-          <div className="flex flex-col space-y-4">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-base font-medium text-neutral-300 hover:text-white transition-colors"
-              >
-                {link.name}
-              </Link>
-            ))}
-            <div className="h-px bg-neutral-800 my-2" />
-            <Link
-              href="/login"
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-base font-medium text-white hover:text-neutral-300 transition-colors"
-            >
-              Log in
-            </Link>
-          </div>
-        </div>
-      )}
     </header>
-  )
+  );
 }
+
+export default Navbar;

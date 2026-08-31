@@ -1,31 +1,45 @@
+"use client";
+
 import * as React from "react";
 import Link from "next/link";
+import { motion } from "motion/react";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Plus, ArrowLeft, UploadCloud } from "lucide-react";
+import { Plus, ArrowLeft, UploadCloud, Sparkles } from "lucide-react";
 
 export default function AdminProductsPage() {
   return (
-    <div className="min-h-screen flex flex-col bg-black text-white selection:bg-[#FF90E8] selection:text-black">
+    <div className="min-h-screen flex flex-col bg-black text-white selection:bg-[#EEF35F] selection:text-black">
       <Navbar />
 
       <main className="flex-1 mx-auto max-w-5xl px-4 py-12 sm:px-6 lg:px-8 w-full bg-black">
-        <div className="flex items-center gap-2 mb-6">
+        {/* Back Link */}
+        <motion.div
+          initial={{ opacity: 0, x: -10 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.35 }}
+          className="flex items-center gap-2 mb-6"
+        >
           <Link
             href="/admin"
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-neutral-400 hover:text-white transition-colors"
+            className="group inline-flex items-center gap-1.5 text-xs font-semibold text-neutral-400 hover:text-white transition-colors"
           >
-            <ArrowLeft className="size-3.5" />
-            Back to Dashboard
+            <ArrowLeft className="size-3.5 transition-transform duration-200 group-hover:-translate-x-1" />
+            <span>Back to Dashboard</span>
           </Link>
-        </div>
+        </motion.div>
 
-        <div className="rounded-2xl border border-neutral-800 bg-neutral-950 p-8 sm:p-10 shadow-2xl">
+        {/* Animated Upload Container */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.97, y: 16 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="rounded-2xl border border-neutral-800 bg-neutral-950 p-8 sm:p-10 shadow-2xl"
+        >
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-neutral-900">
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-neutral-800 bg-neutral-900 px-3.5 py-1 text-xs font-semibold text-[#FF90E8] mb-3">
+              <div className="inline-flex items-center gap-2 rounded-full border border-neutral-800 bg-neutral-900 px-3.5 py-1 text-xs font-semibold text-[#EEF35F] mb-3">
+                <Sparkles className="size-3.5" />
                 <span>Creator Studio</span>
               </div>
               <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight font-heading text-white">
@@ -38,8 +52,12 @@ export default function AdminProductsPage() {
             </div>
           </div>
 
-          <div className="mt-8 flex flex-col items-center justify-center border-2 border-dashed border-neutral-800 rounded-2xl p-12 text-center bg-neutral-900/40">
-            <div className="size-14 rounded-2xl bg-[#FF90E8]/10 text-[#FF90E8] flex items-center justify-center mb-4 border border-[#FF90E8]/20">
+          <motion.div
+            whileHover={{ scale: 1.01, borderColor: "rgba(238,243,95,0.4)" }}
+            transition={{ duration: 0.25 }}
+            className="mt-8 flex flex-col items-center justify-center border-2 border-dashed border-neutral-800 rounded-2xl p-12 text-center bg-neutral-900/30 cursor-pointer transition-colors"
+          >
+            <div className="size-14 rounded-2xl bg-[#EEF35F]/10 text-[#EEF35F] flex items-center justify-center mb-4 border border-[#EEF35F]/20">
               <UploadCloud className="size-7" />
             </div>
             <h3 className="text-base font-bold text-white mb-1">
@@ -49,12 +67,12 @@ export default function AdminProductsPage() {
               Supports .ZIP, .FIG, .GLTF, .BLENDER, and .OTF files up to 2GB per
               asset.
             </p>
-            <button className="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[#FF90E8] px-6 text-xs font-bold text-black transition-all hover:bg-[#ff7be3] active:scale-95 shadow-md">
+            <button className="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[#EEF35F] px-6 text-xs font-bold text-black transition-all hover:bg-[#e5ea4e] hover:shadow-[0_0_20px_rgba(238,243,95,0.3)] active:scale-95 shadow-md">
               <Plus className="size-4" />
-              Select ZIP Archive
+              <span>Select ZIP Archive</span>
             </button>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </main>
 
       <Footer />
