@@ -3,49 +3,36 @@
 import * as React from "react";
 import Link from "next/link";
 import { motion } from "motion/react";
-import {
-  Rocket,
-  Code2,
-  SlidersHorizontal,
-  ArrowRight,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 interface ValuePropCard {
-  number: string;
   title: string;
   description: string;
   cta: string;
   href: string;
-  icon: React.ComponentType<{ className?: string }>;
 }
 
 const VALUE_PROPS: ValuePropCard[] = [
   {
-    number: "01",
     title: "Build Faster",
     description:
       "Start with ready-made digital products instead of building everything from scratch.",
     cta: "Explore Products",
     href: "/products",
-    icon: Rocket,
   },
   {
-    number: "02",
     title: "Modern Stack",
     description:
       "Built with modern technologies and development practices for reliable digital products.",
     cta: "Explore Technology",
     href: "/about",
-    icon: Code2,
   },
   {
-    number: "03",
     title: "Make It Yours",
     description:
       "Customize templates, starter kits, and resources to fit your project and workflow.",
     cta: "View Products",
     href: "/products",
-    icon: SlidersHorizontal,
   },
 ];
 
@@ -176,35 +163,23 @@ export function StatsSection() {
         {/* 3 Value Proposition Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-7">
           {VALUE_PROPS.map((item, idx) => {
-            const Icon = item.icon;
             return (
               <motion.div
-                key={item.number}
+                key={item.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.45, delay: idx * 0.1, ease: "easeOut" }}
                 whileHover={{ y: -6, transition: { duration: 0.2, ease: "easeOut" } }}
-                className="group relative flex flex-col justify-between rounded-2xl sm:rounded-[22px] border border-white/10 bg-[#1c1d1d]/90 backdrop-blur-md p-8 sm:p-9 transition-colors duration-300 hover:border-white/25 hover:bg-[#202222]/95 hover:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8),0_0_35px_rgba(238,243,95,0.08)] min-h-[300px] sm:min-h-[320px]"
+                className="group relative flex flex-col justify-between rounded-2xl sm:rounded-[22px] border border-white/10 bg-[#1c1d1d]/90 backdrop-blur-md p-8 sm:p-9 transition-colors duration-300 hover:border-white/25 hover:bg-[#202222]/95 hover:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8),0_0_35px_rgba(238,243,95,0.08)] min-h-[240px] sm:min-h-[260px]"
               >
-                {/* Top: Big Typographic Number & Icon */}
+                {/* Title & Description */}
                 <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="block text-5xl sm:text-[58px] font-normal tracking-tight text-white font-heading group-hover:text-[#EEF35F] transition-colors duration-300">
-                      {item.number}
-                    </span>
-                    <div className="size-11 rounded-xl bg-neutral-900 border border-neutral-800 flex items-center justify-center text-[#EEF35F] group-hover:scale-110 group-hover:bg-[#EEF35F]/10 group-hover:border-[#EEF35F]/20 transition-all">
-                      <Icon className="size-5" />
-                    </div>
-                  </div>
-
-                  {/* Title */}
                   <h3 className="text-xl font-bold text-white font-heading group-hover:text-[#EEF35F] transition-colors">
                     {item.title}
                   </h3>
 
-                  {/* Description */}
-                  <p className="mt-2.5 text-xs sm:text-[13px] text-neutral-300 font-normal leading-relaxed">
+                  <p className="mt-3 text-xs sm:text-[13px] text-neutral-300 font-normal leading-relaxed">
                     {item.description}
                   </p>
                 </div>

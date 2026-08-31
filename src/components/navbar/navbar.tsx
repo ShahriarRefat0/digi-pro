@@ -64,14 +64,14 @@ export function Navbar() {
         {/* Right Desktop Nav Actions */}
         <div className="hidden lg:flex items-center gap-4">
           <Link
-            href="/admin"
+            href="/dashboard"
             className="text-xs font-semibold text-neutral-300 transition-colors hover:text-white"
           >
             Dashboard
           </Link>
 
           <Link
-            href="/admin/products"
+            href="/dashboard/products/new"
             className="inline-flex h-9 items-center justify-center gap-1.5 rounded-full bg-[#EEF35F] px-5 text-xs font-bold text-black transition-all hover:bg-[#e5ea4e] hover:shadow-[0_0_15px_rgba(238,243,95,0.3)] active:scale-95 shadow-sm"
           >
             <span>Start selling</span>
@@ -81,7 +81,7 @@ export function Navbar() {
         {/* Mobile / Tablet Actions (< 1024px) */}
         <div className="flex items-center gap-2.5 lg:hidden">
           <Link
-            href="/admin/products"
+            href="/dashboard/products/new"
             className="inline-flex h-8 items-center justify-center rounded-full bg-[#EEF35F] px-3.5 text-xs font-bold text-black transition-colors hover:bg-[#e5ea4e] active:scale-95"
           >
             <span>Sell</span>
@@ -140,7 +140,7 @@ export function Navbar() {
 
             <div className="grid grid-cols-2 gap-2 pt-1">
               <Link
-                href="/admin"
+                href="/dashboard"
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex items-center justify-center rounded-xl border border-neutral-800 bg-neutral-950 py-2.5 text-xs font-semibold text-neutral-300 transition-colors hover:bg-neutral-900 hover:text-white"
               >
@@ -148,7 +148,7 @@ export function Navbar() {
               </Link>
 
               <Link
-                href="/admin/products"
+                href="/dashboard/products/new"
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex items-center justify-center rounded-xl bg-[#EEF35F] py-2.5 text-xs font-bold text-black transition-colors hover:bg-[#e5ea4e]"
               >

@@ -56,7 +56,7 @@ export function Hero() {
           </Link>
 
           <Link
-            href="/admin/products"
+            href="/dashboard/products/new"
             className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-neutral-800 bg-neutral-950/80 px-8 text-sm font-semibold text-white transition-all hover:bg-neutral-900 hover:border-neutral-700 hover:scale-105 active:scale-95 backdrop-blur-sm"
           >
             <span>Start Selling</span>
