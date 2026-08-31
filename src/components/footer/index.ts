@@ -1,0 +1,7 @@
+export { Footer } from "./footer"
+export { NewsletterForm } from "./newsletter-form"
+export { FooterLinks } from "./footer-links"
+export { SocialLinks } from "./social-links"
+export { CurrencySelector } from "./currency-selector"
+export { BackToTop } from "./back-to-top"
+export { StatusBadge } from "./status-badge"
