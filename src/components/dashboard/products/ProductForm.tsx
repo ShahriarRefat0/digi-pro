@@ -16,11 +16,11 @@ import {
   Product,
   ProductCategory,
   PRODUCT_CATEGORIES,
-  INITIAL_PRODUCTS,
-} from "@/lib/products";
+} from "@/types/product";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { createProductAction, updateProductAction } from "@/app/actions/products";
 
 interface ProductFormProps {
   initialData?: Product | null;
@@ -36,11 +36,12 @@ export function ProductForm({ initialData }: ProductFormProps) {
     description: initialData?.description || "",
     price: initialData?.price !== undefined ? String(initialData.price) : "49",
     category: (initialData?.category || "Starter Kits") as ProductCategory,
+    thumbnail: initialData?.thumbnail || "",
     version: initialData?.version || "1.0.0",
     demoUrl: initialData?.demoUrl || "",
     documentationUrl: initialData?.documentationUrl || "",
     purchaseUrl: initialData?.purchaseUrl || "",
-    status: initialData?.status || "published",
+    status: (initialData?.status || "published") as "published" | "draft",
     featured: initialData?.featured ?? true,
     features: initialData?.features || [
       "Next.js 16 App Router",
@@ -58,11 +59,12 @@ export function ProductForm({ initialData }: ProductFormProps) {
   const [newTech, setNewTech] = React.useState("");
   const [selectedThumb, setSelectedThumb] = React.useState<string | null>(null);
   const [errors, setErrors] = React.useState<{ [key: string]: string }>({});
+  const [serverErrorMessage, setServerErrorMessage] = React.useState<string | null>(null);
   const [submitState, setSubmitState] = React.useState<
     "idle" | "saving" | "success"
   >("idle");
 
-  // Auto-generate slug from name
+  // Auto-generate slug from name if new product
   const handleNameChange = (name: string) => {
     const slug = name
       .toLowerCase()
@@ -119,42 +121,87 @@ export function ProductForm({ initialData }: ProductFormProps) {
       errs.shortDescription = "Short description is required";
     if (!formData.description.trim())
       errs.description = "Detailed description is required";
-    if (!formData.price || isNaN(Number(formData.price)))
-      errs.price = "Valid price is required";
+    if (formData.price === "" || isNaN(Number(formData.price)) || Number(formData.price) < 0)
+      errs.price = "Valid price >= 0 is required";
 
     setErrors(errs);
     return Object.keys(errs).length === 0;
   };
 
-  const handleSubmit = (statusOverride?: "published" | "draft") => {
+  const handleSubmit = async (statusOverride?: "published" | "draft") => {
+    setServerErrorMessage(null);
     if (!validate()) return;
 
     setSubmitState("saving");
 
-    setTimeout(() => {
+    const finalStatus = statusOverride || formData.status;
+    const thumbnailPath =
+      formData.thumbnail.trim() ||
+      (selectedThumb ? `/images/products/${selectedThumb}` : "/images/products/nextforge.png");
+
+    const payload = {
+      name: formData.name.trim(),
+      slug: formData.slug.trim(),
+      shortDescription: formData.shortDescription.trim(),
+      description: formData.description.trim(),
+      price: Number(formData.price) || 0,
+      category: formData.category,
+      thumbnail: thumbnailPath,
+      images: initialData?.images || [],
+      features: formData.features,
+      included: initialData?.included || ["Source Code", "Documentation", "Lifetime Updates"],
+      technologies: formData.technologies,
+      requirements: initialData?.requirements || ["Node.js 20+"],
+      demoUrl: formData.demoUrl.trim(),
+      documentationUrl: formData.documentationUrl.trim(),
+      purchaseUrl: formData.purchaseUrl.trim(),
+      version: formData.version.trim() || "1.0.0",
+      status: finalStatus,
+      featured: formData.featured,
+      tags: initialData?.tags || [formData.category.toLowerCase().replace(/\s+/g, "-")],
+    };
+
+    try {
+      let result;
+      if (initialData?.id) {
+        result = await updateProductAction(initialData.id, payload);
+      } else {
+        result = await createProductAction(payload);
+      }
+
+      if (!result.success) {
+        setServerErrorMessage(result.error || "Failed to save product.");
+        setSubmitState("idle");
+        return;
+      }
+
       setSubmitState("success");
       setTimeout(() => {
         router.push("/dashboard/products");
-      }, 1200);
-    }, 800);
+        router.refresh();
+      }, 1000);
+    } catch {
+      setServerErrorMessage("An unexpected network error occurred while saving.");
+      setSubmitState("idle");
+    }
   };
 
   return (
     <div className="space-y-8 max-w-4xl pb-16">
-      {/* Notice Banner */}
-      <div className="rounded-2xl border border-neutral-800 bg-neutral-950 p-4 text-xs font-mono text-neutral-400 flex items-start gap-3">
-        <div className="size-2 rounded-full bg-[#EEF35F] mt-1.5 shrink-0 animate-pulse" />
-        <div>
-          <span className="text-[#EEF35F] font-bold">Frontend Preview:</span>{" "}
-          Form data uses local state validation and is prepared for MongoDB/Server Action hookup.
+      {/* Server Error Alert */}
+      {serverErrorMessage && (
+        <div className="rounded-2xl border border-rose-500/30 bg-rose-500/10 p-4 text-rose-400 flex items-center gap-3 animate-in fade-in duration-200">
+          <AlertCircle className="size-5 shrink-0" />
+          <div className="text-xs font-semibold">{serverErrorMessage}</div>
         </div>
-      </div>
+      )}
 
+      {/* Success Notification */}
       {submitState === "success" && (
-        <div className="rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-5 text-emerald-400 flex items-center gap-3">
+        <div className="rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-5 text-emerald-400 flex items-center gap-3 animate-in fade-in duration-200">
           <CheckCircle2 className="size-5 shrink-0" />
           <div className="text-sm font-semibold">
-            Product saved successfully! Redirecting to products list...
+            Product saved successfully in MongoDB! Redirecting to products list...
           </div>
         </div>
       )}
@@ -264,6 +311,8 @@ export function ProductForm({ initialData }: ProductFormProps) {
               </span>
               <Input
                 type="number"
+                min="0"
+                step="1"
                 value={formData.price}
                 onChange={(e) =>
                   setFormData({ ...formData, price: e.target.value })
@@ -314,10 +363,23 @@ export function ProductForm({ initialData }: ProductFormProps) {
         <CardHeader>
           <CardTitle className="text-lg">Media &amp; Assets</CardTitle>
           <p className="text-xs text-neutral-400">
-            Upload high-resolution thumbnail and optional gallery previews.
+            Provide thumbnail image URL or select a local asset.
           </p>
         </CardHeader>
         <CardContent className="space-y-4">
+          <div>
+            <label className="block text-xs font-mono font-semibold text-neutral-300 mb-1.5">
+              Thumbnail Image URL (or path)
+            </label>
+            <Input
+              value={formData.thumbnail}
+              onChange={(e) =>
+                setFormData({ ...formData, thumbnail: e.target.value })
+              }
+              placeholder="e.g. /images/products/nextforge.png or https://images.unsplash.com/..."
+            />
+          </div>
+
           <div className="rounded-2xl border-2 border-dashed border-neutral-800 bg-black/50 p-6 text-center hover:border-neutral-700 transition-colors">
             <UploadCloud className="size-8 text-neutral-500 mx-auto mb-2" />
             <p className="text-xs font-semibold text-white">
@@ -331,7 +393,13 @@ export function ProductForm({ initialData }: ProductFormProps) {
               accept="image/*"
               onChange={(e) => {
                 const file = e.target.files?.[0];
-                if (file) setSelectedThumb(file.name);
+                if (file) {
+                  setSelectedThumb(file.name);
+                  setFormData((prev) => ({
+                    ...prev,
+                    thumbnail: `/images/products/${file.name}`,
+                  }));
+                }
               }}
               className="mt-3 block mx-auto text-xs text-neutral-400 file:mr-2 file:py-1 file:px-3 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-neutral-900 file:text-[#EEF35F] hover:file:bg-neutral-800 cursor-pointer"
             />
@@ -348,29 +416,30 @@ export function ProductForm({ initialData }: ProductFormProps) {
           </p>
         </CardHeader>
         <CardContent className="space-y-6">
-          {/* Features Tag Input */}
+          {/* Key Features */}
           <div>
             <label className="block text-xs font-mono font-semibold text-neutral-300 mb-2">
               Key Features
             </label>
-            <div className="flex flex-wrap gap-2 mb-3">
-              {formData.features.map((feat, idx) => (
-                <span
+            <div className="space-y-2">
+              {formData.features.map((feature, idx) => (
+                <div
                   key={idx}
-                  className="inline-flex items-center gap-1.5 rounded-lg border border-neutral-800 bg-neutral-900 px-3 py-1 text-xs text-white"
+                  className="flex items-center justify-between gap-2 rounded-xl border border-neutral-800 bg-black/60 px-3.5 py-2 text-xs text-neutral-200"
                 >
-                  <span>{feat}</span>
+                  <span>{feature}</span>
                   <button
                     type="button"
                     onClick={() => handleRemoveFeature(idx)}
-                    className="text-neutral-400 hover:text-rose-400"
+                    className="text-neutral-500 hover:text-rose-400 transition-colors cursor-pointer"
                   >
-                    <X className="size-3" />
+                    <X className="size-3.5" />
                   </button>
-                </span>
+                </div>
               ))}
             </div>
-            <div className="flex items-center gap-2">
+
+            <div className="flex gap-2 mt-3">
               <Input
                 value={newFeature}
                 onChange={(e) => setNewFeature(e.target.value)}
@@ -380,42 +449,42 @@ export function ProductForm({ initialData }: ProductFormProps) {
                     handleAddFeature();
                   }
                 }}
-                placeholder="e.g. Next.js 16 App Router"
+                placeholder="Type a feature and press Enter or Add..."
               />
               <button
                 type="button"
                 onClick={handleAddFeature}
-                className="inline-flex h-9 items-center justify-center gap-1 rounded-xl border border-neutral-800 bg-neutral-900 px-4 text-xs font-semibold text-white hover:bg-neutral-800 shrink-0"
+                className="rounded-xl border border-neutral-800 bg-neutral-900 px-4 text-xs font-semibold text-white hover:bg-neutral-800 transition-colors shrink-0 cursor-pointer"
               >
-                <Plus className="size-3.5" />
-                <span>Add</span>
+                + Add
               </button>
             </div>
           </div>
 
-          {/* Technologies Tag Input */}
+          {/* Technologies */}
           <div>
             <label className="block text-xs font-mono font-semibold text-neutral-300 mb-2">
-              Technologies
+              Technologies &amp; Frameworks
             </label>
             <div className="flex flex-wrap gap-2 mb-3">
               {formData.technologies.map((tech, idx) => (
                 <span
                   key={idx}
-                  className="inline-flex items-center gap-1.5 rounded-lg border border-[#EEF35F]/30 bg-[#EEF35F]/10 px-3 py-1 text-xs text-[#EEF35F] font-mono"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-neutral-800 bg-neutral-900 px-3 py-1 text-xs font-mono text-neutral-300"
                 >
                   <span>{tech}</span>
                   <button
                     type="button"
                     onClick={() => handleRemoveTech(idx)}
-                    className="text-neutral-400 hover:text-rose-400"
+                    className="text-neutral-500 hover:text-rose-400 transition-colors cursor-pointer"
                   >
                     <X className="size-3" />
                   </button>
                 </span>
               ))}
             </div>
-            <div className="flex items-center gap-2">
+
+            <div className="flex gap-2">
               <Input
                 value={newTech}
                 onChange={(e) => setNewTech(e.target.value)}
@@ -425,76 +494,77 @@ export function ProductForm({ initialData }: ProductFormProps) {
                     handleAddTech();
                   }
                 }}
-                placeholder="e.g. Tailwind CSS"
+                placeholder="Add technology badge (e.g. Next.js, Docker)..."
               />
               <button
                 type="button"
                 onClick={handleAddTech}
-                className="inline-flex h-9 items-center justify-center gap-1 rounded-xl border border-neutral-800 bg-neutral-900 px-4 text-xs font-semibold text-white hover:bg-neutral-800 shrink-0"
+                className="rounded-xl border border-neutral-800 bg-neutral-900 px-4 text-xs font-semibold text-white hover:bg-neutral-800 transition-colors shrink-0 cursor-pointer"
               >
-                <Plus className="size-3.5" />
-                <span>Add</span>
+                + Add
               </button>
             </div>
           </div>
         </CardContent>
       </Card>
 
-      {/* SECTION 5: External Links */}
+      {/* SECTION 5: External Product Links */}
       <Card className="border-neutral-800 bg-neutral-950">
         <CardHeader>
           <CardTitle className="text-lg">Product Links</CardTitle>
           <p className="text-xs text-neutral-400">
-            External links for demo, documentation, and payment checkout.
+            Set live demo, documentation, and external checkout links.
           </p>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div>
-              <label className="block text-xs font-mono font-semibold text-neutral-300 mb-1.5">
-                Live Demo URL
-              </label>
-              <Input
-                value={formData.demoUrl}
-                onChange={(e) =>
-                  setFormData({ ...formData, demoUrl: e.target.value })
-                }
-                placeholder="https://preview.domain.com"
-              />
-            </div>
-            <div>
-              <label className="block text-xs font-mono font-semibold text-neutral-300 mb-1.5">
-                Documentation URL
-              </label>
-              <Input
-                value={formData.documentationUrl}
-                onChange={(e) =>
-                  setFormData({ ...formData, documentationUrl: e.target.value })
-                }
-                placeholder="https://docs.domain.com"
-              />
-            </div>
-            <div>
-              <label className="block text-xs font-mono font-semibold text-neutral-300 mb-1.5">
-                Purchase / Checkout URL
-              </label>
-              <Input
-                value={formData.purchaseUrl}
-                onChange={(e) =>
-                  setFormData({ ...formData, purchaseUrl: e.target.value })
-                }
-                placeholder="https://gumroad.com/l/item"
-              />
-            </div>
+          <div>
+            <label className="block text-xs font-mono font-semibold text-neutral-300 mb-1.5">
+              Live Demo URL
+            </label>
+            <Input
+              value={formData.demoUrl}
+              onChange={(e) =>
+                setFormData({ ...formData, demoUrl: e.target.value })
+              }
+              placeholder="https://preview.example.com"
+            />
+          </div>
+
+          <div>
+            <label className="block text-xs font-mono font-semibold text-neutral-300 mb-1.5">
+              Documentation URL
+            </label>
+            <Input
+              value={formData.documentationUrl}
+              onChange={(e) =>
+                setFormData({ ...formData, documentationUrl: e.target.value })
+              }
+              placeholder="https://docs.example.com"
+            />
+          </div>
+
+          <div>
+            <label className="block text-xs font-mono font-semibold text-neutral-300 mb-1.5">
+              Purchase / Checkout URL
+            </label>
+            <Input
+              value={formData.purchaseUrl}
+              onChange={(e) =>
+                setFormData({ ...formData, purchaseUrl: e.target.value })
+              }
+              placeholder="https://gumroad.com/l/your-product"
+            />
           </div>
         </CardContent>
       </Card>
 
-      {/* SECTION 6: Metadata & Status */}
+      {/* SECTION 6: Metadata & Visibility */}
       <Card className="border-neutral-800 bg-neutral-950">
         <CardHeader>
           <CardTitle className="text-lg">Metadata &amp; Visibility</CardTitle>
-          <p className="text-xs text-neutral-400">Version number and publication state.</p>
+          <p className="text-xs text-neutral-400">
+            Configure version tag and publication state.
+          </p>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 items-center">
@@ -563,7 +633,7 @@ export function ProductForm({ initialData }: ProductFormProps) {
             type="button"
             disabled={submitState === "saving"}
             onClick={() => handleSubmit("draft")}
-            className="flex-1 sm:flex-initial inline-flex h-11 items-center justify-center rounded-full border border-neutral-800 bg-neutral-900 px-6 text-xs font-semibold text-neutral-200 hover:bg-neutral-800 hover:text-white transition-colors"
+            className="flex-1 sm:flex-initial inline-flex h-11 items-center justify-center rounded-full border border-neutral-800 bg-neutral-900 px-6 text-xs font-semibold text-neutral-200 hover:bg-neutral-800 hover:text-white transition-colors cursor-pointer disabled:opacity-50"
           >
             Save as Draft
           </button>
@@ -572,15 +642,15 @@ export function ProductForm({ initialData }: ProductFormProps) {
             type="button"
             disabled={submitState === "saving"}
             onClick={() => handleSubmit("published")}
-            className="flex-1 sm:flex-initial inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[#EEF35F] px-8 text-xs font-bold text-black hover:bg-[#e5ea4e] hover:shadow-[0_0_20px_rgba(238,243,95,0.3)] transition-all shadow-md shadow-[#EEF35F]/20 cursor-pointer"
+            className="flex-1 sm:flex-initial inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[#EEF35F] px-8 text-xs font-bold text-black hover:bg-[#e5ea4e] hover:shadow-[0_0_20px_rgba(238,243,95,0.3)] transition-all shadow-md shadow-[#EEF35F]/20 cursor-pointer disabled:opacity-50"
           >
             {submitState === "saving" ? (
               <>
                 <Loader2 className="size-4 animate-spin" />
-                <span>Saving...</span>
+                <span>Saving to MongoDB...</span>
               </>
             ) : (
-              <span>Publish Product</span>
+              <span>{initialData ? "Update Product" : "Publish Product"}</span>
             )}
           </button>
         </div>

@@ -1,97 +1,22 @@
-"use client";
-
 import * as React from "react";
 import Link from "next/link";
-import { motion } from "motion/react";
-import {
-  Flame,
-} from "lucide-react";
+import { Flame, Package } from "lucide-react";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { Hero } from "@/components/hero";
 import { TechStackLoopSection } from "@/components/tech-stack-loop";
 import { CategoriesSection } from "@/components/categories";
-import { ProductCard, ProductItem } from "@/components/product-card";
+import { ProductCard } from "@/components/product-card";
 import { ReviewsSection } from "@/components/reviews";
 import { StatsSection } from "@/components/stats-section";
 import { FAQSection } from "@/components/faq";
+import { getFeaturedProducts } from "@/lib/products/product.repository";
 
-const FEATURED_PRODUCTS: ProductItem[] = [
-  {
-    id: "1",
-    title: "The Forgotten Frontier Journal",
-    category: "Guides & Survival",
-    price: "$37",
-    rating: 4.6,
-    reviews: 64,
-    authorName: "Silas Mercer",
-    badge: "Bestseller",
-    canvasBg: "#FBF5D5",
-    tags: ["PDF", "Printable", "Audiobook"],
-  },
-  {
-    id: "2",
-    title: "NovaUI Pro - Complete Design System",
-    category: "UI Kits & Figma",
-    price: "$49",
-    rating: 4.9,
-    reviews: 128,
-    authorName: "Elena Rostova",
-    badge: "Popular",
-    canvasBg: "#EBF4FF",
-    tags: ["Figma", "React", "Tailwind"],
-  },
-  {
-    id: "3",
-    title: "Hyper3D - 120+ Isometric Tech Icons",
-    category: "3D Assets & Models",
-    price: "$29",
-    rating: 5.0,
-    reviews: 94,
-    authorName: "Marcus Thorne",
-    badge: "Hot",
-    canvasBg: "#FFF1EB",
-    tags: ["Blender", "GLTF", "PNG"],
-  },
-  {
-    id: "4",
-    title: "Aura Minimalist Portfolio & Blog",
-    category: "Next.js Templates",
-    price: "$39",
-    rating: 4.8,
-    reviews: 62,
-    authorName: "DevKits Studio",
-    badge: "New",
-    canvasBg: "#ECFDF5",
-    tags: ["Next.js 16", "TypeScript", "MDX"],
-  },
-  {
-    id: "5",
-    title: "Apex Glyphs - 1,400+ Vector Icons",
-    category: "Icons & SVGs",
-    price: "$19",
-    rating: 4.9,
-    reviews: 210,
-    authorName: "VectorForge",
-    badge: "Popular",
-    canvasBg: "#FEF3C7",
-    tags: ["SVG", "Figma", "IconJar"],
-  },
-  {
-    id: "6",
-    title: "MonoFont Pro - Variable Coding Typeface",
-    category: "Typography & Fonts",
-    price: "$24",
-    rating: 5.0,
-    reviews: 45,
-    authorName: "TypeFoundry X",
-    badge: "Featured",
-    canvasBg: "#F5F3FF",
-    tags: ["OTF", "TTF", "WOFF2"],
-  },
-];
+export const dynamic = "force-dynamic";
 
-export default function Home() {
+export default async function Home() {
+  const featuredProducts = await getFeaturedProducts(6);
+
   return (
     <div className="min-h-screen flex flex-col bg-black text-white selection:bg-[#EEF35F] selection:text-black">
       {/* Top Navbar */}
@@ -108,16 +33,10 @@ export default function Home() {
         {/* Digital Products Interactive Carousel Section */}
         <CategoriesSection />
 
-        {/* Featured Products */}
+        {/* Featured Products Section (Real MongoDB Data) */}
         <section className="py-16 sm:py-24 bg-black">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-              className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-12"
-            >
+            <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-12">
               <div>
                 <div className="inline-flex items-center gap-2 rounded-full border border-neutral-800 bg-neutral-950 px-3.5 py-1 text-xs font-semibold text-[#EEF35F] mb-3">
                   <Flame className="size-3.5 text-[#EEF35F] fill-[#EEF35F]" />
@@ -134,13 +53,37 @@ export default function Home() {
                 <span>Browse all products</span>
                 <span className="transition-transform duration-200 group-hover:translate-x-1">&rarr;</span>
               </Link>
-            </motion.div>
-
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {FEATURED_PRODUCTS.map((prod, idx) => (
-                <ProductCard key={prod.id} product={prod} index={idx} />
-              ))}
             </div>
+
+            {featuredProducts.length === 0 ? (
+              <div className="rounded-2xl border border-neutral-800 bg-neutral-950 p-12 text-center">
+                <Package className="size-8 text-neutral-600 mx-auto mb-3" />
+                <p className="text-sm font-semibold text-neutral-300">
+                  No featured products available yet.
+                </p>
+                <p className="text-xs text-neutral-500 mt-1">
+                  Mark products as &ldquo;Feature on Homepage&rdquo; from your Admin Dashboard to showcase them here.
+                </p>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {featuredProducts.map((prod, idx) => (
+                  <ProductCard
+                    key={prod.id}
+                    product={{
+                      id: prod.id,
+                      name: prod.name,
+                      slug: prod.slug,
+                      category: prod.category,
+                      price: prod.price,
+                      badge: "Featured",
+                      authorName: "DigiForge",
+                    }}
+                    index={idx}
+                  />
+                ))}
+              </div>
+            )}
           </div>
         </section>
 

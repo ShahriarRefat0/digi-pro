@@ -1,5 +1,3 @@
-"use client";
-
 import * as React from "react";
 import Link from "next/link";
 import {
@@ -9,16 +7,17 @@ import {
   Plus,
   ArrowRight,
 } from "lucide-react";
-import { INITIAL_PRODUCTS } from "@/lib/products";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { getDashboardProductStats, getProducts } from "@/lib/products/product.repository";
+import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { ProductTable } from "@/components/dashboard/products/ProductTable";
 
-export default function DashboardPage() {
-  const [products, setProducts] = React.useState(INITIAL_PRODUCTS);
+export const dynamic = "force-dynamic";
 
-  const handleDeleteProduct = (id: string) => {
-    setProducts((prev) => prev.filter((p) => p.id !== id));
-  };
+export default async function DashboardPage() {
+  const [stats, recentProducts] = await Promise.all([
+    getDashboardProductStats(),
+    getProducts({ limit: 4, sort: { updatedAt: -1 } }),
+  ]);
 
   return (
     <div className="space-y-8">
@@ -42,7 +41,7 @@ export default function DashboardPage() {
         </Link>
       </div>
 
-      {/* 3 Static Metric Cards */}
+      {/* 3 Real Metric Cards from MongoDB */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
         {/* Total Products */}
         <Card className="border-neutral-800 bg-neutral-950">
@@ -55,7 +54,7 @@ export default function DashboardPage() {
             </div>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-extrabold font-heading text-white">24</div>
+            <div className="text-3xl font-extrabold font-heading text-white">{stats.total}</div>
             <p className="text-[11px] text-neutral-400 mt-1">Digital products catalog</p>
           </CardContent>
         </Card>
@@ -71,7 +70,7 @@ export default function DashboardPage() {
             </div>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-extrabold font-heading text-white">18</div>
+            <div className="text-3xl font-extrabold font-heading text-white">{stats.published}</div>
             <p className="text-[11px] text-neutral-400 mt-1">Live in store marketplace</p>
           </CardContent>
         </Card>
@@ -87,7 +86,7 @@ export default function DashboardPage() {
             </div>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-extrabold font-heading text-white">6</div>
+            <div className="text-3xl font-extrabold font-heading text-white">{stats.drafts}</div>
             <p className="text-[11px] text-neutral-400 mt-1">Unpublished draft assets</p>
           </CardContent>
         </Card>
@@ -156,7 +155,7 @@ export default function DashboardPage() {
           </Link>
         </div>
 
-        <ProductTable products={products} onDeleteProduct={handleDeleteProduct} />
+        <ProductTable products={recentProducts} />
       </div>
     </div>
   );

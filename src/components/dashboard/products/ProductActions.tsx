@@ -2,9 +2,11 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { MoreHorizontal, Eye, Edit, Trash2, AlertTriangle } from "lucide-react";
-import { Product } from "@/lib/products";
+import { useRouter } from "next/navigation";
+import { MoreHorizontal, Eye, Edit, Trash2, AlertTriangle, Loader2 } from "lucide-react";
+import { Product } from "@/types/product";
 import { Button } from "@/components/ui/button";
+import { deleteProductAction } from "@/app/actions/products";
 
 interface ProductActionsProps {
   product: Product;
@@ -12,8 +14,11 @@ interface ProductActionsProps {
 }
 
 export function ProductActions({ product, onDelete }: ProductActionsProps) {
+  const router = useRouter();
   const [menuOpen, setMenuOpen] = React.useState(false);
   const [showDeleteModal, setShowDeleteModal] = React.useState(false);
+  const [isDeleting, setIsDeleting] = React.useState(false);
+  const [deleteError, setDeleteError] = React.useState<string | null>(null);
   const menuRef = React.useRef<HTMLDivElement>(null);
 
   // Close popup when clicking outside
@@ -31,11 +36,30 @@ export function ProductActions({ product, onDelete }: ProductActionsProps) {
     };
   }, [menuOpen]);
 
-  const handleDeleteConfirm = () => {
-    setShowDeleteModal(false);
-    setMenuOpen(false);
-    if (onDelete) {
-      onDelete(product.id);
+  const handleDeleteConfirm = async () => {
+    setIsDeleting(true);
+    setDeleteError(null);
+
+    try {
+      const res = await deleteProductAction(product.id);
+      if (!res.success) {
+        setDeleteError(res.error || "Failed to delete product.");
+        setIsDeleting(false);
+        return;
+      }
+
+      setShowDeleteModal(false);
+      setMenuOpen(false);
+      setIsDeleting(false);
+
+      if (onDelete) {
+        onDelete(product.id);
+      } else {
+        router.refresh();
+      }
+    } catch {
+      setDeleteError("Failed to delete product. Please try again.");
+      setIsDeleting(false);
     }
   };
 
@@ -45,7 +69,7 @@ export function ProductActions({ product, onDelete }: ProductActionsProps) {
         variant="ghost"
         size="icon-xs"
         onClick={() => setMenuOpen(!menuOpen)}
-        className="size-8 rounded-lg border border-transparent hover:border-neutral-800 hover:bg-neutral-900 text-neutral-400 hover:text-white"
+        className="size-8 rounded-lg border border-transparent hover:border-neutral-800 hover:bg-neutral-900 text-neutral-400 hover:text-white cursor-pointer"
         aria-label="Product actions"
       >
         <MoreHorizontal className="size-4" />
@@ -81,7 +105,7 @@ export function ProductActions({ product, onDelete }: ProductActionsProps) {
               setMenuOpen(false);
               setShowDeleteModal(true);
             }}
-            className="flex items-center gap-2 w-full rounded-lg px-3 py-2 text-xs font-medium text-rose-400 hover:bg-rose-500/10 transition-colors"
+            className="flex items-center gap-2 w-full rounded-lg px-3 py-2 text-xs font-medium text-rose-400 hover:bg-rose-500/10 transition-colors cursor-pointer"
           >
             <Trash2 className="size-3.5" />
             <span>Delete Product</span>
@@ -108,23 +132,32 @@ export function ProductActions({ product, onDelete }: ProductActionsProps) {
             </div>
 
             <p className="text-xs text-neutral-400 bg-neutral-900 border border-neutral-800 rounded-xl p-3">
-              <span className="text-[#EEF35F] font-semibold">Demo note:</span> This is currently a frontend UI interaction. In production, this permanently removes the asset from MongoDB.
+              This action cannot be undone. This will permanently remove the product and its data from the MongoDB database.
             </p>
+
+            {deleteError && (
+              <p className="text-xs text-rose-400 bg-rose-500/10 border border-rose-500/20 rounded-xl p-2.5">
+                {deleteError}
+              </p>
+            )}
 
             <div className="flex items-center justify-end gap-2.5 pt-2">
               <button
                 type="button"
+                disabled={isDeleting}
                 onClick={() => setShowDeleteModal(false)}
-                className="rounded-full border border-neutral-800 bg-neutral-900 px-4 py-2 text-xs font-medium text-neutral-300 hover:bg-neutral-800 hover:text-white transition-colors"
+                className="rounded-full border border-neutral-800 bg-neutral-900 px-4 py-2 text-xs font-medium text-neutral-300 hover:bg-neutral-800 hover:text-white transition-colors cursor-pointer disabled:opacity-50"
               >
                 Cancel
               </button>
               <button
                 type="button"
+                disabled={isDeleting}
                 onClick={handleDeleteConfirm}
-                className="rounded-full bg-rose-600 px-4 py-2 text-xs font-bold text-white hover:bg-rose-500 transition-colors"
+                className="inline-flex items-center gap-1.5 rounded-full bg-rose-600 px-4 py-2 text-xs font-bold text-white hover:bg-rose-500 transition-colors cursor-pointer disabled:opacity-50"
               >
-                Delete Product
+                {isDeleting && <Loader2 className="size-3.5 animate-spin" />}
+                <span>{isDeleting ? "Deleting..." : "Delete Product"}</span>
               </button>
             </div>
           </div>

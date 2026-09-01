@@ -2,8 +2,8 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { Package, ExternalLink } from "lucide-react";
-import { Product } from "@/lib/products";
+import { Package } from "lucide-react";
+import { Product } from "@/types/product";
 import {
   Table,
   TableHeader,
@@ -18,6 +18,30 @@ import { ProductActions } from "./ProductActions";
 interface ProductTableProps {
   products: Product[];
   onDeleteProduct?: (productId: string) => void;
+}
+
+function formatProductDateTime(dateStr?: string) {
+  if (!dateStr) return { date: "—", time: "" };
+
+  const d = new Date(dateStr);
+  if (isNaN(d.getTime())) {
+    return { date: dateStr, time: "" };
+  }
+
+  const day = String(d.getDate()).padStart(2, "0");
+  const month = String(d.getMonth() + 1).padStart(2, "0");
+  const year = d.getFullYear();
+
+  let hours = d.getHours();
+  const minutes = String(d.getMinutes()).padStart(2, "0");
+  const ampm = hours >= 12 ? "PM" : "AM";
+  hours = hours % 12 || 12;
+  const formattedHours = String(hours).padStart(2, "0");
+
+  return {
+    date: `${day}-${month}-${year}`,
+    time: `${formattedHours}:${minutes} ${ampm}`,
+  };
 }
 
 export function ProductTable({ products, onDeleteProduct }: ProductTableProps) {
@@ -50,59 +74,72 @@ export function ProductTable({ products, onDeleteProduct }: ProductTableProps) {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {products.map((product) => (
-              <TableRow
-                key={product.id}
-                className="border-neutral-800/60 hover:bg-neutral-900/40 transition-colors"
-              >
-                {/* Product Name & Slug */}
-                <TableCell className="font-medium">
-                  <div className="flex items-center gap-3">
-                    <div className="size-10 rounded-xl bg-neutral-900 border border-neutral-800 flex items-center justify-center text-[#EEF35F] font-bold text-xs shrink-0">
-                      {product.name.slice(0, 2).toUpperCase()}
+            {products.map((product) => {
+              const dt = formatProductDateTime(product.updatedAt || product.createdAt);
+
+              return (
+                <TableRow
+                  key={product.id}
+                  className="border-neutral-800/60 hover:bg-neutral-900/40 transition-colors"
+                >
+                  {/* Product Name & Slug */}
+                  <TableCell className="font-medium">
+                    <div className="flex items-center gap-3">
+                      <div className="size-10 rounded-xl bg-neutral-900 border border-neutral-800 flex items-center justify-center text-[#EEF35F] font-bold text-xs shrink-0">
+                        {product.name.slice(0, 2).toUpperCase()}
+                      </div>
+                      <div>
+                        <Link
+                          href={`/dashboard/products/new?edit=${product.id}`}
+                          className="font-bold text-white hover:text-[#EEF35F] transition-colors font-heading text-sm"
+                        >
+                          {product.name}
+                        </Link>
+                        <p className="text-[11px] font-mono text-neutral-500 truncate max-w-[200px]">
+                          v{product.version} • /{product.slug}
+                        </p>
+                      </div>
                     </div>
-                    <div>
-                      <Link
-                        href={`/dashboard/products/new?edit=${product.id}`}
-                        className="font-bold text-white hover:text-[#EEF35F] transition-colors font-heading text-sm"
-                      >
-                        {product.name}
-                      </Link>
-                      <p className="text-[11px] font-mono text-neutral-500 truncate max-w-[200px]">
-                        v{product.version} • /{product.slug}
-                      </p>
+                  </TableCell>
+
+                  {/* Category */}
+                  <TableCell>
+                    <span className="inline-flex rounded-md bg-neutral-900 border border-neutral-800 px-2.5 py-1 text-[11px] font-mono text-neutral-300">
+                      {product.category}
+                    </span>
+                  </TableCell>
+
+                  {/* Price */}
+                  <TableCell className="font-mono font-bold text-white text-sm">
+                    ${product.price}
+                  </TableCell>
+
+                  {/* Status */}
+                  <TableCell>
+                    <ProductStatusBadge status={product.status} />
+                  </TableCell>
+
+                  {/* Updated (Formatted Date & Time) */}
+                  <TableCell className="text-xs font-mono">
+                    <div className="flex flex-col space-y-0.5">
+                      <span className="text-neutral-300">
+                        Date: <span className="text-neutral-200 font-semibold">{dt.date}</span>
+                      </span>
+                      {dt.time && (
+                        <span className="text-[11px] text-neutral-500">
+                          Time: {dt.time}
+                        </span>
+                      )}
                     </div>
-                  </div>
-                </TableCell>
+                  </TableCell>
 
-                {/* Category */}
-                <TableCell>
-                  <span className="inline-flex rounded-md bg-neutral-900 border border-neutral-800 px-2.5 py-1 text-[11px] font-mono text-neutral-300">
-                    {product.category}
-                  </span>
-                </TableCell>
-
-                {/* Price */}
-                <TableCell className="font-mono font-bold text-white text-sm">
-                  ${product.price}
-                </TableCell>
-
-                {/* Status */}
-                <TableCell>
-                  <ProductStatusBadge status={product.status} />
-                </TableCell>
-
-                {/* Updated */}
-                <TableCell className="text-xs font-mono text-neutral-400">
-                  {product.updatedAt}
-                </TableCell>
-
-                {/* Action Dropdown */}
-                <TableCell className="text-right">
-                  <ProductActions product={product} onDelete={onDeleteProduct} />
-                </TableCell>
-              </TableRow>
-            ))}
+                  {/* Action Dropdown */}
+                  <TableCell className="text-right">
+                    <ProductActions product={product} onDelete={onDeleteProduct} />
+                  </TableCell>
+                </TableRow>
+              );
+            })}
           </TableBody>
         </Table>
       </div>

@@ -1,69 +1,207 @@
 "use client";
 
 import * as React from "react";
+import Link from "next/link";
 import { motion } from "motion/react";
-import { Download, ShieldCheck, Zap, RefreshCw } from "lucide-react";
+import {
+  ExternalLink,
+  ShieldCheck,
+  Zap,
+  RefreshCw,
+  Check,
+  ArrowLeft,
+  BookOpen,
+  Code,
+  Sparkles,
+} from "lucide-react";
+import { Product } from "@/types/product";
 
-export function ProductDetailClient({ slug }: { slug: string }) {
+interface ProductDetailClientProps {
+  product: Product;
+}
+
+export function ProductDetailClient({ product }: ProductDetailClientProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8 bg-black text-white"
+      className="space-y-12"
     >
-      <motion.h1
-        initial={{ opacity: 0, y: 15 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.45, delay: 0.15 }}
-        className="text-3xl sm:text-4xl font-extrabold font-heading text-white mb-3 capitalize"
-      >
-        {slug.replace(/-/g, " ")}
-      </motion.h1>
+      {/* Back Link */}
+      <div>
+        <Link
+          href="/products"
+          className="inline-flex items-center gap-2 text-xs font-semibold text-neutral-400 hover:text-white transition-colors group"
+        >
+          <ArrowLeft className="size-4 transition-transform group-hover:-translate-x-1" />
+          <span>Back to all products</span>
+        </Link>
+      </div>
 
-      <motion.p
-        initial={{ opacity: 0, y: 15 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.45, delay: 0.2 }}
-        className="text-sm sm:text-base text-neutral-400 mb-8 max-w-2xl leading-relaxed"
-      >
-        Instant digital download package with full commercial licensing, source files, and lifetime asset updates.
-      </motion.p>
+      {/* Main Product Hero Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+        {/* Left 2 Cols: Details & Overview */}
+        <div className="lg:col-span-2 space-y-8">
+          <div>
+            <div className="flex flex-wrap items-center gap-2 mb-3">
+              <span className="rounded-full border border-neutral-800 bg-neutral-900 px-3 py-1 text-xs font-mono text-[#EEF35F]">
+                {product.category}
+              </span>
+              <span className="rounded-full border border-neutral-800 bg-neutral-950 px-3 py-1 text-xs font-mono text-neutral-400">
+                v{product.version}
+              </span>
+              {product.featured && (
+                <span className="rounded-full border border-[#EEF35F]/30 bg-[#EEF35F]/10 px-3 py-1 text-xs font-semibold text-[#EEF35F]">
+                  Featured Asset
+                </span>
+              )}
+            </div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 15 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.45, delay: 0.25 }}
-        className="flex flex-wrap items-center gap-4 pb-8 border-b border-neutral-900"
-      >
-        <button className="group inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#EEF35F] px-8 text-sm font-bold text-black transition-all hover:bg-[#e5ea4e] hover:shadow-[0_0_25px_rgba(238,243,95,0.3)] active:scale-95 shadow-lg shadow-[#EEF35F]/20">
-          <Download className="size-4 transition-transform duration-200 group-hover:-translate-y-0.5" />
-          <span>Download Asset</span>
-        </button>
-        <button className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-neutral-800 bg-neutral-900 px-8 text-sm font-semibold text-white transition-all hover:bg-neutral-800 hover:border-neutral-700 hover:text-[#EEF35F] active:scale-95">
-          <span>Preview Files</span>
-        </button>
-      </motion.div>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-heading text-white tracking-tight leading-tight">
+              {product.name}
+            </h1>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.35 }}
-        className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-8 text-xs text-neutral-400"
-      >
-        <div className="flex items-center gap-2">
-          <Zap className="size-4 text-[#EEF35F]" />
-          <span>Instant ZIP Delivery</span>
+            <p className="mt-4 text-base sm:text-lg text-neutral-300 leading-relaxed">
+              {product.shortDescription}
+            </p>
+          </div>
+
+          {/* Description Section */}
+          <div className="space-y-3 pt-4 border-t border-neutral-900">
+            <h2 className="text-sm font-mono font-semibold uppercase tracking-wider text-neutral-400">
+              Overview &amp; Architecture
+            </h2>
+            <div className="text-sm text-neutral-300 leading-relaxed whitespace-pre-line bg-neutral-950/60 rounded-2xl border border-neutral-800/80 p-6">
+              {product.description}
+            </div>
+          </div>
+
+          {/* Key Features List */}
+          {product.features && product.features.length > 0 && (
+            <div className="space-y-4 pt-4 border-t border-neutral-900">
+              <h2 className="text-sm font-mono font-semibold uppercase tracking-wider text-neutral-400">
+                Key Highlights
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {product.features.map((feature, idx) => (
+                  <div
+                    key={idx}
+                    className="flex items-start gap-2.5 rounded-xl border border-neutral-800 bg-neutral-950 p-3.5 text-xs text-neutral-200"
+                  >
+                    <div className="size-4 rounded-full bg-[#EEF35F]/10 text-[#EEF35F] flex items-center justify-center shrink-0 mt-0.5">
+                      <Check className="size-3" />
+                    </div>
+                    <span>{feature}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Technologies Badges */}
+          {product.technologies && product.technologies.length > 0 && (
+            <div className="space-y-3 pt-4 border-t border-neutral-900">
+              <h2 className="text-sm font-mono font-semibold uppercase tracking-wider text-neutral-400">
+                Built With
+              </h2>
+              <div className="flex flex-wrap gap-2">
+                {product.technologies.map((tech, idx) => (
+                  <span
+                    key={idx}
+                    className="inline-flex items-center gap-1.5 rounded-full border border-neutral-800 bg-neutral-900 px-3.5 py-1 text-xs font-mono text-neutral-200"
+                  >
+                    <Code className="size-3 text-[#EEF35F]" />
+                    <span>{tech}</span>
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
-        <div className="flex items-center gap-2">
-          <ShieldCheck className="size-4 text-[#EEF35F]" />
-          <span>Commercial License Included</span>
+
+        {/* Right 1 Col: Purchase Card & External Links */}
+        <div className="space-y-6">
+          <div className="rounded-3xl border border-neutral-800 bg-neutral-950 p-6 sm:p-7 shadow-2xl space-y-6 sticky top-24">
+            {/* Price Header */}
+            <div>
+              <span className="text-xs font-mono text-neutral-400 uppercase tracking-wider">
+                Lifetime Access
+              </span>
+              <div className="flex items-baseline gap-2 mt-1">
+                <span className="text-4xl font-extrabold font-mono text-white">
+                  ${product.price}
+                </span>
+                <span className="text-xs text-neutral-500 font-mono">USD</span>
+              </div>
+            </div>
+
+            {/* Buy Now / Purchase Action */}
+            <div className="space-y-2.5">
+              {product.purchaseUrl ? (
+                <a
+                  href={product.purchaseUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#EEF35F] px-8 text-sm font-bold text-black hover:bg-[#e5ea4e] hover:shadow-[0_0_25px_rgba(238,243,95,0.3)] transition-all shadow-lg shadow-[#EEF35F]/20 active:scale-95 text-center cursor-pointer"
+                >
+                  <span>Buy Now &rarr;</span>
+                </a>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => alert("Instant download package will be delivered upon checkout.")}
+                  className="w-full inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#EEF35F] px-8 text-sm font-bold text-black hover:bg-[#e5ea4e] hover:shadow-[0_0_25px_rgba(238,243,95,0.3)] transition-all shadow-lg shadow-[#EEF35F]/20 active:scale-95 text-center cursor-pointer"
+                >
+                  <span>Buy Now &rarr;</span>
+                </button>
+              )}
+
+              {product.demoUrl && (
+                <a
+                  href={product.demoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full inline-flex h-10 items-center justify-center gap-2 rounded-full border border-neutral-800 bg-neutral-900 px-6 text-xs font-semibold text-neutral-200 hover:bg-neutral-800 hover:text-white transition-colors"
+                >
+                  <ExternalLink className="size-3.5 text-[#EEF35F]" />
+                  <span>Live Preview</span>
+                </a>
+              )}
+
+              {product.documentationUrl && (
+                <a
+                  href={product.documentationUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full inline-flex h-10 items-center justify-center gap-2 rounded-full border border-neutral-800 bg-neutral-900 px-6 text-xs font-semibold text-neutral-200 hover:bg-neutral-800 hover:text-white transition-colors"
+                >
+                  <BookOpen className="size-3.5 text-neutral-400" />
+                  <span>Documentation</span>
+                </a>
+              )}
+            </div>
+
+            {/* Guarantees */}
+            <div className="space-y-3 pt-5 border-t border-neutral-900 text-xs text-neutral-400">
+              <div className="flex items-center gap-2.5">
+                <Zap className="size-4 text-[#EEF35F] shrink-0" />
+                <span>Instant digital file delivery</span>
+              </div>
+              <div className="flex items-center gap-2.5">
+                <ShieldCheck className="size-4 text-[#EEF35F] shrink-0" />
+                <span>Commercial license included</span>
+              </div>
+              <div className="flex items-center gap-2.5">
+                <RefreshCw className="size-4 text-[#EEF35F] shrink-0" />
+                <span>Free future updates &amp; patches</span>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="flex items-center gap-2">
-          <RefreshCw className="size-4 text-[#EEF35F]" />
-          <span>Free Future Updates</span>
-        </div>
-      </motion.div>
+      </div>
     </motion.div>
   );
 }
+
+export default ProductDetailClient;

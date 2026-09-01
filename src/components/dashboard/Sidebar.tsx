@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   LayoutDashboard,
   Package,
@@ -13,6 +13,7 @@ import {
   X,
 } from "lucide-react";
 import { MAIN_DASHBOARD_NAV, BOTTOM_DASHBOARD_NAV } from "@/lib/dashboard-navigation";
+import { logoutAdminAction } from "@/app/actions/auth";
 
 const ICON_MAP = {
   LayoutDashboard: LayoutDashboard,
@@ -28,6 +29,13 @@ interface SidebarProps {
 
 export function Sidebar({ mobileOpen, onCloseMobile }: SidebarProps) {
   const pathname = usePathname();
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    await logoutAdminAction();
+    router.push("/login");
+    router.refresh();
+  };
 
   const sidebarContent = (
     <div className="flex h-full w-full flex-col justify-between bg-black text-white">
@@ -121,9 +129,9 @@ export function Sidebar({ mobileOpen, onCloseMobile }: SidebarProps) {
 
           <button
             type="button"
-            title="Logout (Demo)"
-            onClick={() => alert("Demo Mode: Authentication will be connected later.")}
-            className="size-8 rounded-lg border border-neutral-800 bg-neutral-900 flex items-center justify-center text-neutral-400 hover:text-rose-400 hover:border-rose-500/30 transition-colors"
+            title="Log Out"
+            onClick={handleLogout}
+            className="size-8 rounded-lg border border-neutral-800 bg-neutral-900 flex items-center justify-center text-neutral-400 hover:text-rose-400 hover:border-rose-500/30 transition-colors cursor-pointer"
           >
             <LogOut className="size-3.5" />
           </button>
