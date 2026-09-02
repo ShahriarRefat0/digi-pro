@@ -57,6 +57,7 @@ export default async function ProductsPage() {
                   slug: prod.slug,
                   category: prod.category,
                   price: prod.price,
+                  thumbnail: prod.thumbnail,
                   badge: prod.featured ? "Featured" : undefined,
                   authorName: "DigiForge",
                 }}
