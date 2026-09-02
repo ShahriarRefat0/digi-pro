@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, ArrowRight } from "lucide-react";
 import { PillNav, PillNavItem } from "./pill-nav";
+import { GlobalSearch } from "@/components/search";
 
 export function Navbar() {
   const pathname = usePathname();
@@ -14,8 +15,6 @@ export function Navbar() {
     { label: "Discover", href: "/products" },
     { label: "Services", href: "/services" },
     { label: "Blog", href: "/blog" },
-    { label: "About", href: "/about" },
-    { label: "Contact", href: "/contact" },
   ];
 
   // Close mobile menu on route change
@@ -27,7 +26,7 @@ export function Navbar() {
     <header className="sticky top-0 z-50 w-full border-b border-neutral-900 bg-black/90 backdrop-blur-xl text-white selection:bg-[#EEF35F] selection:text-black">
       <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Left: Brand Logo + GitHub Stars Badge */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 shrink-0">
           <Link
             href="/"
             className="text-xl sm:text-2xl font-bold tracking-tight text-white hover:text-[#EEF35F] transition-colors font-heading"
@@ -48,8 +47,11 @@ export function Navbar() {
           </a>
         </div>
 
-        {/* Center: React Bits GSAP PillNav (Desktop / Large Tablet) */}
-        <div className="hidden lg:flex items-center">
+        {/* Center: Global Search Bar */}
+        <GlobalSearch />
+
+        {/* Right Desktop Nav Actions: PillNav + Start Now */}
+        <div className="hidden lg:flex items-center gap-4 shrink-0">
           <PillNav
             items={navItems}
             activeHref={pathname}
@@ -59,32 +61,22 @@ export function Navbar() {
             hoveredPillTextColor="#000000"
             ease="power2.out"
           />
-        </div>
-
-        {/* Right Desktop Nav Actions */}
-        <div className="hidden lg:flex items-center gap-4">
-          <Link
-            href="/dashboard"
-            className="text-xs font-semibold text-neutral-300 transition-colors hover:text-white"
-          >
-            Dashboard
-          </Link>
 
           <Link
-            href="/dashboard/products/new"
+            href="/"
             className="inline-flex h-9 items-center justify-center gap-1.5 rounded-full bg-[#EEF35F] px-5 text-xs font-bold text-black transition-all hover:bg-[#e5ea4e] hover:shadow-[0_0_15px_rgba(238,243,95,0.3)] active:scale-95 shadow-sm"
           >
-            <span>Start selling</span>
+            <span>Start Now</span>
           </Link>
         </div>
 
         {/* Mobile / Tablet Actions (< 1024px) */}
-        <div className="flex items-center gap-2.5 lg:hidden">
+        <div className="flex items-center gap-2 lg:hidden">
           <Link
-            href="/dashboard/products/new"
+            href="/"
             className="inline-flex h-8 items-center justify-center rounded-full bg-[#EEF35F] px-3.5 text-xs font-bold text-black transition-colors hover:bg-[#e5ea4e] active:scale-95"
           >
-            <span>Sell</span>
+            <span>Start</span>
           </Link>
 
           <button
@@ -120,11 +112,10 @@ export function Navbar() {
                   key={item.href}
                   href={item.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`flex items-center justify-between rounded-xl px-4 py-3 text-sm font-semibold transition-all ${
-                    isActive
+                  className={`flex items-center justify-between rounded-xl px-4 py-3 text-sm font-semibold transition-all ${isActive
                       ? "bg-[#EEF35F] text-black font-bold shadow-md shadow-[#EEF35F]/20"
                       : "text-neutral-300 hover:bg-neutral-900 hover:text-white"
-                  }`}
+                    }`}
                 >
                   <span>{item.label}</span>
                   {isActive ? (
@@ -138,21 +129,13 @@ export function Navbar() {
 
             <div className="my-3 border-t border-neutral-900" />
 
-            <div className="grid grid-cols-2 gap-2 pt-1">
+            <div className="pt-1">
               <Link
-                href="/dashboard"
+                href="/"
                 onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center justify-center rounded-xl border border-neutral-800 bg-neutral-950 py-2.5 text-xs font-semibold text-neutral-300 transition-colors hover:bg-neutral-900 hover:text-white"
+                className="flex w-full items-center justify-center rounded-xl bg-[#EEF35F] py-2.5 text-xs font-bold text-black transition-colors hover:bg-[#e5ea4e]"
               >
-                Dashboard
-              </Link>
-
-              <Link
-                href="/dashboard/products/new"
-                onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center justify-center rounded-xl bg-[#EEF35F] py-2.5 text-xs font-bold text-black transition-colors hover:bg-[#e5ea4e]"
-              >
-                Start selling
+                Start Now
               </Link>
             </div>
           </div>

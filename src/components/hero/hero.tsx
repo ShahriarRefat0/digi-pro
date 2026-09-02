@@ -56,10 +56,10 @@ export function Hero() {
           </Link>
 
           <Link
-            href="/dashboard/products/new"
+            href="/"
             className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-neutral-800 bg-neutral-950/80 px-8 text-sm font-semibold text-white transition-all hover:bg-neutral-900 hover:border-neutral-700 hover:scale-105 active:scale-95 backdrop-blur-sm"
           >
-            <span>Start Selling</span>
+            <span>Start Now</span>
             <ArrowRight className="size-4 text-neutral-400 group-hover:translate-x-0.5 transition-transform" />
           </Link>
         </div>

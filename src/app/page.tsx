@@ -15,7 +15,7 @@ import { getFeaturedProducts } from "@/lib/products/product.repository";
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  const featuredProducts = await getFeaturedProducts(6);
+  const featuredProducts = (await getFeaturedProducts(6)).slice(0, 6);
 
   return (
     <div className="min-h-screen flex flex-col bg-black text-white selection:bg-[#EEF35F] selection:text-black">

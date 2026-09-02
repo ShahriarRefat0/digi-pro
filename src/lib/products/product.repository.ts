@@ -99,14 +99,30 @@ export async function getPublishedProducts(options: Omit<GetProductsOptions, "st
 export async function getFeaturedProducts(limit: number = 6): Promise<Product[]> {
   try {
     const db = await getDatabase();
-    const docs = await db
+    let docs = await db
       .collection<ProductDocument>(PRODUCTS_COLLECTION)
       .find({ status: "published", featured: true })
       .sort({ updatedAt: -1 })
       .limit(limit)
       .toArray();
 
-    return docs.map(serializeProduct);
+    // If fewer featured products exist than the limit, fill remaining slots with published products
+    if (docs.length < limit) {
+      const existingIds = docs.map((d) => d._id).filter(Boolean);
+      const additional = await db
+        .collection<ProductDocument>(PRODUCTS_COLLECTION)
+        .find({
+          status: "published",
+          ...(existingIds.length > 0 ? { _id: { $nin: existingIds } } : {}),
+        })
+        .sort({ updatedAt: -1 })
+        .limit(limit - docs.length)
+        .toArray();
+
+      docs = [...docs, ...additional];
+    }
+
+    return docs.slice(0, limit).map(serializeProduct);
   } catch (error) {
     console.error("Error fetching featured products from MongoDB:", error);
     return [];

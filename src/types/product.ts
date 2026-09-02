@@ -1,26 +1,40 @@
 import { ObjectId } from "mongodb";
 
 export type ProductCategory =
+  | "Web Templates"
   | "Website Templates"
   | "UI Kits"
+  | "SaaS Starters"
   | "Starter Kits"
   | "Developer Tools"
   | "E-commerce"
+  | "Web Components"
+  | "AI Tools"
   | "Design Assets"
+  | "3D Assets"
+  | "Motion & Animation"
+  | "Mobile UI"
   | "Productivity"
-  | "E-books & Guides";
+  | "E-books & Guides"
+  | "Digital Assets";
 
 export type ProductStatus = "published" | "draft";
 
 export const PRODUCT_CATEGORIES: ProductCategory[] = [
-  "Website Templates",
+  "Web Templates",
   "UI Kits",
-  "Starter Kits",
+  "SaaS Starters",
   "Developer Tools",
   "E-commerce",
+  "Web Components",
+  "AI Tools",
   "Design Assets",
+  "3D Assets",
+  "Motion & Animation",
+  "Mobile UI",
   "Productivity",
   "E-books & Guides",
+  "Digital Assets",
 ];
 
 // MongoDB Document Schema

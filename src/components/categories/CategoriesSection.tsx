@@ -4,28 +4,40 @@ import * as React from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
 import {
-  LayoutTemplate,
+  Globe2,
   PanelsTopLeft,
   Rocket,
   Code2,
   ShoppingCart,
+  Blocks,
+  Sparkles,
   Palette,
+  Box,
+  Clapperboard,
+  Smartphone,
   Zap,
   BookOpen,
+  Layers3,
   ArrowLeft,
   ArrowRight,
 } from "lucide-react";
 import { DIGITAL_CATEGORIES, DigitalCategory } from "@/lib/categories";
 
 const ICON_MAP = {
-  LayoutTemplate,
+  Globe2,
   PanelsTopLeft,
   Rocket,
   Code2,
   ShoppingCart,
+  Blocks,
+  Sparkles,
   Palette,
+  Box,
+  Clapperboard,
+  Smartphone,
   Zap,
   BookOpen,
+  Layers3,
 };
 
 export function CategoriesSection() {
@@ -151,7 +163,7 @@ export function CategoriesSection() {
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"
             >
               {visibleCategories.map((cat, idx) => {
-                const Icon = ICON_MAP[cat.icon] || LayoutTemplate;
+                const Icon = ICON_MAP[cat.icon] || Globe2;
                 return (
                   <motion.div
                     key={cat.id}

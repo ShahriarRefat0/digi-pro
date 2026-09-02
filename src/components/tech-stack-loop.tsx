@@ -3,23 +3,20 @@
 import * as React from "react";
 import LogoLoop, { LogoItem } from "@/components/LogoLoop";
 import {
-  BookOpen,
-  Image as ImageIcon,
+  Globe2,
+  PanelsTopLeft,
+  Rocket,
+  Code2,
+  ShoppingCart,
+  Blocks,
+  Sparkles,
   Palette,
   Box,
-  Sparkles,
-  MessageSquare,
-  TrendingUp,
-  Layout,
-  Mic,
-  Dumbbell,
-  Rocket,
-  Gamepad2,
-  Disc,
-  GraduationCap,
-  Video,
-  Feather,
-  Dices
+  Clapperboard,
+  Smartphone,
+  Zap,
+  BookOpen,
+  Layers3,
 } from "lucide-react";
 
 // Helper to create category pill node
@@ -44,38 +41,29 @@ function createCategoryPill(
   };
 }
 
-// Row 1: Notion, Textures, Procreate, 3D Models, Hypnosis, Manga, Investing, Mockups, Music
+// Row 1: Web Templates, UI Kits, SaaS Starters, Developer Tools, E-commerce, Web Components, AI Tools, Design Assets
 export const CATEGORY_ROW_1: LogoItem[] = [
-  createCategoryPill(
-    <span className="text-xs font-black font-mono border border-white/60 px-1 rounded-[3px] text-white">N</span>,
-    "Notion Templates"
-  ),
-  createCategoryPill(<ImageIcon className="size-4 text-[#38BDF8]" />, "Textures"),
-  createCategoryPill(<Palette className="size-4 text-[#F472B6]" />, "Procreate"),
-  createCategoryPill(<Box className="size-4 text-[#FB923C]" />, "3D Models"),
-  createCategoryPill(<Sparkles className="size-4 text-[#C084FC]" />, "Hypnosis"),
-  createCategoryPill(<MessageSquare className="size-4 text-[#FB7185]" />, "Manga"),
-  createCategoryPill(<TrendingUp className="size-4 text-[#4ADE80]" />, "Investing"),
-  createCategoryPill(<Layout className="size-4 text-[#60A5FA]" />, "Mockups"),
-  createCategoryPill(<Mic className="size-4 text-[#F43F5E]" />, "Music"),
-  createCategoryPill(<Palette className="size-4 text-[#A78BFA]" />, "Digital Art"),
-  createCategoryPill(<Sparkles className="size-4 text-[#FDE047]" />, "Animation"),
+  createCategoryPill(<Globe2 className="size-4 text-[#38BDF8]" />, "Web Templates", "/products?category=web-templates"),
+  createCategoryPill(<PanelsTopLeft className="size-4 text-[#818CF8]" />, "UI Kits", "/products?category=ui-kits"),
+  createCategoryPill(<Rocket className="size-4 text-[#34D399]" />, "SaaS Starters", "/products?category=saas-starters"),
+  createCategoryPill(<Code2 className="size-4 text-[#FBBF24]" />, "Developer Tools", "/products?category=developer-tools"),
+  createCategoryPill(<ShoppingCart className="size-4 text-[#FB923C]" />, "E-commerce", "/products?category=e-commerce"),
+  createCategoryPill(<Blocks className="size-4 text-[#22D3EE]" />, "Web Components", "/products?category=web-components"),
+  createCategoryPill(<Sparkles className="size-4 text-[#EEF35F]" />, "AI Tools", "/products?category=ai-tools"),
+  createCategoryPill(<Palette className="size-4 text-[#F472B6]" />, "Design Assets", "/products?category=design-assets"),
 ];
 
-// Row 2: Fitness, Sci-Fi, VRChat, Ableton, Certification Exams, VJ Loops, Workout, Poetry, Board Games
+// Row 2: 3D Assets, Motion & Animation, Mobile UI, Productivity, E-books & Guides, Digital Assets
 export const CATEGORY_ROW_2: LogoItem[] = [
-  createCategoryPill(<Dumbbell className="size-4 text-[#22C55E]" />, "Fitness"),
-  createCategoryPill(<Rocket className="size-4 text-[#FBBF24]" />, "Sci-Fi"),
-  createCategoryPill(<Gamepad2 className="size-4 text-[#A855F7]" />, "VRChat"),
-  createCategoryPill(<Disc className="size-4 text-[#F97316]" />, "Ableton"),
-  createCategoryPill(<GraduationCap className="size-4 text-[#60A5FA]" />, "Certification Exams"),
-  createCategoryPill(<Video className="size-4 text-[#2DD4BF]" />, "VJ Loops"),
-  createCategoryPill(<Dumbbell className="size-4 text-[#EAB308]" />, "Workout Program"),
-  createCategoryPill(<Feather className="size-4 text-[#C084FC]" />, "Poetry"),
-  createCategoryPill(<Dices className="size-4 text-[#38BDF8]" />, "Board Games"),
-  createCategoryPill(<Rocket className="size-4 text-[#EC4899]" />, "Game Assets"),
+  createCategoryPill(<Box className="size-4 text-[#A78BFA]" />, "3D Assets", "/products?category=3d-assets"),
+  createCategoryPill(<Clapperboard className="size-4 text-[#E879F9]" />, "Motion & Animation", "/products?category=motion-animation"),
+  createCategoryPill(<Smartphone className="size-4 text-[#2DD4BF]" />, "Mobile UI", "/products?category=mobile-ui"),
+  createCategoryPill(<Zap className="size-4 text-[#A3E635]" />, "Productivity", "/products?category=productivity"),
+  createCategoryPill(<BookOpen className="size-4 text-[#38BDF8]" />, "E-books & Guides", "/products?category=ebooks-guides"),
+  createCategoryPill(<Layers3 className="size-4 text-[#C084FC]" />, "Digital Assets", "/products?category=digital-assets"),
+  createCategoryPill(<Globe2 className="size-4 text-[#38BDF8]" />, "Web Templates", "/products?category=web-templates"),
+  createCategoryPill(<PanelsTopLeft className="size-4 text-[#818CF8]" />, "UI Kits", "/products?category=ui-kits"),
 ];
-
 
 export function TechStackLoopSection() {
   return (
@@ -90,7 +78,7 @@ export function TechStackLoopSection() {
         </p>
       </div>
 
-      {/* 5-Row Marquee Loop */}
+      {/* 2-Row Marquee Loop */}
       <div className="space-y-3.5">
         {/* Row 1: Leftward */}
         <LogoLoop
@@ -117,10 +105,6 @@ export function TechStackLoopSection() {
           fadeOutColor="#000000"
           ariaLabel="Category loop row 2"
         />
-
-
-
-
       </div>
     </section>
   );

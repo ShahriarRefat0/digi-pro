@@ -4,11 +4,12 @@ import * as React from "react";
 import Link from "next/link";
 import { motion } from "motion/react";
 import {
-  Globe2,
-  Server,
-  ShoppingCart,
+  Code2,
   PanelsTopLeft,
-  Wrench,
+  ShoppingCart,
+  Server,
+  BrainCircuit,
+  Gauge,
   Check,
   ArrowRight,
 } from "lucide-react";
@@ -20,15 +21,16 @@ interface ServiceCardProps {
 }
 
 const ICON_MAP = {
-  Globe2: Globe2,
-  Server: Server,
-  ShoppingCart: ShoppingCart,
+  Code2: Code2,
   PanelsTopLeft: PanelsTopLeft,
-  Wrench: Wrench,
+  ShoppingCart: ShoppingCart,
+  Server: Server,
+  BrainCircuit: BrainCircuit,
+  Gauge: Gauge,
 };
 
 export function ServiceCard({ service, index = 0 }: ServiceCardProps) {
-  const Icon = ICON_MAP[service.icon] || Globe2;
+  const Icon = ICON_MAP[service.icon] || Code2;
 
   return (
     <motion.div

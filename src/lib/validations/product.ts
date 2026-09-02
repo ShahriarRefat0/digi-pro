@@ -1,14 +1,22 @@
 import { z } from "zod";
 
 export const ProductCategoriesEnum = [
+  "Web Templates",
   "Website Templates",
   "UI Kits",
+  "SaaS Starters",
   "Starter Kits",
   "Developer Tools",
   "E-commerce",
+  "Web Components",
+  "AI Tools",
   "Design Assets",
+  "3D Assets",
+  "Motion & Animation",
+  "Mobile UI",
   "Productivity",
   "E-books & Guides",
+  "Digital Assets",
 ] as const;
 
 export const ProductSchema = z.object({

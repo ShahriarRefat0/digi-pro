@@ -1,9 +1,7 @@
-export * from "./serviceCategories";
-
-export interface ServiceItem {
+export interface ServiceCategoryConfig {
   id: string;
+  name: string;
   slug: string;
-  title: string;
   description: string;
   icon:
     | "Code2"
@@ -17,26 +15,12 @@ export interface ServiceItem {
   cta: string;
 }
 
-export interface ProcessStepItem {
-  number: string;
-  title: string;
-  description: string;
-  icon: "MessageSquare" | "Code2" | "Rocket";
-}
-
-export interface TechnologyItem {
-  name: string;
-  category: "Frontend" | "Backend" | "Database" | "UI & Styling";
-  description: string;
-}
-
-export const SERVICES_DATA: ServiceItem[] = [
+export const SERVICE_CATEGORIES_CONFIG: ServiceCategoryConfig[] = [
   {
     id: "web-development",
+    name: "Web Development",
     slug: "web-development",
-    title: "Web Development",
-    description:
-      "Modern websites and web applications built with React and Next.js.",
+    description: "Modern websites and web applications built with React and Next.js.",
     icon: "Code2",
     features: [
       "Custom Next.js & React web applications",
@@ -50,10 +34,9 @@ export const SERVICES_DATA: ServiceItem[] = [
   },
   {
     id: "ui-ux-development",
+    name: "UI/UX Development",
     slug: "ui-ux-development",
-    title: "UI/UX Development",
-    description:
-      "Responsive interfaces converted from designs into production-ready applications.",
+    description: "Responsive interfaces converted from designs into production-ready applications.",
     icon: "PanelsTopLeft",
     features: [
       "Figma design to production code translation",
@@ -67,10 +50,9 @@ export const SERVICES_DATA: ServiceItem[] = [
   },
   {
     id: "ecommerce-development",
+    name: "E-commerce Development",
     slug: "ecommerce-development",
-    title: "E-commerce Development",
-    description:
-      "Modern storefronts and e-commerce experiences.",
+    description: "Modern storefronts and e-commerce experiences.",
     icon: "ShoppingCart",
     features: [
       "Digital downloads & physical product storefronts",
@@ -84,10 +66,9 @@ export const SERVICES_DATA: ServiceItem[] = [
   },
   {
     id: "backend-api-development",
+    name: "API & Backend Development",
     slug: "backend-api-development",
-    title: "API & Backend Development",
-    description:
-      "Reliable APIs, databases, and backend systems.",
+    description: "Reliable APIs, databases, and backend systems.",
     icon: "Server",
     features: [
       "Scalable RESTful APIs & Route Handlers",
@@ -101,10 +82,9 @@ export const SERVICES_DATA: ServiceItem[] = [
   },
   {
     id: "ai-integration",
+    name: "AI Integration",
     slug: "ai-integration",
-    title: "AI Integration",
-    description:
-      "AI-powered features and integrations for modern applications.",
+    description: "AI-powered features and integrations for modern applications.",
     icon: "BrainCircuit",
     features: [
       "LLM & Gemini / OpenAI API integrations",
@@ -118,10 +98,9 @@ export const SERVICES_DATA: ServiceItem[] = [
   },
   {
     id: "website-optimization",
+    name: "Website Optimization",
     slug: "website-optimization",
-    title: "Website Optimization",
-    description:
-      "Performance, responsiveness, and UI improvements for existing websites.",
+    description: "Performance, responsiveness, and UI improvements for existing websites.",
     icon: "Gauge",
     features: [
       "Core Web Vitals & Google Lighthouse optimization",
@@ -132,72 +111,5 @@ export const SERVICES_DATA: ServiceItem[] = [
     ],
     technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
     cta: "Optimize Website",
-  },
-];
-
-export const PROCESS_STEPS: ProcessStepItem[] = [
-  {
-    number: "01",
-    title: "Discuss",
-    description:
-      "Tell me about your idea, requirements, or existing project to define the scope and timeline.",
-    icon: "MessageSquare",
-  },
-  {
-    number: "02",
-    title: "Build",
-    description:
-      "Design and development using modern technologies, clean architecture, and regular updates.",
-    icon: "Code2",
-  },
-  {
-    number: "03",
-    title: "Deliver",
-    description:
-      "Test, optimize, and deliver a reliable, production-ready solution ready to launch.",
-    icon: "Rocket",
-  },
-];
-
-export const TECHNOLOGIES_DATA: TechnologyItem[] = [
-  {
-    name: "Next.js",
-    category: "Frontend",
-    description: "App Router, SSR, Server Components",
-  },
-  {
-    name: "React",
-    category: "Frontend",
-    description: "Component architecture & hooks",
-  },
-  {
-    name: "TypeScript",
-    category: "Frontend",
-    description: "End-to-end type safety",
-  },
-  {
-    name: "Node.js",
-    category: "Backend",
-    description: "High-performance runtime",
-  },
-  {
-    name: "NestJS",
-    category: "Backend",
-    description: "Modular enterprise architecture",
-  },
-  {
-    name: "MongoDB",
-    category: "Database",
-    description: "Flexible document database",
-  },
-  {
-    name: "Tailwind CSS",
-    category: "UI & Styling",
-    description: "Utility-first modern styling",
-  },
-  {
-    name: "shadcn/ui",
-    category: "UI & Styling",
-    description: "Accessible component system",
   },
 ];

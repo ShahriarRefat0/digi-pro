@@ -75,9 +75,6 @@ export function Footer() {
               <Link href="/pricing" className="text-sm text-neutral-300 transition-colors hover:text-white hover:underline underline-offset-4">
                 Pricing
               </Link>
-              <Link href="/about" className="text-sm text-neutral-300 transition-colors hover:text-white hover:underline underline-offset-4">
-                About
-              </Link>
               <Link href="/gumclaw" className="text-sm text-neutral-300 transition-colors hover:text-white hover:underline underline-offset-4">
                 Gumclaw
               </Link>
@@ -88,8 +85,11 @@ export function Footer() {
 
             {/* Column 2 */}
             <div className="flex flex-col space-y-3.5">
+              <Link href="/about" className="text-sm text-neutral-300 transition-colors hover:text-white hover:underline underline-offset-4">
+                About
+              </Link>
               <Link href="/contact" className="text-sm text-neutral-300 transition-colors hover:text-white hover:underline underline-offset-4">
-                Contact Us
+                Contact
               </Link>
               <Link href="/help" className="text-sm text-neutral-300 transition-colors hover:text-white hover:underline underline-offset-4">
                 Help
