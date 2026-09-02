@@ -6,14 +6,29 @@ import bcrypt from "bcryptjs";
 
 async function seedAdmin() {
   const uri = process.env.DATA_BASE_URL;
+  const email = process.env.USER_EMAIL?.toLowerCase().trim();
+  const plainPassword = process.env.USER_PASSWORD;
+  const name = process.env.USER_ROLE?.trim();
+
   if (!uri) {
     console.error("❌ Error: DATA_BASE_URL is not defined in .env");
     process.exit(1);
   }
 
-  const email = (process.env.USER_EMAIL || process.env.ADMIN_EMAIL || "admin@digiforge.dev").toLowerCase().trim();
-  const plainPassword = process.env.USER_PASSWORD || process.env.ADMIN_PASSWORD || "admin123456";
-  const name = process.env.USER_ROLE || "Admin";
+  if (!email) {
+    console.error("❌ Error: USER_EMAIL is not defined in .env");
+    process.exit(1);
+  }
+
+  if (!plainPassword) {
+    console.error("❌ Error: USER_PASSWORD is not defined in .env");
+    process.exit(1);
+  }
+
+  if (!name) {
+    console.error("❌ Error: USER_ROLE is not defined in .env");
+    process.exit(1);
+  }
 
   const client = new MongoClient(uri);
 
@@ -46,6 +61,7 @@ async function seedAdmin() {
     await adminsCollection.insertOne(newAdmin);
     console.log(`✅ Admin account created successfully!`);
     console.log(`   Email: ${email}`);
+    console.log(`   Role: ${name}`);
     console.log(`   Password hash stored securely in MongoDB collection 'admins'.`);
   } catch (error) {
     console.error("❌ Error seeding admin:", error);
