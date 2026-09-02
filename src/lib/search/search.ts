@@ -142,9 +142,13 @@ export async function searchAll(
           title: doc.name,
           description: doc.shortDescription || "",
           href: `/products/${doc.slug}`,
-          category: doc.category,
           price: Number(doc.price) || 0,
-          thumbnail: doc.thumbnail || "/images/placeholder.webp",
+          thumbnail:
+            (typeof doc.thumbnail === "object" && doc.thumbnail && "url" in doc.thumbnail
+              ? (doc.thumbnail as any).url
+              : typeof doc.thumbnail === "string"
+              ? doc.thumbnail
+              : "") || "/images/placeholder.webp",
           tags: doc.tags || [],
           score,
         };

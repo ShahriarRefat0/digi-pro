@@ -11,11 +11,16 @@ import {
   getProductBySlug,
 } from "@/lib/products/product.repository";
 import { Product, CreateProductInput, UpdateProductInput } from "@/types/product";
+import {
+  deleteCloudinaryImage,
+  deleteMultipleCloudinaryImages,
+} from "@/lib/cloudinary";
 
 export interface ActionResult<T = unknown> {
   success: boolean;
   data?: T;
   error?: string;
+  fieldErrors?: Record<string, string>;
 }
 
 /**
@@ -27,13 +32,17 @@ async function requireAuth(): Promise<boolean> {
 }
 
 function revalidateProductPaths(slug?: string) {
-  revalidatePath("/");
-  revalidatePath("/products");
-  if (slug) {
-    revalidatePath(`/products/${slug}`);
+  try {
+    revalidatePath("/");
+    revalidatePath("/products");
+    if (slug) {
+      revalidatePath(`/products/${slug}`);
+    }
+    revalidatePath("/dashboard");
+    revalidatePath("/dashboard/products");
+  } catch (err) {
+    console.error("Error during path revalidation:", err);
   }
-  revalidatePath("/dashboard");
-  revalidatePath("/dashboard/products");
 }
 
 /**
@@ -43,13 +52,20 @@ export async function createProductAction(rawData: unknown): Promise<ActionResul
   try {
     const isAuth = await requireAuth();
     if (!isAuth) {
-      return { success: false, error: "Unauthorized. Please sign in as admin." };
+      return { success: false, error: "Unauthorized. Please sign in as an administrator." };
     }
 
     const validationResult = ProductSchema.safeParse(rawData);
     if (!validationResult.success) {
+      const fieldErrors: Record<string, string> = {};
+      validationResult.error.issues.forEach((issue) => {
+        const field = issue.path[0] as string;
+        if (field && !fieldErrors[field]) {
+          fieldErrors[field] = issue.message;
+        }
+      });
       const firstError = validationResult.error.issues?.[0]?.message || "Invalid product data";
-      return { success: false, error: firstError };
+      return { success: false, error: firstError, fieldErrors };
     }
 
     const data = validationResult.data as CreateProductInput;
@@ -59,7 +75,8 @@ export async function createProductAction(rawData: unknown): Promise<ActionResul
     if (existing) {
       return {
         success: false,
-        error: "A product with this URL slug already exists. Please choose a unique slug.",
+        error: `A product with slug "${data.slug}" already exists. Please choose a unique URL slug.`,
+        fieldErrors: { slug: "This URL slug is already taken. Please enter a unique slug." },
       };
     }
 
@@ -69,6 +86,13 @@ export async function createProductAction(rawData: unknown): Promise<ActionResul
     return { success: true, data: newProduct };
   } catch (error: any) {
     console.error("Error in createProductAction:", error);
+    if (error.code === 11000) {
+      return {
+        success: false,
+        error: "A product with this URL slug already exists. Please choose a unique slug.",
+        fieldErrors: { slug: "Slug already exists in MongoDB database." },
+      };
+    }
     return { success: false, error: error.message || "Failed to create product." };
   }
 }
@@ -83,23 +107,36 @@ export async function updateProductAction(
   try {
     const isAuth = await requireAuth();
     if (!isAuth) {
-      return { success: false, error: "Unauthorized. Please sign in as admin." };
+      return { success: false, error: "Unauthorized. Please sign in as an administrator." };
     }
 
     const validationResult = UpdateProductSchema.safeParse(rawData);
     if (!validationResult.success) {
+      const fieldErrors: Record<string, string> = {};
+      validationResult.error.issues.forEach((issue) => {
+        const field = issue.path[0] as string;
+        if (field && !fieldErrors[field]) {
+          fieldErrors[field] = issue.message;
+        }
+      });
       const firstError = validationResult.error.issues?.[0]?.message || "Invalid product data";
-      return { success: false, error: firstError };
+      return { success: false, error: firstError, fieldErrors };
     }
 
     const data = validationResult.data as UpdateProductInput;
+
+    const existingProduct = await getProductById(id);
+    if (!existingProduct) {
+      return { success: false, error: "Product not found." };
+    }
 
     if (data.slug) {
       const existingWithSlug = await getProductBySlug(data.slug);
       if (existingWithSlug && existingWithSlug.id !== id) {
         return {
           success: false,
-          error: "A product with this URL slug already exists. Please choose a unique slug.",
+          error: `A product with slug "${data.slug}" already exists. Please choose a unique URL slug.`,
+          fieldErrors: { slug: "This URL slug is already taken by another product." },
         };
       }
     }
@@ -109,32 +146,86 @@ export async function updateProductAction(
       return { success: false, error: "Product not found or update failed." };
     }
 
-    revalidateProductPaths(updated.slug);
+    // Cleanup replaced thumbnail if publicId changed
+    if (
+      existingProduct.thumbnailPublicId &&
+      data.thumbnailPublicId &&
+      existingProduct.thumbnailPublicId !== data.thumbnailPublicId
+    ) {
+      deleteCloudinaryImage(existingProduct.thumbnailPublicId).catch((err) =>
+        console.error("Failed to delete replaced thumbnail from Cloudinary:", err)
+      );
+    }
+
+    // Cleanup removed gallery images
+    if (existingProduct.imagePublicIds && existingProduct.imagePublicIds.length > 0) {
+      const remainingPublicIds = new Set(data.imagePublicIds || []);
+      const removedPublicIds = existingProduct.imagePublicIds.filter(
+        (pid) => !remainingPublicIds.has(pid)
+      );
+      if (removedPublicIds.length > 0) {
+        deleteMultipleCloudinaryImages(removedPublicIds).catch((err) =>
+          console.error("Failed to delete removed gallery images from Cloudinary:", err)
+        );
+      }
+    }
+
+    revalidateProductPaths(existingProduct.slug);
+    if (updated.slug !== existingProduct.slug) {
+      revalidateProductPaths(updated.slug);
+    }
+
     return { success: true, data: updated };
   } catch (error: any) {
     console.error(`Error in updateProductAction (${id}):`, error);
+    if (error.code === 11000) {
+      return {
+        success: false,
+        error: "A product with this URL slug already exists. Please choose a unique slug.",
+        fieldErrors: { slug: "Slug already exists in MongoDB database." },
+      };
+    }
     return { success: false, error: error.message || "Failed to update product." };
   }
 }
 
 /**
- * Server Action: Delete a product
+ * Server Action: Delete a product and its associated Cloudinary assets
  */
 export async function deleteProductAction(id: string): Promise<ActionResult> {
   try {
     const isAuth = await requireAuth();
     if (!isAuth) {
-      return { success: false, error: "Unauthorized. Please sign in as admin." };
+      return { success: false, error: "Unauthorized. Please sign in as an administrator." };
     }
 
     const product = await getProductById(id);
-    const success = await deleteProduct(id);
+    if (!product) {
+      return { success: false, error: "Product not found." };
+    }
 
+    // Collect Cloudinary asset IDs to clean up
+    const assetsToDelete: string[] = [];
+    if (product.thumbnailPublicId) {
+      assetsToDelete.push(product.thumbnailPublicId);
+    }
+    if (product.imagePublicIds && product.imagePublicIds.length > 0) {
+      assetsToDelete.push(...product.imagePublicIds);
+    }
+
+    const success = await deleteProduct(id);
     if (!success) {
       return { success: false, error: "Failed to delete product from database." };
     }
 
-    revalidateProductPaths(product?.slug);
+    // Safely cleanup Cloudinary assets in the background
+    if (assetsToDelete.length > 0) {
+      deleteMultipleCloudinaryImages(assetsToDelete).catch((err) =>
+        console.error("Failed to cleanup Cloudinary assets for deleted product:", err)
+      );
+    }
+
+    revalidateProductPaths(product.slug);
     return { success: true };
   } catch (error: any) {
     console.error(`Error in deleteProductAction (${id}):`, error);

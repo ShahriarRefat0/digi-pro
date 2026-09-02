@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "motion/react";
 import {
   ExternalLink,
@@ -12,7 +13,8 @@ import {
   ArrowLeft,
   BookOpen,
   Code,
-  Sparkles,
+  FileCheck,
+  Terminal,
 } from "lucide-react";
 import { Product } from "@/types/product";
 
@@ -21,12 +23,45 @@ interface ProductDetailClientProps {
 }
 
 export function ProductDetailClient({ product }: ProductDetailClientProps) {
+  const allImages = React.useMemo(() => {
+    const list: string[] = [];
+    const isValidUrl = (url?: string) =>
+      Boolean(url) &&
+      (url!.startsWith("http://") ||
+        url!.startsWith("https://") ||
+        url!.startsWith("data:"));
+
+    if (isValidUrl(product.thumbnail)) {
+      list.push(product.thumbnail);
+    }
+    if (product.images && product.images.length > 0) {
+      product.images.forEach((img) => {
+        if (isValidUrl(img) && !list.includes(img)) list.push(img);
+      });
+    }
+    return list;
+  }, [product.thumbnail, product.images]);
+
+  const [activeImage, setActiveImage] = React.useState<string | null>(
+    allImages[0] || null
+  );
+
+  const isValidHttpUrl = (url?: string): boolean => {
+    if (!url || typeof url !== "string") return false;
+    const trimmed = url.trim();
+    return trimmed.startsWith("http://") || trimmed.startsWith("https://");
+  };
+
+  const hasDemoUrl = isValidHttpUrl(product.demoUrl);
+  const hasDocsUrl = isValidHttpUrl(product.documentationUrl);
+  const hasPurchaseUrl = isValidHttpUrl(product.purchaseUrl);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="space-y-12"
+      className="space-y-10"
     >
       {/* Back Link */}
       <div>
@@ -67,6 +102,46 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
             </p>
           </div>
 
+          {/* Product Media Display */}
+          {activeImage && activeImage !== "/images/placeholder.webp" && (
+            <div className="space-y-3">
+              <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-950 shadow-xl">
+                <Image
+                  src={activeImage}
+                  alt={product.name}
+                  fill
+                  priority
+                  className="object-cover"
+                />
+              </div>
+
+              {/* Multi-image thumbnail strip */}
+              {allImages.length > 1 && (
+                <div className="flex gap-2.5 overflow-x-auto pb-2">
+                  {allImages.map((img, idx) => (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => setActiveImage(img)}
+                      className={`relative aspect-[16/10] h-14 shrink-0 rounded-lg overflow-hidden border transition-all cursor-pointer ${
+                        activeImage === img
+                          ? "border-[#EEF35F] ring-2 ring-[#EEF35F]/30"
+                          : "border-neutral-800 opacity-60 hover:opacity-100"
+                      }`}
+                    >
+                      <Image
+                        src={img}
+                        alt={`Preview ${idx + 1}`}
+                        fill
+                        className="object-cover"
+                      />
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
           {/* Description Section */}
           <div className="space-y-3 pt-4 border-t border-neutral-900">
             <h2 className="text-sm font-mono font-semibold uppercase tracking-wider text-neutral-400">
@@ -99,6 +174,46 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
             </div>
           )}
 
+          {/* What's Included */}
+          {product.included && product.included.length > 0 && (
+            <div className="space-y-4 pt-4 border-t border-neutral-900">
+              <h2 className="text-sm font-mono font-semibold uppercase tracking-wider text-neutral-400">
+                What&apos;s Included in this Package
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {product.included.map((item, idx) => (
+                  <div
+                    key={idx}
+                    className="flex items-center gap-2.5 rounded-xl border border-neutral-800 bg-neutral-950 p-3.5 text-xs text-neutral-200"
+                  >
+                    <FileCheck className="size-4 text-[#EEF35F] shrink-0" />
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Requirements */}
+          {product.requirements && product.requirements.length > 0 && (
+            <div className="space-y-4 pt-4 border-t border-neutral-900">
+              <h2 className="text-sm font-mono font-semibold uppercase tracking-wider text-neutral-400">
+                System Requirements
+              </h2>
+              <div className="flex flex-wrap gap-2">
+                {product.requirements.map((req, idx) => (
+                  <span
+                    key={idx}
+                    className="inline-flex items-center gap-1.5 rounded-xl border border-neutral-800 bg-neutral-950 px-3.5 py-2 text-xs font-mono text-neutral-300"
+                  >
+                    <Terminal className="size-3.5 text-neutral-400" />
+                    <span>{req}</span>
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Technologies Badges */}
           {product.technologies && product.technologies.length > 0 && (
             <div className="space-y-3 pt-4 border-t border-neutral-900">
@@ -120,7 +235,7 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
           )}
         </div>
 
-        {/* Right 1 Col: Purchase Card & External Links */}
+        {/* Right 1 Col: Purchase Card & Action Buttons */}
         <div className="space-y-6">
           <div className="rounded-3xl border border-neutral-800 bg-neutral-950 p-6 sm:p-7 shadow-2xl space-y-6 sticky top-24">
             {/* Price Header */}
@@ -136,28 +251,20 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
               </div>
             </div>
 
-            {/* Buy Now / Purchase Action */}
+            {/* Action Buttons with Strict Conditional Rendering */}
             <div className="space-y-2.5">
-              {product.purchaseUrl ? (
-                <a
-                  href={product.purchaseUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#EEF35F] px-8 text-sm font-bold text-black hover:bg-[#e5ea4e] hover:shadow-[0_0_25px_rgba(238,243,95,0.3)] transition-all shadow-lg shadow-[#EEF35F]/20 active:scale-95 text-center cursor-pointer"
-                >
-                  <span>Buy Now &rarr;</span>
-                </a>
-              ) : (
-                <button
-                  type="button"
-                  onClick={() => alert("Instant download package will be delivered upon checkout.")}
-                  className="w-full inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#EEF35F] px-8 text-sm font-bold text-black hover:bg-[#e5ea4e] hover:shadow-[0_0_25px_rgba(238,243,95,0.3)] transition-all shadow-lg shadow-[#EEF35F]/20 active:scale-95 text-center cursor-pointer"
-                >
-                  <span>Buy Now &rarr;</span>
-                </button>
-              )}
+              {/* Buy Now (Direct link to external checkout) */}
+              <a
+                href={hasPurchaseUrl ? product.purchaseUrl : "#"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#EEF35F] px-8 text-sm font-bold text-black hover:bg-[#e5ea4e] hover:shadow-[0_0_25px_rgba(238,243,95,0.3)] transition-all shadow-lg shadow-[#EEF35F]/20 active:scale-95 text-center cursor-pointer"
+              >
+                <span>Buy Now &rarr;</span>
+              </a>
 
-              {product.demoUrl && (
+              {/* Live Demo (Render ONLY if demoUrl exists) */}
+              {hasDemoUrl && (
                 <a
                   href={product.demoUrl}
                   target="_blank"
@@ -165,11 +272,12 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
                   className="w-full inline-flex h-10 items-center justify-center gap-2 rounded-full border border-neutral-800 bg-neutral-900 px-6 text-xs font-semibold text-neutral-200 hover:bg-neutral-800 hover:text-white transition-colors"
                 >
                   <ExternalLink className="size-3.5 text-[#EEF35F]" />
-                  <span>Live Preview</span>
+                  <span>Live Demo</span>
                 </a>
               )}
 
-              {product.documentationUrl && (
+              {/* Documentation (Render ONLY if documentationUrl exists) */}
+              {hasDocsUrl && (
                 <a
                   href={product.documentationUrl}
                   target="_blank"
