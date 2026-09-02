@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Package } from "lucide-react";
 import { Product } from "@/types/product";
 import {
@@ -85,8 +86,20 @@ export function ProductTable({ products, onDeleteProduct }: ProductTableProps) {
                   {/* Product Name & Slug */}
                   <TableCell className="font-medium">
                     <div className="flex items-center gap-3">
-                      <div className="size-10 rounded-xl bg-neutral-900 border border-neutral-800 flex items-center justify-center text-[#EEF35F] font-bold text-xs shrink-0">
-                        {product.name.slice(0, 2).toUpperCase()}
+                      <div className="relative size-10 rounded-xl bg-neutral-900 border border-neutral-800 flex items-center justify-center text-[#EEF35F] font-bold text-xs shrink-0 overflow-hidden">
+                        {product.thumbnail &&
+                        (product.thumbnail.startsWith("http://") ||
+                          product.thumbnail.startsWith("https://") ||
+                          product.thumbnail.startsWith("data:")) ? (
+                          <Image
+                            src={product.thumbnail}
+                            alt={product.name}
+                            fill
+                            className="object-cover"
+                          />
+                        ) : (
+                          product.name.slice(0, 2).toUpperCase()
+                        )}
                       </div>
                       <div>
                         <Link

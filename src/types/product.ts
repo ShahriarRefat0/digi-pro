@@ -37,6 +37,11 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
   "Digital Assets",
 ];
 
+export interface ProductImageItem {
+  url: string;
+  publicId?: string;
+}
+
 // MongoDB Document Schema
 export interface ProductDocument {
   _id?: ObjectId;
@@ -46,11 +51,14 @@ export interface ProductDocument {
   description: string;
   price: number;
   category: string;
-  thumbnail: string;
-  images: string[];
+  categorySlug?: string;
+  thumbnail: ProductImageItem | string;
+  thumbnailPublicId?: string;
+  images: (ProductImageItem | string)[];
+  imagePublicIds?: string[];
   features: string[];
-  included: string[];
   technologies: string[];
+  included: string[];
   requirements: string[];
   demoUrl?: string;
   documentationUrl?: string;
@@ -72,11 +80,15 @@ export interface Product {
   description: string;
   price: number;
   category: ProductCategory;
+  categorySlug?: string;
   thumbnail: string;
+  thumbnailPublicId?: string;
   images: string[];
+  galleryItems?: ProductImageItem[];
+  imagePublicIds?: string[];
   features: string[];
-  included: string[];
   technologies: string[];
+  included: string[];
   requirements: string[];
   demoUrl?: string;
   documentationUrl?: string;
@@ -96,11 +108,14 @@ export interface CreateProductInput {
   description: string;
   price: number;
   category: ProductCategory;
-  thumbnail?: string;
-  images?: string[];
+  categorySlug?: string;
+  thumbnail?: string | ProductImageItem;
+  thumbnailPublicId?: string;
+  images?: (string | ProductImageItem)[];
+  imagePublicIds?: string[];
   features?: string[];
-  included?: string[];
   technologies?: string[];
+  included?: string[];
   requirements?: string[];
   demoUrl?: string;
   documentationUrl?: string;
