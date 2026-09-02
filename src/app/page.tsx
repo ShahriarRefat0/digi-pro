@@ -76,6 +76,7 @@ export default async function Home() {
                       slug: prod.slug,
                       category: prod.category,
                       price: prod.price,
+                      thumbnail: prod.thumbnail,
                       badge: "Featured",
                       authorName: "DigiForge",
                     }}
