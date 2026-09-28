@@ -21,12 +21,12 @@ export default function BlogPage() {
   const allArticles = BLOG_POSTS;
 
   return (
-    <div className="min-h-screen flex flex-col bg-black text-white selection:bg-[#EEF35F] selection:text-black">
+    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 selection:bg-[#F0FDFA] selection:text-[#0F766E]">
       {/* 1. Navbar */}
       <Navbar />
 
       {/* Main Blog Page Content */}
-      <main className="flex-1 bg-black">
+      <main className="flex-1 bg-slate-50">
         {/* 2. Blog Hero */}
         <BlogHero />
 

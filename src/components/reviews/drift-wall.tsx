@@ -312,11 +312,11 @@ export const DriftWall: React.FC<DriftWallProps> = ({
 
   const innerClass = cx(
     "pointer-events-none absolute inset-[calc(var(--dw-gap)/2)] flex flex-col justify-between overflow-hidden",
-    "bg-neutral-950/95 border border-neutral-800/80 p-4 sm:p-5",
+    "bg-white border border-slate-200 p-4 sm:p-5 shadow-xs",
     "rounded-[var(--dw-radius)] opacity-[var(--dw-dim)] [transform:translateZ(0)]",
     "transition-[transform,opacity,border-color,box-shadow] duration-[420ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
-    "group-[.is-active]/tile:opacity-100 group-[.is-active]/tile:border-neutral-600 group-[.is-active]/tile:[transform:translateZ(var(--dw-lift))]",
-    "group-[.is-active]/tile:shadow-[0_24px_60px_-18px_rgba(0,0,0,0.9),0_0_20px_rgba(238,243,95,0.12)]",
+    "group-[.is-active]/tile:opacity-100 group-[.is-active]/tile:border-teal-400 group-[.is-active]/tile:[transform:translateZ(var(--dw-lift))]",
+    "group-[.is-active]/tile:shadow-[0_20px_50px_-15px_rgba(15,118,110,0.15)]",
     "group-focus-visible/tile:opacity-100 group-focus-visible/tile:[transform:translateZ(var(--dw-lift))]"
   );
 
@@ -336,7 +336,7 @@ export const DriftWall: React.FC<DriftWallProps> = ({
         <div className={innerClass}>
           {/* Top Row: User Avatar & Role */}
           <div className="flex items-center gap-3">
-            <div className="size-9 rounded-full bg-neutral-900 border border-neutral-700/80 flex items-center justify-center font-bold text-xs text-white shrink-0 overflow-hidden text-[#EEF35F]">
+            <div className="size-9 rounded-full bg-teal-50 border border-teal-100 flex items-center justify-center font-bold text-xs text-[#0F766E] shrink-0 overflow-hidden">
               {item.avatar ? (
                 <img
                   src={item.avatar}
@@ -348,29 +348,29 @@ export const DriftWall: React.FC<DriftWallProps> = ({
               )}
             </div>
             <div className="min-w-0 flex-1 text-left">
-              <div className="font-bold text-xs text-white truncate group-hover/tile:text-[#EEF35F] transition-colors">
+              <div className="font-bold text-xs text-slate-900 truncate group-hover/tile:text-[#0F766E] transition-colors">
                 {item.name}
               </div>
-              <div className="text-[10px] text-neutral-400 truncate">
+              <div className="text-[10px] text-slate-500 truncate">
                 {item.role}
               </div>
             </div>
           </div>
 
           {/* Middle: Review Quote */}
-          <p className="text-xs text-neutral-300 line-clamp-3 leading-relaxed mt-2.5 text-left font-normal">
+          <p className="text-xs text-slate-700 line-clamp-3 leading-relaxed mt-2.5 text-left font-normal">
             &ldquo;{item.content}&rdquo;
           </p>
 
           {/* Bottom: Star Rating */}
-          <div className="flex items-center gap-1 mt-2.5 pt-2 border-t border-neutral-900/80">
+          <div className="flex items-center gap-1 mt-2.5 pt-2 border-t border-slate-100">
             {Array.from({ length: item.rating || 5 }).map((_, s) => (
               <Star
                 key={s}
-                className="size-3 fill-[#EEF35F] text-[#EEF35F]"
+                className="size-3 fill-[#0F766E] text-[#0F766E]"
               />
             ))}
-            <span className="text-[10px] font-mono text-neutral-400 ml-1.5">
+            <span className="text-[10px] font-mono text-slate-500 ml-1.5">
               5.0
             </span>
           </div>

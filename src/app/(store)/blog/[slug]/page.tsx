@@ -32,7 +32,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${article.title} — DigiForge Blog`,
+    title: `${article.title} — Careproff Blog`,
     description: article.description,
   };
 }
@@ -52,12 +52,12 @@ export default async function ArticleDetailPage({
   const relatedArticles = getRelatedArticles(article.slug, 3);
 
   return (
-    <div className="min-h-screen flex flex-col bg-black text-white selection:bg-[#EEF35F] selection:text-black">
+    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 selection:bg-[#F0FDFA] selection:text-[#0F766E]">
       {/* 1. Navbar */}
       <Navbar />
 
       {/* Main Article Container */}
-      <main className="flex-1 bg-black">
+      <main className="flex-1 bg-slate-50">
         {/* 2. Article Header */}
         <ArticleHeader article={article} />
 

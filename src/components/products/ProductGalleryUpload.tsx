@@ -146,7 +146,7 @@ export function ProductGalleryUpload({
           {validImages.map((imgUrl, idx) => (
             <div
               key={`${imgUrl}-${idx}`}
-              className="group relative aspect-[4/3] rounded-xl border border-neutral-800 bg-neutral-900 overflow-hidden"
+              className="group relative aspect-[4/3] rounded-xl border border-slate-200 bg-slate-50 overflow-hidden shadow-xs"
             >
               <Image
                 src={imgUrl}
@@ -154,12 +154,12 @@ export function ProductGalleryUpload({
                 fill
                 className="object-cover"
               />
-              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-start justify-end p-2">
+              <div className="absolute inset-0 bg-slate-900/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-start justify-end p-2">
                 <button
                   type="button"
                   onClick={() => handleRemove(idx)}
                   disabled={isUploading}
-                  className="rounded-lg bg-rose-950/90 border border-rose-800 p-1 text-rose-300 hover:bg-rose-900 transition-colors cursor-pointer"
+                  className="rounded-lg bg-rose-600 border border-rose-500 p-1 text-white hover:bg-rose-700 transition-colors cursor-pointer shadow-xs"
                 >
                   <X className="size-3.5" />
                 </button>
@@ -172,20 +172,20 @@ export function ProductGalleryUpload({
       {/* Upload button / drop area */}
       <div
         onClick={() => !isUploading && fileInputRef.current?.click()}
-        className={`rounded-xl border border-dashed border-neutral-800 bg-black/40 p-4 text-center hover:border-neutral-700 transition-colors cursor-pointer ${
+        className={`rounded-xl border border-dashed border-slate-300 bg-slate-50 p-4 text-center hover:border-teal-400 hover:bg-teal-50/30 transition-colors cursor-pointer ${
           isUploading ? "opacity-60 pointer-events-none" : ""
         }`}
       >
         {isUploading ? (
-          <div className="flex items-center justify-center gap-2 py-1 text-xs text-neutral-300">
-            <Loader2 className="size-4 animate-spin text-[#EEF35F]" />
+          <div className="flex items-center justify-center gap-2 py-1 text-xs text-slate-600">
+            <Loader2 className="size-4 animate-spin text-[#0F766E]" />
             <span>Uploading gallery images to Cloudinary...</span>
           </div>
         ) : (
-          <div className="flex items-center justify-center gap-2 text-xs text-neutral-400 hover:text-white">
-            <Plus className="size-4 text-[#EEF35F]" />
-            <span className="font-semibold text-neutral-300">Add Gallery Images</span>
-            <span className="text-[11px] text-neutral-500">(Supports multiple JPEG, PNG, WebP)</span>
+          <div className="flex items-center justify-center gap-2 text-xs text-slate-500 hover:text-slate-900">
+            <Plus className="size-4 text-[#0F766E]" />
+            <span className="font-semibold text-slate-700">Add Gallery Images</span>
+            <span className="text-[11px] text-slate-400">(Supports multiple JPEG, PNG, WebP)</span>
           </div>
         )}
       </div>
@@ -205,7 +205,7 @@ export function ProductGalleryUpload({
       />
 
       {errorMessage && (
-        <div className="flex items-center gap-2 rounded-xl border border-rose-900/60 bg-rose-950/30 px-3.5 py-2.5 text-xs text-rose-300">
+        <div className="flex items-center gap-2 rounded-xl border border-rose-200 bg-rose-50 px-3.5 py-2.5 text-xs text-rose-700">
           <AlertCircle className="size-4 shrink-0" />
           <span>{errorMessage}</span>
         </div>

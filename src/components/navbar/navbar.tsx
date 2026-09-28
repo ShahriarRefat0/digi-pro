@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, ArrowRight } from "lucide-react";
+import { Menu, X, ArrowRight, ShieldCheck } from "lucide-react";
 import { PillNav, PillNavItem } from "./pill-nav";
 import { GlobalSearch } from "@/components/search";
 
@@ -12,9 +12,9 @@ export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
 
   const navItems: PillNavItem[] = [
-    { label: "Discover", href: "/products" },
-    { label: "Services", href: "/services" },
-    { label: "Blog", href: "/blog" },
+    { label: "Discover Products", href: "/products" },
+    { label: "Pediatric Services", href: "/services" },
+    { label: "Care Journal", href: "/blog" },
   ];
 
   // Close mobile menu on route change
@@ -23,65 +23,61 @@ export function Navbar() {
   }, [pathname]);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-neutral-900 bg-black/90 backdrop-blur-xl text-white selection:bg-[#EEF35F] selection:text-black">
+    <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/95 backdrop-blur-md text-gray-900 shadow-xs">
       <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        {/* Left: Brand Logo + GitHub Stars Badge */}
+        {/* Left: Brand Logo + Care Trust Badge */}
         <div className="flex items-center gap-3 shrink-0">
           <Link
             href="/"
-            className="text-xl sm:text-2xl font-bold tracking-tight text-white hover:text-[#EEF35F] transition-colors font-heading"
+            className="text-xl sm:text-2xl font-bold tracking-tight text-gray-900 hover:text-[#0F766E] transition-colors font-heading flex items-center gap-2"
           >
-            gumroad
+            <span className="size-7 rounded-lg bg-[#0F766E] text-white flex items-center justify-center text-sm font-black">C</span>
+            <span>Careproff</span>
           </Link>
 
-          <a
-            href="https://github.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden sm:inline-flex items-center gap-1.5 rounded-full border border-neutral-800 bg-neutral-950 px-2.5 py-0.5 text-xs font-medium text-neutral-300 hover:border-neutral-600 hover:text-white transition-colors"
+          <span
+            className="hidden sm:inline-flex items-center gap-1.5 rounded-full border border-teal-200 bg-[#F0FDFA] px-2.5 py-0.5 text-xs font-medium text-[#0F766E]"
           >
-            <svg className="size-3.5 fill-current" viewBox="0 0 24 24">
-              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-            </svg>
-            <span className="text-[11px] font-medium tracking-tight">9.6K ★</span>
-          </a>
+            <ShieldCheck className="size-3.5 text-[#0F766E]" />
+            <span className="text-[11px] font-semibold tracking-tight">100% Dermatologist Safe</span>
+          </span>
         </div>
 
         {/* Center: Global Search Bar */}
         <GlobalSearch />
 
-        {/* Right Desktop Nav Actions: PillNav + Start Now */}
+        {/* Right Desktop Nav Actions: PillNav + Shop Now */}
         <div className="hidden lg:flex items-center gap-4 shrink-0">
           <PillNav
             items={navItems}
             activeHref={pathname}
-            baseColor="#EEF35F"
-            pillColor="#0d0e0e"
-            pillTextColor="#ffffff"
-            hoveredPillTextColor="#000000"
+            baseColor="#0F766E"
+            pillColor="#F0FDFA"
+            pillTextColor="#374151"
+            hoveredPillTextColor="#ffffff"
             ease="power2.out"
           />
 
           <Link
-            href="/"
-            className="inline-flex h-9 items-center justify-center gap-1.5 rounded-full bg-[#EEF35F] px-5 text-xs font-bold text-black transition-all hover:bg-[#e5ea4e] hover:shadow-[0_0_15px_rgba(238,243,95,0.3)] active:scale-95 shadow-sm"
+            href="/products"
+            className="inline-flex h-9 items-center justify-center gap-1.5 rounded-full bg-[#0F766E] px-5 text-xs font-bold text-white transition-all hover:bg-[#115E59] active:scale-95 shadow-xs"
           >
-            <span>Start Now</span>
+            <span>Shop Now</span>
           </Link>
         </div>
 
         {/* Mobile / Tablet Actions (< 1024px) */}
         <div className="flex items-center gap-2 lg:hidden">
           <Link
-            href="/"
-            className="inline-flex h-8 items-center justify-center rounded-full bg-[#EEF35F] px-3.5 text-xs font-bold text-black transition-colors hover:bg-[#e5ea4e] active:scale-95"
+            href="/products"
+            className="inline-flex h-8 items-center justify-center rounded-full bg-[#0F766E] px-3.5 text-xs font-bold text-white transition-colors hover:bg-[#115E59] active:scale-95"
           >
-            <span>Start</span>
+            <span>Shop</span>
           </Link>
 
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="size-9 rounded-full border border-neutral-800 bg-neutral-950 flex items-center justify-center text-white hover:border-neutral-700 hover:text-[#EEF35F] transition-colors focus:outline-none"
+            className="size-9 rounded-full border border-gray-300 bg-white flex items-center justify-center text-gray-700 hover:border-[#0F766E] hover:text-[#0F766E] transition-colors focus:outline-none"
             aria-label="Toggle navigation menu"
             aria-expanded={mobileMenuOpen}
           >
@@ -96,10 +92,10 @@ export function Navbar() {
 
       {/* Mobile Drawer Dropdown Menu */}
       {mobileMenuOpen && (
-        <div className="border-t border-neutral-900 bg-black/95 px-4 py-6 backdrop-blur-2xl lg:hidden animate-in slide-in-from-top-2 duration-200">
+        <div className="border-t border-gray-200 bg-white px-4 py-6 shadow-lg lg:hidden animate-in slide-in-from-top-2 duration-200">
           <div className="mx-auto max-w-md space-y-1.5">
-            <p className="px-3 pb-2 text-[10px] font-mono font-semibold uppercase tracking-wider text-neutral-500">
-              Navigation
+            <p className="px-3 pb-2 text-[10px] font-semibold uppercase tracking-wider text-gray-500">
+              Care Navigation
             </p>
 
             {navItems.map((item) => {
@@ -113,29 +109,29 @@ export function Navbar() {
                   href={item.href}
                   onClick={() => setMobileMenuOpen(false)}
                   className={`flex items-center justify-between rounded-xl px-4 py-3 text-sm font-semibold transition-all ${isActive
-                      ? "bg-[#EEF35F] text-black font-bold shadow-md shadow-[#EEF35F]/20"
-                      : "text-neutral-300 hover:bg-neutral-900 hover:text-white"
+                      ? "bg-[#F0FDFA] text-[#0F766E] font-bold border border-teal-200"
+                      : "text-gray-700 hover:bg-gray-50 hover:text-[#0F766E]"
                     }`}
                 >
                   <span>{item.label}</span>
                   {isActive ? (
-                    <span className="size-2 rounded-full bg-black" />
+                    <span className="size-2 rounded-full bg-[#0F766E]" />
                   ) : (
-                    <ArrowRight className="size-3.5 text-neutral-600" />
+                    <ArrowRight className="size-3.5 text-gray-400" />
                   )}
                 </Link>
               );
             })}
 
-            <div className="my-3 border-t border-neutral-900" />
+            <div className="my-3 border-t border-gray-200" />
 
             <div className="pt-1">
               <Link
-                href="/"
+                href="/products"
                 onClick={() => setMobileMenuOpen(false)}
-                className="flex w-full items-center justify-center rounded-xl bg-[#EEF35F] py-2.5 text-xs font-bold text-black transition-colors hover:bg-[#e5ea4e]"
+                className="flex w-full items-center justify-center rounded-xl bg-[#0F766E] py-2.5 text-xs font-bold text-white transition-colors hover:bg-[#115E59]"
               >
-                Start Now
+                Shop All Care Products
               </Link>
             </div>
           </div>
@@ -146,3 +142,4 @@ export function Navbar() {
 }
 
 export default Navbar;
+

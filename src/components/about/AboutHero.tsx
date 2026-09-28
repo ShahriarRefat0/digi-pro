@@ -7,14 +7,14 @@ import { ArrowRight, Package, Code2, Layers } from "lucide-react";
 
 export function AboutHero() {
   return (
-    <section className="relative overflow-hidden bg-black py-20 sm:py-28 lg:py-32 border-b border-neutral-900 selection:bg-[#EEF35F] selection:text-black">
+    <section className="relative overflow-hidden bg-slate-50 py-20 sm:py-28 lg:py-32 border-b border-slate-200 selection:bg-teal-100 selection:text-teal-900">
       {/* Background Radial Glow */}
       <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 0.7, scale: 1 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
-          className="size-[650px] rounded-full bg-radial from-neutral-900/60 via-black to-black blur-3xl"
+          className="size-[650px] rounded-full bg-radial from-teal-100/60 via-slate-50 to-slate-50 blur-3xl"
         />
       </div>
 
@@ -22,16 +22,15 @@ export function AboutHero() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           {/* Left Column: Hero Content */}
           <div className="lg:col-span-7 text-center lg:text-left">
-
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55, delay: 0.1, ease: "easeOut" }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight font-heading text-white leading-[1.08]"
+              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight font-heading text-slate-900 leading-[1.08]"
             >
               Building Digital Products That Help People{" "}
-              <span className="text-[#EEF35F] underline decoration-[#EEF35F]/40 decoration-wavy underline-offset-8">
-                Build Better.
+              <span className="text-[#0F766E] underline decoration-[#0F766E]/40 decoration-wavy underline-offset-8">
+                Care Better.
               </span>
             </motion.h1>
 
@@ -39,9 +38,9 @@ export function AboutHero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55, delay: 0.2, ease: "easeOut" }}
-              className="mt-6 text-base sm:text-lg text-neutral-400 max-w-2xl leading-relaxed mx-auto lg:mx-0 font-normal"
+              className="mt-6 text-base sm:text-lg text-slate-600 max-w-2xl leading-relaxed mx-auto lg:mx-0 font-normal"
             >
-              We create practical digital products and provide development services that help creators, developers, and businesses turn ideas into reality.
+              We create practical digital products and provide care resources that help families, caregivers, and experts nurture with confidence.
             </motion.p>
 
             {/* Action Buttons */}
@@ -53,7 +52,7 @@ export function AboutHero() {
             >
               <Link
                 href="/products"
-                className="group inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#EEF35F] px-8 text-sm font-bold text-black transition-all hover:bg-[#e5ea4e] hover:shadow-[0_0_25px_rgba(238,243,95,0.35)] active:scale-95 shadow-lg shadow-[#EEF35F]/20"
+                className="group inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#0F766E] px-8 text-sm font-bold text-white transition-all hover:bg-[#115E59] active:scale-95 shadow-md shadow-teal-900/10"
               >
                 <span>Explore Products</span>
                 <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
@@ -61,7 +60,7 @@ export function AboutHero() {
 
               <Link
                 href="/services"
-                className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-neutral-800 bg-neutral-950 px-8 text-sm font-semibold text-white transition-all hover:bg-neutral-900 hover:border-neutral-700 hover:text-[#EEF35F] active:scale-95"
+                className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-8 text-sm font-semibold text-slate-800 transition-all hover:bg-slate-100 hover:border-slate-400 hover:text-[#0F766E] active:scale-95 shadow-xs"
               >
                 <span>View Our Services</span>
               </Link>
@@ -78,48 +77,48 @@ export function AboutHero() {
             <motion.div
               animate={{ y: [0, -6, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-              className="w-full max-w-md rounded-2xl border border-neutral-800 bg-neutral-950 p-6 shadow-2xl relative overflow-hidden backdrop-blur-sm"
+              className="w-full max-w-md rounded-2xl border border-slate-200 bg-white p-6 shadow-lg relative overflow-hidden backdrop-blur-sm"
             >
               {/* Subtle ambient light inside card */}
-              <div className="absolute inset-0 bg-radial from-[#EEF35F]/10 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-radial from-teal-50/50 via-transparent to-transparent pointer-events-none" />
 
-              <div className="relative z-10 flex items-center justify-between pb-4 border-b border-neutral-800 mb-6">
+              <div className="relative z-10 flex items-center justify-between pb-4 border-b border-slate-200 mb-6">
                 <div className="flex items-center gap-2.5">
-                  <div className="size-9 rounded-xl bg-neutral-900 border border-neutral-800 flex items-center justify-center text-[#EEF35F]">
+                  <div className="size-9 rounded-xl bg-teal-50 border border-teal-100 flex items-center justify-center text-[#0F766E]">
                     <Layers className="size-4.5" />
                   </div>
                   <div>
-                    <h3 className="text-xs font-bold text-white">DigiForge Platform</h3>
-                    <p className="text-[10px] font-mono text-neutral-400">v2.4 Core Edition</p>
+                    <h3 className="text-xs font-bold text-slate-900">Careproff Platform</h3>
+                    <p className="text-[10px] font-mono text-slate-500">v2.4 Core Edition</p>
                   </div>
                 </div>
-                <span className="text-[10px] font-mono font-bold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-0.5 rounded-full">
+                <span className="text-[10px] font-mono font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full">
                   Independent
                 </span>
               </div>
 
               {/* Stacked Preview Pills */}
               <div className="relative z-10 space-y-3 font-mono text-xs">
-                <div className="flex items-center justify-between rounded-xl bg-neutral-900/80 border border-neutral-800/80 p-3">
+                <div className="flex items-center justify-between rounded-xl bg-slate-50 border border-slate-200 p-3">
                   <div className="flex items-center gap-2">
-                    <Package className="size-4 text-[#EEF35F]" />
-                    <span className="text-white">Ready-made Resources</span>
+                    <Package className="size-4 text-[#0F766E]" />
+                    <span className="text-slate-800">Ready-made Resources</span>
                   </div>
-                  <span className="text-neutral-500 text-[11px]">Instant ZIP</span>
+                  <span className="text-slate-500 text-[11px]">Instant Download</span>
                 </div>
 
-                <div className="flex items-center justify-between rounded-xl bg-neutral-900/80 border border-neutral-800/80 p-3">
+                <div className="flex items-center justify-between rounded-xl bg-slate-50 border border-slate-200 p-3">
                   <div className="flex items-center gap-2">
-                    <Code2 className="size-4 text-[#EEF35F]" />
-                    <span className="text-white">Custom Engineering</span>
+                    <Code2 className="size-4 text-[#0F766E]" />
+                    <span className="text-slate-800">Custom Services</span>
                   </div>
-                  <span className="text-neutral-500 text-[11px]">Tailored</span>
+                  <span className="text-slate-500 text-[11px]">Tailored Care</span>
                 </div>
               </div>
 
-              <div className="mt-6 pt-4 border-t border-neutral-900 flex items-center justify-between text-[11px] text-neutral-400">
-                <span>Built for developers & creators</span>
-                <span className="text-[#EEF35F] font-bold">100% Practical</span>
+              <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
+                <span>Built for families &amp; caregivers</span>
+                <span className="text-[#0F766E] font-bold">100% Verified</span>
               </div>
             </motion.div>
           </motion.div>

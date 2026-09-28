@@ -37,7 +37,7 @@ const WHAT_WE_DO_CARDS = [
 
 export function WhatWeDo() {
   return (
-    <section className="relative overflow-hidden bg-black py-20 sm:py-28 border-b border-neutral-900 selection:bg-[#EEF35F] selection:text-black">
+    <section className="relative overflow-hidden bg-white py-20 sm:py-28 border-b border-slate-200">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
@@ -47,10 +47,10 @@ export function WhatWeDo() {
           transition={{ duration: 0.5, ease: "easeOut" }}
           className="text-center max-w-2xl mx-auto mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight font-heading text-white">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight font-heading text-slate-900">
             What We Do
           </h2>
-          <p className="mt-3 text-xs sm:text-sm text-neutral-400 font-normal">
+          <p className="mt-3 text-xs sm:text-sm text-slate-500 font-normal">
             We focus on practical digital solutions that save time and make building easier.
           </p>
         </motion.div>
@@ -67,31 +67,31 @@ export function WhatWeDo() {
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.5, delay: idx * 0.1, ease: "easeOut" }}
                 whileHover={{ y: -6, transition: { duration: 0.25, ease: "easeOut" } }}
-                className="group flex flex-col justify-between rounded-3xl border border-neutral-800 bg-neutral-950 p-8 transition-colors duration-300 hover:border-neutral-700 hover:bg-neutral-900/50 hover:shadow-2xl hover:shadow-black/70"
+                className="group flex flex-col justify-between rounded-3xl border border-slate-200 bg-slate-50/50 p-8 transition-all duration-300 hover:border-[#0F766E]/40 hover:bg-white hover:shadow-lg"
               >
                 <div>
                   <div className="flex items-center justify-between mb-6">
-                    <div className="size-12 rounded-2xl bg-[#EEF35F]/10 border border-[#EEF35F]/20 text-[#EEF35F] flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+                    <div className="size-12 rounded-2xl bg-[#F0FDFA] border border-[#CCFBF1] text-[#0F766E] flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
                       <Icon className="size-6" />
                     </div>
-                    <span className="text-[10px] font-mono text-neutral-400 bg-neutral-900 border border-neutral-800 px-2.5 py-0.5 rounded-full">
+                    <span className="text-[10px] font-mono font-medium text-slate-600 bg-white border border-slate-200 px-2.5 py-0.5 rounded-full shadow-xs">
                       {card.badge}
                     </span>
                   </div>
 
-                  <h3 className="text-xl font-bold text-white font-heading group-hover:text-[#EEF35F] transition-colors">
+                  <h3 className="text-xl font-bold text-slate-900 font-heading group-hover:text-[#0F766E] transition-colors">
                     {card.title}
                   </h3>
 
-                  <p className="mt-3 text-xs sm:text-sm text-neutral-400 leading-relaxed font-normal">
+                  <p className="mt-3 text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
                     {card.description}
                   </p>
                 </div>
 
-                <div className="mt-8 pt-6 border-t border-neutral-900">
+                <div className="mt-8 pt-6 border-t border-slate-200/80">
                   <Link
                     href={card.href}
-                    className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-neutral-800 bg-neutral-900 px-4 py-2.5 text-xs font-semibold text-white transition-all duration-200 hover:bg-[#EEF35F] hover:text-black hover:border-neutral-600 active:scale-95"
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2.5 text-xs font-semibold text-slate-800 transition-all duration-200 hover:bg-[#0F766E] hover:text-white hover:border-[#0F766E] active:scale-95 shadow-xs"
                   >
                     <span>{card.cta}</span>
                     <ArrowRight className="size-3.5 transition-transform duration-200 group-hover:translate-x-1" />

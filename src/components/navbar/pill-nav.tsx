@@ -26,10 +26,10 @@ export const PillNav: React.FC<PillNavProps> = ({
   activeHref,
   className = "",
   ease = "power2.out",
-  baseColor = "#EEF35F",
-  pillColor = "#0d0e0e",
-  hoveredPillTextColor = "#000000",
-  pillTextColor = "#ffffff",
+  baseColor = "#0F766E",
+  pillColor = "#F0FDFA",
+  hoveredPillTextColor = "#ffffff",
+  pillTextColor = "#374151",
 }) => {
   const circleRefs = useRef<Array<HTMLSpanElement | null>>([]);
   const tlRefs = useRef<Array<gsap.core.Timeline | null>>([]);
@@ -142,7 +142,7 @@ export const PillNav: React.FC<PillNavProps> = ({
 
   return (
     <div
-      className={`relative items-center rounded-full flex border border-neutral-800 bg-[#0d0e0e] shadow-inner ${className}`}
+      className={`relative items-center rounded-full flex border border-gray-200 bg-[#F0FDFA] shadow-xs ${className}`}
       style={{ height: "38px" }}
     >
       <ul
@@ -207,7 +207,7 @@ export const PillNav: React.FC<PillNavProps> = ({
                 </span>
                 {isActive && (
                   <span
-                    className="absolute left-1/2 -bottom-[4px] -translate-x-1/2 w-1.5 h-1.5 rounded-full z-[4] bg-black"
+                    className="absolute left-1/2 -bottom-[4px] -translate-x-1/2 w-1.5 h-1.5 rounded-full z-[4] bg-white"
                     aria-hidden="true"
                   />
                 )}
@@ -221,3 +221,4 @@ export const PillNav: React.FC<PillNavProps> = ({
 };
 
 export default PillNav;
+

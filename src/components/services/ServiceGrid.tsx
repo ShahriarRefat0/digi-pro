@@ -11,7 +11,7 @@ export function ServiceGrid() {
   return (
     <section
       id="services-grid"
-      className="relative overflow-hidden bg-black py-20 sm:py-28 border-b border-neutral-900 selection:bg-[#EEF35F] selection:text-black"
+      className="relative overflow-hidden bg-white py-20 sm:py-28 border-b border-slate-200"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -23,10 +23,10 @@ export function ServiceGrid() {
           className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12 sm:mb-16"
         >
           <div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight font-heading text-white">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight font-heading text-slate-900">
               What I Can Help You Build
             </h2>
-            <p className="mt-2 text-xs sm:text-sm text-neutral-400 max-w-xl">
+            <p className="mt-2 text-xs sm:text-sm text-slate-500 max-w-xl">
               Practical development services for modern digital products and businesses.
             </p>
           </div>
@@ -34,7 +34,7 @@ export function ServiceGrid() {
           <div className="flex items-center gap-3">
             <Link
               href="/products"
-              className="text-xs font-semibold text-neutral-400 hover:text-white transition-colors inline-flex items-center gap-1.5 group"
+              className="text-xs font-semibold text-slate-600 hover:text-[#0F766E] transition-colors inline-flex items-center gap-1.5 group"
             >
               <span>Need ready-made templates instead?</span>
               <ArrowRight className="size-3.5 transition-transform duration-200 group-hover:translate-x-1" />
@@ -48,17 +48,17 @@ export function ServiceGrid() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-40px" }}
           transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
-          className="mb-12 rounded-2xl border border-neutral-800/80 bg-neutral-950/60 p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+          className="mb-12 rounded-2xl border border-slate-200 bg-slate-50 p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
         >
           <div className="flex items-start sm:items-center gap-3.5">
-            <div className="size-10 rounded-xl bg-neutral-900 border border-neutral-800 flex items-center justify-center text-[#EEF35F] shrink-0">
+            <div className="size-10 rounded-xl bg-[#F0FDFA] border border-[#CCFBF1] flex items-center justify-center text-[#0F766E] shrink-0">
               <Layers className="size-5" />
             </div>
             <div>
-              <p className="text-sm font-bold text-white">
+              <p className="text-sm font-bold text-slate-900">
                 Looking for ready-made digital downloads?
               </p>
-              <p className="text-xs text-neutral-400 mt-0.5">
+              <p className="text-xs text-slate-500 mt-0.5">
                 Explore our digital products for instant UI kits, boilerplates, and 3D icons, or hire custom development below.
               </p>
             </div>
@@ -66,7 +66,7 @@ export function ServiceGrid() {
 
           <Link
             href="/products"
-            className="inline-flex items-center justify-center rounded-xl bg-neutral-900 border border-neutral-800 px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-neutral-800 hover:border-neutral-700 shrink-0 hover:text-[#EEF35F]"
+            className="inline-flex items-center justify-center rounded-xl bg-white border border-slate-200 px-4 py-2 text-xs font-semibold text-slate-800 transition-colors hover:bg-[#0F766E] hover:text-white hover:border-[#0F766E] shrink-0 shadow-xs"
           >
             Explore Digital Products &rarr;
           </Link>

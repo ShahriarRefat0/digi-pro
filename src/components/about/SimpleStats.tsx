@@ -2,10 +2,10 @@
 
 import * as React from "react";
 import { motion } from "motion/react";
-import { Cpu, Blocks, Code2, Globe2 } from "lucide-react";
+import { Cpu, Blocks, Code2, Globe2, LucideIcon } from "lucide-react";
 import { NEUTRAL_STATS } from "@/lib/about";
 
-const STAT_ICONS = {
+const STAT_ICONS: Record<string, LucideIcon> = {
   Cpu: Cpu,
   Blocks: Blocks,
   Code2: Code2,
@@ -14,7 +14,7 @@ const STAT_ICONS = {
 
 export function SimpleStats() {
   return (
-    <section className="relative overflow-hidden bg-black py-16 sm:py-20 border-b border-neutral-900 selection:bg-[#EEF35F] selection:text-black">
+    <section className="relative overflow-hidden bg-slate-50 py-16 sm:py-20 border-b border-slate-200">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {NEUTRAL_STATS.map((stat, idx) => {
@@ -27,15 +27,15 @@ export function SimpleStats() {
                 viewport={{ once: true, margin: "-30px" }}
                 transition={{ duration: 0.45, delay: idx * 0.08, ease: "easeOut" }}
                 whileHover={{ y: -4, transition: { duration: 0.2, ease: "easeOut" } }}
-                className="group rounded-2xl border border-neutral-800 bg-neutral-950 p-6 transition-colors duration-200 hover:border-neutral-700 hover:bg-neutral-900/50"
+                className="group rounded-2xl border border-slate-200 bg-white p-6 transition-all duration-200 hover:border-[#0F766E]/40 hover:shadow-sm"
               >
-                <div className="size-10 rounded-xl bg-[#EEF35F]/10 border border-[#EEF35F]/20 text-[#EEF35F] flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <div className="size-10 rounded-xl bg-[#F0FDFA] border border-[#CCFBF1] text-[#0F766E] flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                   <Icon className="size-5" />
                 </div>
-                <h4 className="text-base font-bold text-white font-heading group-hover:text-[#EEF35F] transition-colors">
+                <h4 className="text-base font-bold text-slate-900 font-heading group-hover:text-[#0F766E] transition-colors">
                   {stat.title}
                 </h4>
-                <p className="text-xs text-neutral-400 mt-1 font-mono">
+                <p className="text-xs text-slate-500 mt-1 font-mono">
                   {stat.subtitle}
                 </p>
               </motion.div>

@@ -48,45 +48,46 @@ function formatProductDateTime(dateStr?: string) {
 export function ProductTable({ products, onDeleteProduct }: ProductTableProps) {
   if (products.length === 0) {
     return (
-      <div className="rounded-2xl border border-neutral-800 bg-neutral-950 p-12 text-center">
-        <div className="size-12 rounded-2xl bg-neutral-900 border border-neutral-800 flex items-center justify-center text-neutral-500 mx-auto mb-4">
+      <div className="rounded-2xl border border-gray-200 bg-white p-12 text-center shadow-xs">
+        <div className="size-12 rounded-2xl bg-gray-50 border border-gray-200 flex items-center justify-center text-gray-400 mx-auto mb-4">
           <Package className="size-6" />
         </div>
-        <h3 className="text-base font-bold text-white font-heading">No Products Found</h3>
-        <p className="text-xs text-neutral-400 mt-1 max-w-sm mx-auto">
-          No digital products matched your search filter criteria. Try adjusting your query or clear filters.
+        <h3 className="text-base font-bold text-gray-900 font-heading">No Products Found</h3>
+        <p className="text-xs text-gray-500 mt-1 max-w-sm mx-auto">
+          No care products matched your search criteria. Try adjusting your query or filters.
         </p>
       </div>
     );
   }
 
   return (
-    <div className="rounded-2xl border border-neutral-800 bg-neutral-950 shadow-xl overflow-hidden">
+    <div className="rounded-2xl border border-gray-200 bg-white shadow-xs overflow-hidden">
       <div className="overflow-x-auto">
         <Table>
           <TableHeader>
-            <TableRow className="border-neutral-800 hover:bg-transparent">
-              <TableHead className="w-[300px] text-neutral-400">Product</TableHead>
-              <TableHead className="text-neutral-400">Category</TableHead>
-              <TableHead className="text-neutral-400">Price</TableHead>
-              <TableHead className="text-neutral-400">Status</TableHead>
-              <TableHead className="text-neutral-400">Updated</TableHead>
-              <TableHead className="text-right text-neutral-400">Action</TableHead>
+            <TableRow className="border-gray-200 bg-[#F8FAFC] hover:bg-[#F8FAFC]">
+              <TableHead className="w-[300px] text-gray-600 font-semibold">Product</TableHead>
+              <TableHead className="text-gray-600 font-semibold">Category</TableHead>
+              <TableHead className="text-gray-600 font-semibold">Price</TableHead>
+              <TableHead className="text-gray-600 font-semibold">Status</TableHead>
+              <TableHead className="text-gray-600 font-semibold">Updated</TableHead>
+              <TableHead className="text-right text-gray-600 font-semibold">Action</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {products.map((product) => {
               const dt = formatProductDateTime(product.updatedAt || product.createdAt);
+              const formattedPrice = typeof product.price === "number" ? `৳${product.price}` : (String(product.price).startsWith("৳") ? String(product.price) : `৳${product.price}`);
 
               return (
                 <TableRow
                   key={product.id}
-                  className="border-neutral-800/60 hover:bg-neutral-900/40 transition-colors"
+                  className="border-gray-100 hover:bg-slate-50/80 transition-colors"
                 >
                   {/* Product Name & Slug */}
                   <TableCell className="font-medium">
                     <div className="flex items-center gap-3">
-                      <div className="relative size-10 rounded-xl bg-neutral-900 border border-neutral-800 flex items-center justify-center text-[#EEF35F] font-bold text-xs shrink-0 overflow-hidden">
+                      <div className="relative size-10 rounded-xl bg-[#F0FDFA] border border-teal-200 flex items-center justify-center text-[#0F766E] font-bold text-xs shrink-0 overflow-hidden">
                         {product.thumbnail &&
                         (product.thumbnail.startsWith("http://") ||
                           product.thumbnail.startsWith("https://") ||
@@ -104,11 +105,11 @@ export function ProductTable({ products, onDeleteProduct }: ProductTableProps) {
                       <div>
                         <Link
                           href={`/dashboard/products/new?edit=${product.id}`}
-                          className="font-bold text-white hover:text-[#EEF35F] transition-colors font-heading text-sm"
+                          className="font-bold text-gray-900 hover:text-[#0F766E] transition-colors font-heading text-sm"
                         >
                           {product.name}
                         </Link>
-                        <p className="text-[11px] font-mono text-neutral-500 truncate max-w-[200px]">
+                        <p className="text-[11px] text-gray-400 truncate max-w-[200px]">
                           v{product.version} • /{product.slug}
                         </p>
                       </div>
@@ -117,14 +118,14 @@ export function ProductTable({ products, onDeleteProduct }: ProductTableProps) {
 
                   {/* Category */}
                   <TableCell>
-                    <span className="inline-flex rounded-md bg-neutral-900 border border-neutral-800 px-2.5 py-1 text-[11px] font-mono text-neutral-300">
+                    <span className="inline-flex rounded-md bg-slate-100 border border-gray-200 px-2.5 py-1 text-[11px] font-semibold text-gray-700">
                       {product.category}
                     </span>
                   </TableCell>
 
                   {/* Price */}
-                  <TableCell className="font-mono font-bold text-white text-sm">
-                    ${product.price}
+                  <TableCell className="font-bold text-gray-900 text-sm font-heading">
+                    {formattedPrice}
                   </TableCell>
 
                   {/* Status */}
@@ -133,13 +134,13 @@ export function ProductTable({ products, onDeleteProduct }: ProductTableProps) {
                   </TableCell>
 
                   {/* Updated (Formatted Date & Time) */}
-                  <TableCell className="text-xs font-mono">
+                  <TableCell className="text-xs">
                     <div className="flex flex-col space-y-0.5">
-                      <span className="text-neutral-300">
-                        Date: <span className="text-neutral-200 font-semibold">{dt.date}</span>
+                      <span className="text-gray-700 font-medium">
+                        Date: <span className="text-gray-900 font-semibold">{dt.date}</span>
                       </span>
                       {dt.time && (
-                        <span className="text-[11px] text-neutral-500">
+                        <span className="text-[11px] text-gray-400">
                           Time: {dt.time}
                         </span>
                       )}
@@ -161,3 +162,4 @@ export function ProductTable({ products, onDeleteProduct }: ProductTableProps) {
 }
 
 export default ProductTable;
+

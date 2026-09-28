@@ -274,10 +274,10 @@ export function ProductForm({ initialData }: ProductFormProps) {
   };
 
   return (
-    <div className="space-y-8 max-w-4xl pb-16 text-white">
+    <div className="space-y-8 max-w-4xl pb-16 text-slate-900">
       {/* Server Error Alert */}
       {serverErrorMessage && (
-        <div className="rounded-2xl border border-rose-500/30 bg-rose-500/10 p-4 text-rose-400 flex items-start gap-3 animate-in fade-in duration-200">
+        <div className="rounded-2xl border border-rose-200 bg-rose-50 p-4 text-rose-700 flex items-start gap-3 animate-in fade-in duration-200">
           <AlertCircle className="size-5 shrink-0 mt-0.5" />
           <div>
             <h4 className="text-xs font-bold uppercase tracking-wider">Submission Error</h4>
@@ -288,8 +288,8 @@ export function ProductForm({ initialData }: ProductFormProps) {
 
       {/* Success Notification */}
       {submitState === "success" && (
-        <div className="rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-5 text-emerald-400 flex items-center gap-3 animate-in fade-in duration-200">
-          <CheckCircle2 className="size-5 shrink-0" />
+        <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-5 text-emerald-800 flex items-center gap-3 animate-in fade-in duration-200">
+          <CheckCircle2 className="size-5 shrink-0 text-emerald-600" />
           <div className="text-sm font-semibold">
             Product successfully saved in MongoDB! Redirecting to products list...
           </div>
@@ -297,10 +297,10 @@ export function ProductForm({ initialData }: ProductFormProps) {
       )}
 
       {/* SECTION 1: Basic Information */}
-      <Card className="border-neutral-800 bg-neutral-950">
+      <Card className="border-slate-200 bg-white shadow-xs">
         <CardHeader>
-          <CardTitle className="text-lg">Basic Information</CardTitle>
-          <p className="text-xs text-neutral-400">
+          <CardTitle className="text-lg text-slate-900">Basic Information</CardTitle>
+          <p className="text-xs text-slate-500">
             Define product title, URL slug, and customer-facing descriptions.
           </p>
         </CardHeader>
@@ -308,10 +308,10 @@ export function ProductForm({ initialData }: ProductFormProps) {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <div className="flex items-center justify-between mb-1.5">
-                <label className="block text-xs font-mono font-semibold text-neutral-300">
-                  Product Name <span className="text-[#EEF35F]">*</span>
+                <label className="block text-xs font-mono font-semibold text-slate-700">
+                  Product Name <span className="text-[#0F766E]">*</span>
                 </label>
-                <span className="text-[10px] font-mono text-neutral-500">
+                <span className="text-[10px] font-mono text-slate-400">
                   {formData.name.length}/120
                 </span>
               </div>
@@ -323,7 +323,7 @@ export function ProductForm({ initialData }: ProductFormProps) {
                 className={errors.name ? "border-rose-500" : ""}
               />
               {errors.name && (
-                <p className="text-[11px] text-rose-400 mt-1 flex items-center gap-1">
+                <p className="text-[11px] text-rose-600 mt-1 flex items-center gap-1">
                   <AlertCircle className="size-3" /> {errors.name}
                 </p>
               )}
@@ -331,8 +331,8 @@ export function ProductForm({ initialData }: ProductFormProps) {
 
             <div>
               <div className="flex items-center justify-between mb-1.5">
-                <label className="block text-xs font-mono font-semibold text-neutral-300">
-                  URL Slug <span className="text-[#EEF35F]">*</span>
+                <label className="block text-xs font-mono font-semibold text-slate-700">
+                  URL Slug <span className="text-[#0F766E]">*</span>
                 </label>
                 {isSlugManual && (
                   <button
@@ -341,7 +341,7 @@ export function ProductForm({ initialData }: ProductFormProps) {
                       setIsSlugManual(false);
                       setFormData((prev) => ({ ...prev, slug: slugify(prev.name) }));
                     }}
-                    className="text-[10px] text-[#EEF35F] hover:underline"
+                    className="text-[10px] text-[#0F766E] hover:underline"
                   >
                     Reset to auto
                   </button>
@@ -355,7 +355,7 @@ export function ProductForm({ initialData }: ProductFormProps) {
                 className={errors.slug ? "border-rose-500" : ""}
               />
               {errors.slug && (
-                <p className="text-[11px] text-rose-400 mt-1 flex items-center gap-1">
+                <p className="text-[11px] text-rose-600 mt-1 flex items-center gap-1">
                   <AlertCircle className="size-3" /> {errors.slug}
                 </p>
               )}
@@ -364,10 +364,10 @@ export function ProductForm({ initialData }: ProductFormProps) {
 
           <div>
             <div className="flex items-center justify-between mb-1.5">
-              <label className="block text-xs font-mono font-semibold text-neutral-300">
-                Short Description <span className="text-[#EEF35F]">*</span>
+              <label className="block text-xs font-mono font-semibold text-slate-700">
+                Short Description <span className="text-[#0F766E]">*</span>
               </label>
-              <span className="text-[10px] font-mono text-neutral-500">
+              <span className="text-[10px] font-mono text-slate-400">
                 {formData.shortDescription.length}/300
               </span>
             </div>
@@ -382,15 +382,15 @@ export function ProductForm({ initialData }: ProductFormProps) {
               className={errors.shortDescription ? "border-rose-500" : ""}
             />
             {errors.shortDescription && (
-              <p className="text-[11px] text-rose-400 mt-1 flex items-center gap-1">
+              <p className="text-[11px] text-rose-600 mt-1 flex items-center gap-1">
                 <AlertCircle className="size-3" /> {errors.shortDescription}
               </p>
             )}
           </div>
 
           <div>
-            <label className="block text-xs font-mono font-semibold text-neutral-300 mb-1.5">
-              Detailed Description <span className="text-[#EEF35F]">*</span>
+            <label className="block text-xs font-mono font-semibold text-slate-700 mb-1.5">
+              Detailed Description <span className="text-[#0F766E]">*</span>
             </label>
             <Textarea
               rows={5}
@@ -403,7 +403,7 @@ export function ProductForm({ initialData }: ProductFormProps) {
               className={errors.description ? "border-rose-500" : ""}
             />
             {errors.description && (
-              <p className="text-[11px] text-rose-400 mt-1 flex items-center gap-1">
+              <p className="text-[11px] text-rose-600 mt-1 flex items-center gap-1">
                 <AlertCircle className="size-3" /> {errors.description}
               </p>
             )}
@@ -413,17 +413,17 @@ export function ProductForm({ initialData }: ProductFormProps) {
 
       {/* SECTION 2: Pricing & Category */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        <Card className="border-neutral-800 bg-neutral-950">
+        <Card className="border-slate-200 bg-white shadow-xs">
           <CardHeader>
-            <CardTitle className="text-lg">Pricing</CardTitle>
-            <p className="text-xs text-neutral-400">Set the digital download price in USD.</p>
+            <CardTitle className="text-lg text-slate-900">Pricing</CardTitle>
+            <p className="text-xs text-slate-500">Set the digital download price in USD.</p>
           </CardHeader>
           <CardContent>
-            <label className="block text-xs font-mono font-semibold text-neutral-300 mb-1.5">
-              Price (USD) <span className="text-[#EEF35F]">*</span>
+            <label className="block text-xs font-mono font-semibold text-slate-700 mb-1.5">
+              Price (USD) <span className="text-[#0F766E]">*</span>
             </label>
             <div className="relative">
-              <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-neutral-500 font-mono text-sm">
+              <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 font-mono text-sm">
                 $
               </span>
               <Input
@@ -440,21 +440,21 @@ export function ProductForm({ initialData }: ProductFormProps) {
               />
             </div>
             {errors.price && (
-              <p className="text-[11px] text-rose-400 mt-1 flex items-center gap-1">
+              <p className="text-[11px] text-rose-600 mt-1 flex items-center gap-1">
                 <AlertCircle className="size-3" /> {errors.price}
               </p>
             )}
           </CardContent>
         </Card>
 
-        <Card className="border-neutral-800 bg-neutral-950">
+        <Card className="border-slate-200 bg-white shadow-xs">
           <CardHeader>
-            <CardTitle className="text-lg">Category</CardTitle>
-            <p className="text-xs text-neutral-400">Assign official DigiForge product discipline.</p>
+            <CardTitle className="text-lg text-slate-900">Category</CardTitle>
+            <p className="text-xs text-slate-500">Assign official product discipline.</p>
           </CardHeader>
           <CardContent>
-            <label className="block text-xs font-mono font-semibold text-neutral-300 mb-1.5">
-              Product Category <span className="text-[#EEF35F]">*</span>
+            <label className="block text-xs font-mono font-semibold text-slate-700 mb-1.5">
+              Product Category <span className="text-[#0F766E]">*</span>
             </label>
             <select
               value={formData.category}
@@ -464,10 +464,10 @@ export function ProductForm({ initialData }: ProductFormProps) {
                   category: e.target.value as ProductCategory,
                 })
               }
-              className="w-full rounded-xl border border-neutral-800 bg-black px-3.5 py-2.5 text-xs sm:text-sm text-white transition-colors focus:border-[#EEF35F] focus:outline-none cursor-pointer"
+              className="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-xs sm:text-sm text-slate-900 transition-colors focus:border-[#0F766E] focus:ring-2 focus:ring-[#0F766E]/20 focus:outline-none cursor-pointer"
             >
               {PRODUCT_CATEGORIES.map((cat) => (
-                <option key={cat} value={cat} className="bg-neutral-950 text-white">
+                <option key={cat} value={cat} className="bg-white text-slate-900">
                   {cat}
                 </option>
               ))}
@@ -477,18 +477,18 @@ export function ProductForm({ initialData }: ProductFormProps) {
       </div>
 
       {/* SECTION 3: Cloudinary Media Upload UI */}
-      <Card className="border-neutral-800 bg-neutral-950">
+      <Card className="border-slate-200 bg-white shadow-xs">
         <CardHeader>
-          <CardTitle className="text-lg">Media &amp; Assets</CardTitle>
-          <p className="text-xs text-neutral-400">
+          <CardTitle className="text-lg text-slate-900">Media &amp; Assets</CardTitle>
+          <p className="text-xs text-slate-500">
             Upload cover thumbnail (required for publishing) and multi-image gallery screenshots to Cloudinary.
           </p>
         </CardHeader>
         <CardContent className="space-y-6">
           {/* Main Thumbnail Upload */}
           <div>
-            <label className="block text-xs font-mono font-semibold text-neutral-300 mb-2">
-              Cover Thumbnail <span className="text-[#EEF35F]">*</span>
+            <label className="block text-xs font-mono font-semibold text-slate-700 mb-2">
+              Cover Thumbnail <span className="text-[#0F766E]">*</span>
             </label>
             <ProductImageUpload
               value={formData.thumbnail}
@@ -514,15 +514,15 @@ export function ProductForm({ initialData }: ProductFormProps) {
               onUploadingChange={setIsUploadingImage}
             />
             {errors.thumbnail && (
-              <p className="text-[11px] text-rose-400 mt-1 flex items-center gap-1">
+              <p className="text-[11px] text-rose-600 mt-1 flex items-center gap-1">
                 <AlertCircle className="size-3" /> {errors.thumbnail}
               </p>
             )}
           </div>
 
           {/* Product Gallery Images */}
-          <div className="pt-4 border-t border-neutral-900">
-            <label className="block text-xs font-mono font-semibold text-neutral-300 mb-2">
+          <div className="pt-4 border-t border-slate-200">
+            <label className="block text-xs font-mono font-semibold text-slate-700 mb-2">
               Gallery Screenshots &amp; Product Visuals (Optional)
             </label>
             <ProductGalleryUpload
@@ -543,30 +543,30 @@ export function ProductForm({ initialData }: ProductFormProps) {
       </Card>
 
       {/* SECTION 4: Features & Specifications */}
-      <Card className="border-neutral-800 bg-neutral-950">
+      <Card className="border-slate-200 bg-white shadow-xs">
         <CardHeader>
-          <CardTitle className="text-lg">Product Details &amp; Highlights</CardTitle>
-          <p className="text-xs text-neutral-400">
+          <CardTitle className="text-lg text-slate-900">Product Details &amp; Highlights</CardTitle>
+          <p className="text-xs text-slate-500">
             Define features, technology badges, deliverables, and requirements.
           </p>
         </CardHeader>
         <CardContent className="space-y-6">
           {/* Key Features */}
           <div>
-            <label className="block text-xs font-mono font-semibold text-neutral-300 mb-2">
+            <label className="block text-xs font-mono font-semibold text-slate-700 mb-2">
               Key Features
             </label>
             <div className="space-y-2">
               {formData.features.map((feature, idx) => (
                 <div
                   key={idx}
-                  className="flex items-center justify-between gap-2 rounded-xl border border-neutral-800 bg-black/60 px-3.5 py-2 text-xs text-neutral-200"
+                  className="flex items-center justify-between gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-xs text-slate-700"
                 >
                   <span>{feature}</span>
                   <button
                     type="button"
                     onClick={() => removeItem("features", idx)}
-                    className="text-neutral-500 hover:text-rose-400 transition-colors cursor-pointer"
+                    className="text-slate-400 hover:text-rose-600 transition-colors cursor-pointer"
                   >
                     <X className="size-3.5" />
                   </button>
@@ -589,7 +589,7 @@ export function ProductForm({ initialData }: ProductFormProps) {
               <button
                 type="button"
                 onClick={() => addItem(newFeature, "features", setNewFeature)}
-                className="rounded-xl border border-neutral-800 bg-neutral-900 px-4 text-xs font-semibold text-white hover:bg-neutral-800 transition-colors shrink-0 cursor-pointer"
+                className="rounded-xl border border-slate-300 bg-slate-100 px-4 text-xs font-semibold text-slate-800 hover:bg-slate-200 transition-colors shrink-0 cursor-pointer"
               >
                 + Add
               </button>
@@ -597,21 +597,21 @@ export function ProductForm({ initialData }: ProductFormProps) {
           </div>
 
           {/* Technologies */}
-          <div className="pt-4 border-t border-neutral-900">
-            <label className="block text-xs font-mono font-semibold text-neutral-300 mb-2">
+          <div className="pt-4 border-t border-slate-200">
+            <label className="block text-xs font-mono font-semibold text-slate-700 mb-2">
               Technologies &amp; Frameworks
             </label>
             <div className="flex flex-wrap gap-2 mb-3">
               {formData.technologies.map((tech, idx) => (
                 <span
                   key={idx}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-neutral-800 bg-neutral-900 px-3.5 py-1 text-xs font-mono text-neutral-300"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-slate-100 px-3.5 py-1 text-xs font-mono text-slate-700"
                 >
                   <span>{tech}</span>
                   <button
                     type="button"
                     onClick={() => removeItem("technologies", idx)}
-                    className="text-neutral-500 hover:text-rose-400 transition-colors cursor-pointer"
+                    className="text-slate-400 hover:text-rose-600 transition-colors cursor-pointer"
                   >
                     <X className="size-3" />
                   </button>
@@ -634,7 +634,7 @@ export function ProductForm({ initialData }: ProductFormProps) {
               <button
                 type="button"
                 onClick={() => addItem(newTech, "technologies", setNewTech)}
-                className="rounded-xl border border-neutral-800 bg-neutral-900 px-4 text-xs font-semibold text-white hover:bg-neutral-800 transition-colors shrink-0 cursor-pointer"
+                className="rounded-xl border border-slate-300 bg-slate-100 px-4 text-xs font-semibold text-slate-800 hover:bg-slate-200 transition-colors shrink-0 cursor-pointer"
               >
                 + Add
               </button>
@@ -642,21 +642,21 @@ export function ProductForm({ initialData }: ProductFormProps) {
           </div>
 
           {/* What's Included */}
-          <div className="pt-4 border-t border-neutral-900">
-            <label className="block text-xs font-mono font-semibold text-neutral-300 mb-2">
+          <div className="pt-4 border-t border-slate-200">
+            <label className="block text-xs font-mono font-semibold text-slate-700 mb-2">
               What&apos;s Included in Download
             </label>
             <div className="space-y-2">
               {formData.included.map((inc, idx) => (
                 <div
                   key={idx}
-                  className="flex items-center justify-between gap-2 rounded-xl border border-neutral-800 bg-black/60 px-3.5 py-2 text-xs text-neutral-200"
+                  className="flex items-center justify-between gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-xs text-slate-700"
                 >
                   <span>{inc}</span>
                   <button
                     type="button"
                     onClick={() => removeItem("included", idx)}
-                    className="text-neutral-500 hover:text-rose-400 transition-colors cursor-pointer"
+                    className="text-slate-400 hover:text-rose-600 transition-colors cursor-pointer"
                   >
                     <X className="size-3.5" />
                   </button>
@@ -679,7 +679,7 @@ export function ProductForm({ initialData }: ProductFormProps) {
               <button
                 type="button"
                 onClick={() => addItem(newIncluded, "included", setNewIncluded)}
-                className="rounded-xl border border-neutral-800 bg-neutral-900 px-4 text-xs font-semibold text-white hover:bg-neutral-800 transition-colors shrink-0 cursor-pointer"
+                className="rounded-xl border border-slate-300 bg-slate-100 px-4 text-xs font-semibold text-slate-800 hover:bg-slate-200 transition-colors shrink-0 cursor-pointer"
               >
                 + Add
               </button>
@@ -687,21 +687,21 @@ export function ProductForm({ initialData }: ProductFormProps) {
           </div>
 
           {/* Requirements */}
-          <div className="pt-4 border-t border-neutral-900">
-            <label className="block text-xs font-mono font-semibold text-neutral-300 mb-2">
+          <div className="pt-4 border-t border-slate-200">
+            <label className="block text-xs font-mono font-semibold text-slate-700 mb-2">
               Requirements (Optional)
             </label>
             <div className="space-y-2">
               {formData.requirements.map((req, idx) => (
                 <div
                   key={idx}
-                  className="flex items-center justify-between gap-2 rounded-xl border border-neutral-800 bg-black/60 px-3.5 py-2 text-xs text-neutral-200"
+                  className="flex items-center justify-between gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-xs text-slate-700"
                 >
                   <span>{req}</span>
                   <button
                     type="button"
                     onClick={() => removeItem("requirements", idx)}
-                    className="text-neutral-500 hover:text-rose-400 transition-colors cursor-pointer"
+                    className="text-slate-400 hover:text-rose-600 transition-colors cursor-pointer"
                   >
                     <X className="size-3.5" />
                   </button>
@@ -724,7 +724,7 @@ export function ProductForm({ initialData }: ProductFormProps) {
               <button
                 type="button"
                 onClick={() => addItem(newRequirement, "requirements", setNewRequirement)}
-                className="rounded-xl border border-neutral-800 bg-neutral-900 px-4 text-xs font-semibold text-white hover:bg-neutral-800 transition-colors shrink-0 cursor-pointer"
+                className="rounded-xl border border-slate-300 bg-slate-100 px-4 text-xs font-semibold text-slate-800 hover:bg-slate-200 transition-colors shrink-0 cursor-pointer"
               >
                 + Add
               </button>
@@ -734,16 +734,16 @@ export function ProductForm({ initialData }: ProductFormProps) {
       </Card>
 
       {/* SECTION 5: External Product Links */}
-      <Card className="border-neutral-800 bg-neutral-950">
+      <Card className="border-slate-200 bg-white shadow-xs">
         <CardHeader>
-          <CardTitle className="text-lg">Product Links &amp; Checkout</CardTitle>
-          <p className="text-xs text-neutral-400">
-            Set live demo, documentation, and external checkout links (e.g. Gumroad).
+          <CardTitle className="text-lg text-slate-900">Product Links &amp; Checkout</CardTitle>
+          <p className="text-xs text-slate-500">
+            Set live demo, documentation, and external checkout links.
           </p>
         </CardHeader>
         <CardContent className="space-y-4">
           <div>
-            <label className="block text-xs font-mono font-semibold text-neutral-300 mb-1.5">
+            <label className="block text-xs font-mono font-semibold text-slate-700 mb-1.5">
               Live Demo URL (Optional)
             </label>
             <Input
@@ -756,14 +756,14 @@ export function ProductForm({ initialData }: ProductFormProps) {
               className={errors.demoUrl ? "border-rose-500" : ""}
             />
             {errors.demoUrl && (
-              <p className="text-[11px] text-rose-400 mt-1 flex items-center gap-1">
+              <p className="text-[11px] text-rose-600 mt-1 flex items-center gap-1">
                 <AlertCircle className="size-3" /> {errors.demoUrl}
               </p>
             )}
           </div>
 
           <div>
-            <label className="block text-xs font-mono font-semibold text-neutral-300 mb-1.5">
+            <label className="block text-xs font-mono font-semibold text-slate-700 mb-1.5">
               Documentation URL (Optional)
             </label>
             <Input
@@ -776,16 +776,16 @@ export function ProductForm({ initialData }: ProductFormProps) {
               className={errors.documentationUrl ? "border-rose-500" : ""}
             />
             {errors.documentationUrl && (
-              <p className="text-[11px] text-rose-400 mt-1 flex items-center gap-1">
+              <p className="text-[11px] text-rose-600 mt-1 flex items-center gap-1">
                 <AlertCircle className="size-3" /> {errors.documentationUrl}
               </p>
             )}
           </div>
 
           <div>
-            <label className="block text-xs font-mono font-semibold text-neutral-300 mb-1.5">
-              Purchase / Checkout URL <span className="text-[#EEF35F]">*</span>{" "}
-              <span className="text-[11px] text-neutral-500 font-normal">(Required when publishing)</span>
+            <label className="block text-xs font-mono font-semibold text-slate-700 mb-1.5">
+              Purchase / Checkout URL <span className="text-[#0F766E]">*</span>{" "}
+              <span className="text-[11px] text-slate-400 font-normal">(Required when publishing)</span>
             </label>
             <Input
               value={formData.purchaseUrl}
@@ -797,7 +797,7 @@ export function ProductForm({ initialData }: ProductFormProps) {
               className={errors.purchaseUrl ? "border-rose-500" : ""}
             />
             {errors.purchaseUrl && (
-              <p className="text-[11px] text-rose-400 mt-1 flex items-center gap-1">
+              <p className="text-[11px] text-rose-600 mt-1 flex items-center gap-1">
                 <AlertCircle className="size-3" /> {errors.purchaseUrl}
               </p>
             )}
@@ -806,17 +806,17 @@ export function ProductForm({ initialData }: ProductFormProps) {
       </Card>
 
       {/* SECTION 6: Metadata, Tags & Visibility */}
-      <Card className="border-neutral-800 bg-neutral-950">
+      <Card className="border-slate-200 bg-white shadow-xs">
         <CardHeader>
-          <CardTitle className="text-lg">Metadata, Tags &amp; Visibility</CardTitle>
-          <p className="text-xs text-neutral-400">
+          <CardTitle className="text-lg text-slate-900">Metadata, Tags &amp; Visibility</CardTitle>
+          <p className="text-xs text-slate-500">
             Configure version tag, search tags, and homepage placement.
           </p>
         </CardHeader>
         <CardContent className="space-y-6">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 items-center">
             <div>
-              <label className="block text-xs font-mono font-semibold text-neutral-300 mb-1.5">
+              <label className="block text-xs font-mono font-semibold text-slate-700 mb-1.5">
                 Version Tag
               </label>
               <Input
@@ -829,7 +829,7 @@ export function ProductForm({ initialData }: ProductFormProps) {
             </div>
 
             <div>
-              <label className="block text-xs font-mono font-semibold text-neutral-300 mb-1.5">
+              <label className="block text-xs font-mono font-semibold text-slate-700 mb-1.5">
                 Status
               </label>
               <select
@@ -840,10 +840,10 @@ export function ProductForm({ initialData }: ProductFormProps) {
                     status: e.target.value as "published" | "draft",
                   })
                 }
-                className="w-full rounded-xl border border-neutral-800 bg-black px-3.5 py-2.5 text-xs sm:text-sm text-white transition-colors focus:border-[#EEF35F] focus:outline-none cursor-pointer"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-xs sm:text-sm text-slate-900 transition-colors focus:border-[#0F766E] focus:ring-2 focus:ring-[#0F766E]/20 focus:outline-none cursor-pointer"
               >
-                <option value="published" className="bg-neutral-950 text-white">Published</option>
-                <option value="draft" className="bg-neutral-950 text-white">Draft</option>
+                <option value="published" className="bg-white text-slate-900">Published</option>
+                <option value="draft" className="bg-white text-slate-900">Draft</option>
               </select>
             </div>
 
@@ -855,9 +855,9 @@ export function ProductForm({ initialData }: ProductFormProps) {
                   onChange={(e) =>
                     setFormData({ ...formData, featured: e.target.checked })
                   }
-                  className="size-4 rounded border-neutral-800 bg-black text-[#EEF35F] focus:ring-[#EEF35F]"
+                  className="size-4 rounded border-slate-300 bg-white text-[#0F766E] focus:ring-[#0F766E]"
                 />
-                <span className="text-xs font-semibold text-white">
+                <span className="text-xs font-semibold text-slate-800">
                   Feature on Homepage
                 </span>
               </label>
@@ -865,22 +865,22 @@ export function ProductForm({ initialData }: ProductFormProps) {
           </div>
 
           {/* Tags */}
-          <div className="pt-4 border-t border-neutral-900">
-            <label className="block text-xs font-mono font-semibold text-neutral-300 mb-2">
+          <div className="pt-4 border-t border-slate-200">
+            <label className="block text-xs font-mono font-semibold text-slate-700 mb-2">
               Search Tags
             </label>
             <div className="flex flex-wrap gap-2 mb-3">
               {formData.tags.map((tag, idx) => (
                 <span
                   key={idx}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-neutral-800 bg-neutral-900 px-3.5 py-1 text-xs font-mono text-neutral-300"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-slate-100 px-3.5 py-1 text-xs font-mono text-slate-700"
                 >
-                  <Tag className="size-3 text-[#EEF35F]" />
+                  <Tag className="size-3 text-[#0F766E]" />
                   <span>{tag}</span>
                   <button
                     type="button"
                     onClick={() => removeItem("tags", idx)}
-                    className="text-neutral-500 hover:text-rose-400 transition-colors cursor-pointer"
+                    className="text-slate-400 hover:text-rose-600 transition-colors cursor-pointer"
                   >
                     <X className="size-3" />
                   </button>
@@ -903,7 +903,7 @@ export function ProductForm({ initialData }: ProductFormProps) {
               <button
                 type="button"
                 onClick={() => addItem(newTag, "tags", setNewTag, true)}
-                className="rounded-xl border border-neutral-800 bg-neutral-900 px-4 text-xs font-semibold text-white hover:bg-neutral-800 transition-colors shrink-0 cursor-pointer"
+                className="rounded-xl border border-slate-300 bg-slate-100 px-4 text-xs font-semibold text-slate-800 hover:bg-slate-200 transition-colors shrink-0 cursor-pointer"
               >
                 + Add Tag
               </button>
@@ -913,10 +913,10 @@ export function ProductForm({ initialData }: ProductFormProps) {
       </Card>
 
       {/* FORM ACTIONS FOOTER */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-neutral-900">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-slate-200">
         <Link
           href="/dashboard/products"
-          className="text-xs font-semibold text-neutral-400 hover:text-white transition-colors"
+          className="text-xs font-semibold text-slate-500 hover:text-slate-900 transition-colors"
         >
           Cancel
         </Link>
@@ -926,7 +926,7 @@ export function ProductForm({ initialData }: ProductFormProps) {
             type="button"
             disabled={submitState === "saving" || isUploadingImage}
             onClick={() => handleSubmit("draft")}
-            className="flex-1 sm:flex-initial inline-flex h-11 items-center justify-center rounded-full border border-neutral-800 bg-neutral-900 px-6 text-xs font-semibold text-neutral-200 hover:bg-neutral-800 hover:text-white transition-colors cursor-pointer disabled:opacity-50"
+            className="flex-1 sm:flex-initial inline-flex h-11 items-center justify-center rounded-full border border-slate-300 bg-slate-100 px-6 text-xs font-semibold text-slate-700 hover:bg-slate-200 transition-colors cursor-pointer disabled:opacity-50"
           >
             {submitState === "saving" && formData.status === "draft" ? (
               <div className="flex items-center gap-2">
@@ -942,7 +942,7 @@ export function ProductForm({ initialData }: ProductFormProps) {
             type="button"
             disabled={submitState === "saving" || isUploadingImage}
             onClick={() => handleSubmit("published")}
-            className="flex-1 sm:flex-initial inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[#EEF35F] px-8 text-xs font-bold text-black hover:bg-[#e5ea4e] hover:shadow-[0_0_20px_rgba(238,243,95,0.3)] transition-all shadow-md shadow-[#EEF35F]/20 cursor-pointer disabled:opacity-50"
+            className="flex-1 sm:flex-initial inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[#0F766E] px-8 text-xs font-bold text-white hover:bg-[#115E59] transition-all shadow-md shadow-teal-900/10 cursor-pointer disabled:opacity-50"
           >
             {submitState === "saving" && formData.status === "published" ? (
               <>

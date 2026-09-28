@@ -150,16 +150,16 @@ export function ProductImageUpload({
   return (
     <div className="space-y-3">
       {hasImage ? (
-        <div className="relative group overflow-hidden rounded-2xl border border-neutral-800 bg-black/60 p-2.5">
-          <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl bg-neutral-900">
+        <div className="relative group overflow-hidden rounded-2xl border border-gray-200 bg-white p-2.5 shadow-xs">
+          <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl bg-slate-100">
             <Image
               src={value!}
               alt="Product thumbnail"
               fill
               className="object-cover transition-transform duration-300 group-hover:scale-105"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-between p-3">
-              <div className="text-[11px] font-mono text-neutral-300 truncate max-w-[70%]">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-between p-3">
+              <div className="text-[11px] font-medium text-white truncate max-w-[70%]">
                 {publicId || "Uploaded Image"}
               </div>
               <div className="flex gap-2">
@@ -167,7 +167,7 @@ export function ProductImageUpload({
                   type="button"
                   onClick={() => fileInputRef.current?.click()}
                   disabled={isUploading}
-                  className="rounded-lg bg-neutral-900/90 border border-neutral-700 px-2.5 py-1 text-xs font-semibold text-white hover:bg-neutral-800 transition-colors cursor-pointer"
+                  className="rounded-lg bg-white/90 border border-gray-200 px-2.5 py-1 text-xs font-semibold text-gray-800 hover:bg-white transition-colors cursor-pointer"
                 >
                   Replace
                 </button>
@@ -175,7 +175,7 @@ export function ProductImageUpload({
                   type="button"
                   onClick={onRemove}
                   disabled={isUploading}
-                  className="rounded-lg bg-rose-950/80 border border-rose-800 px-2 py-1 text-xs font-semibold text-rose-300 hover:bg-rose-900 transition-colors cursor-pointer"
+                  className="rounded-lg bg-rose-600 border border-rose-700 px-2 py-1 text-xs font-semibold text-white hover:bg-rose-700 transition-colors cursor-pointer"
                 >
                   <X className="size-3.5" />
                 </button>
@@ -191,25 +191,25 @@ export function ProductImageUpload({
           onClick={() => !isUploading && fileInputRef.current?.click()}
           className={`relative rounded-2xl border-2 border-dashed p-7 text-center transition-all cursor-pointer ${
             isDragging
-              ? "border-[#EEF35F] bg-[#EEF35F]/5"
-              : "border-neutral-800 bg-black/50 hover:border-neutral-700 hover:bg-neutral-900/30"
+              ? "border-[#0F766E] bg-[#F0FDFA]"
+              : "border-gray-300 bg-[#F8FAFC] hover:border-[#0F766E] hover:bg-[#F0FDFA]"
           } ${isUploading ? "opacity-75 pointer-events-none" : ""}`}
         >
           {isUploading ? (
             <div className="flex flex-col items-center justify-center py-2">
-              <Loader2 className="size-8 animate-spin text-[#EEF35F] mb-2" />
-              <p className="text-xs font-bold text-white font-mono">Uploading to Cloudinary...</p>
-              <p className="text-[11px] text-neutral-400 mt-1">Please wait while the image is securely processed</p>
+              <Loader2 className="size-8 animate-spin text-[#0F766E] mb-2" />
+              <p className="text-xs font-bold text-gray-900">Uploading to Cloudinary...</p>
+              <p className="text-[11px] text-gray-500 mt-1">Please wait while the image is securely processed</p>
             </div>
           ) : (
             <div className="flex flex-col items-center justify-center">
-              <div className="flex size-12 items-center justify-center rounded-2xl border border-neutral-800 bg-neutral-900/80 mb-3 text-neutral-400 group-hover:text-white">
-                <UploadCloud className="size-6 text-[#EEF35F]" />
+              <div className="flex size-12 items-center justify-center rounded-2xl border border-teal-200 bg-white mb-3 text-[#0F766E] shadow-xs">
+                <UploadCloud className="size-6 text-[#0F766E]" />
               </div>
-              <p className="text-xs font-semibold text-white">
+              <p className="text-xs font-bold text-gray-900">
                 Click to upload or drag &amp; drop thumbnail
               </p>
-              <p className="text-[11px] text-neutral-500 mt-1">
+              <p className="text-[11px] text-gray-500 mt-1">
                 JPEG, PNG, WebP, AVIF up to 10MB
               </p>
             </div>
@@ -229,7 +229,7 @@ export function ProductImageUpload({
 
       {/* Error Message */}
       {errorMessage && (
-        <div className="flex items-center gap-2 rounded-xl border border-rose-900/60 bg-rose-950/30 px-3.5 py-2.5 text-xs text-rose-300">
+        <div className="flex items-center gap-2 rounded-xl border border-rose-200 bg-rose-50 px-3.5 py-2.5 text-xs text-rose-700">
           <AlertCircle className="size-4 shrink-0" />
           <span>{errorMessage}</span>
         </div>
@@ -239,3 +239,4 @@ export function ProductImageUpload({
 }
 
 export default ProductImageUpload;
+

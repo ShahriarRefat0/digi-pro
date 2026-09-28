@@ -38,15 +38,15 @@ const VALUE_PROPS: ValuePropCard[] = [
 
 export function StatsSection() {
   return (
-    <section className="relative w-full overflow-hidden bg-[#151616] py-28 sm:py-36 border-b border-neutral-900 selection:bg-[#EEF35F] selection:text-black">
+    <section className="relative w-full overflow-hidden bg-slate-50 py-28 sm:py-36 border-b border-slate-200 selection:bg-teal-100 selection:text-teal-900">
       {/* Dynamic Ambient Glow & Concentric Rings Background */}
       <div className="absolute inset-0 pointer-events-none flex items-center justify-center overflow-hidden">
-        {/* Soft Radial Ambient Spotlight tailored to #151616 */}
+        {/* Soft Radial Ambient Spotlight */}
         <div
           className="absolute inset-0"
           style={{
             background:
-              "radial-gradient(ellipse 65% 55% at 50% 50%, rgba(38, 40, 40, 0.6) 0%, rgba(26, 28, 28, 0.4) 45%, rgba(21, 22, 22, 0.95) 85%, #151616 100%)",
+              "radial-gradient(ellipse 65% 55% at 50% 50%, rgba(240, 253, 250, 0.8) 0%, rgba(248, 250, 252, 0.6) 45%, rgba(250, 250, 248, 0.95) 85%, #FAFAF8 100%)",
           }}
         />
 
@@ -83,31 +83,31 @@ export function StatsSection() {
               cx="800"
               cy="800"
               r="170"
-              stroke="#ffffff"
+              stroke="#0F766E"
               strokeWidth="1"
-              strokeOpacity="0.09"
+              strokeOpacity="0.12"
             />
             <circle
               cx="800"
               cy="800"
               r="290"
-              stroke="#ffffff"
+              stroke="#0F766E"
+              strokeWidth="1"
+              strokeOpacity="0.10"
+            />
+            <circle
+              cx="800"
+              cy="800"
+              r="430"
+              stroke="#0F766E"
               strokeWidth="1"
               strokeOpacity="0.08"
             />
             <circle
               cx="800"
               cy="800"
-              r="430"
-              stroke="#ffffff"
-              strokeWidth="1"
-              strokeOpacity="0.07"
-            />
-            <circle
-              cx="800"
-              cy="800"
               r="580"
-              stroke="#ffffff"
+              stroke="#0F766E"
               strokeWidth="1"
               strokeOpacity="0.06"
             />
@@ -115,7 +115,7 @@ export function StatsSection() {
               cx="800"
               cy="800"
               r="740"
-              stroke="#ffffff"
+              stroke="#0F766E"
               strokeWidth="1"
               strokeOpacity="0.05"
             />
@@ -123,7 +123,7 @@ export function StatsSection() {
               cx="800"
               cy="800"
               r="910"
-              stroke="#ffffff"
+              stroke="#0F766E"
               strokeWidth="1"
               strokeOpacity="0.04"
             />
@@ -131,15 +131,15 @@ export function StatsSection() {
               cx="800"
               cy="800"
               r="1090"
-              stroke="#ffffff"
+              stroke="#0F766E"
               strokeWidth="1"
               strokeOpacity="0.03"
             />
           </g>
         </svg>
 
-        {/* Top and Bottom edge fade into #151616 */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#151616] via-transparent to-[#151616] opacity-90" />
+        {/* Top and Bottom edge fade into light bg */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#FAFAF8] via-transparent to-[#FAFAF8] opacity-90" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -151,12 +151,12 @@ export function StatsSection() {
           transition={{ duration: 0.5, ease: "easeOut" }}
           className="text-center max-w-2xl mx-auto mb-16 sm:mb-20"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-extrabold tracking-tight text-white font-heading leading-tight">
-            Built for people who build
+          <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-extrabold tracking-tight text-slate-900 font-heading leading-tight">
+            Built for families &amp; caregivers
           </h2>
 
-          <p className="mt-3.5 text-xs sm:text-sm text-neutral-400 font-normal leading-relaxed max-w-xl mx-auto">
-            Practical digital products designed to help you start faster, build better, and customize with confidence.
+          <p className="mt-3.5 text-xs sm:text-sm text-slate-500 font-normal leading-relaxed max-w-xl mx-auto">
+            Practical digital products designed to help you care better, organize faster, and nurture with confidence.
           </p>
         </motion.div>
 
@@ -171,24 +171,24 @@ export function StatsSection() {
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.45, delay: idx * 0.1, ease: "easeOut" }}
                 whileHover={{ y: -6, transition: { duration: 0.2, ease: "easeOut" } }}
-                className="group relative flex flex-col justify-between rounded-2xl sm:rounded-[22px] border border-white/10 bg-[#1c1d1d]/90 backdrop-blur-md p-8 sm:p-9 transition-colors duration-300 hover:border-white/25 hover:bg-[#202222]/95 hover:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8),0_0_35px_rgba(238,243,95,0.08)] min-h-[240px] sm:min-h-[260px]"
+                className="group relative flex flex-col justify-between rounded-2xl sm:rounded-[22px] border border-slate-200 bg-white/95 backdrop-blur-md p-8 sm:p-9 transition-all duration-300 hover:border-teal-300 hover:bg-teal-50/30 hover:shadow-lg min-h-[240px] sm:min-h-[260px]"
               >
                 {/* Title & Description */}
                 <div>
-                  <h3 className="text-xl font-bold text-white font-heading group-hover:text-[#EEF35F] transition-colors">
+                  <h3 className="text-xl font-bold text-slate-900 font-heading group-hover:text-[#0F766E] transition-colors">
                     {item.title}
                   </h3>
 
-                  <p className="mt-3 text-xs sm:text-[13px] text-neutral-300 font-normal leading-relaxed">
+                  <p className="mt-3 text-xs sm:text-[13px] text-slate-600 font-normal leading-relaxed">
                     {item.description}
                   </p>
                 </div>
 
                 {/* Bottom Pill CTA Button */}
-                <div className="mt-8 pt-4 border-t border-white/5">
+                <div className="mt-8 pt-4 border-t border-slate-100">
                   <Link
                     href={item.href}
-                    className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-[#252727] px-4 py-2 text-xs font-semibold text-neutral-200 transition-all duration-200 hover:border-[#EEF35F]/40 hover:bg-[#EEF35F] hover:text-black group-hover:border-white/20 active:scale-95 shadow-sm"
+                    className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-slate-100 px-4 py-2 text-xs font-semibold text-slate-700 transition-all duration-200 hover:border-[#0F766E] hover:bg-[#0F766E] hover:text-white active:scale-95 shadow-xs"
                   >
                     <span>{item.cta}</span>
                     <ArrowRight className="size-3.5 transition-transform duration-200 group-hover:translate-x-1" />

@@ -78,25 +78,25 @@ export function LoginForm() {
   };
 
   return (
-    <div className="w-full max-w-md rounded-3xl border border-neutral-800 bg-neutral-950/90 p-7 sm:p-9 shadow-2xl backdrop-blur-xl relative">
+    <div className="w-full max-w-md rounded-3xl border border-slate-200 bg-white p-7 sm:p-9 shadow-lg relative">
       {/* Card Header */}
       <div className="text-center mb-6">
-        <div className="size-12 rounded-2xl bg-neutral-900 border border-neutral-800 flex items-center justify-center text-[#EEF35F] mx-auto mb-4 shadow-sm">
+        <div className="size-12 rounded-2xl bg-teal-50 border border-teal-100 flex items-center justify-center text-[#0F766E] mx-auto mb-4 shadow-xs">
           <KeyRound className="size-6" />
         </div>
 
-        <h1 className="text-2xl sm:text-3xl font-extrabold font-heading text-white tracking-tight">
+        <h1 className="text-2xl sm:text-3xl font-extrabold font-heading text-slate-900 tracking-tight">
           Admin Sign In
         </h1>
-        <p className="text-xs text-neutral-400 mt-1.5 font-normal">
+        <p className="text-xs text-slate-500 mt-1.5 font-normal">
           Enter administrative credentials to access product management and store dashboard.
         </p>
       </div>
 
       {/* Generic Authentication Error Alert */}
       {authError && (
-        <div className="mb-5 rounded-xl border border-rose-500/30 bg-rose-500/10 p-3.5 text-xs text-rose-400 flex items-center gap-2.5 animate-in fade-in duration-200">
-          <AlertCircle className="size-4 shrink-0" />
+        <div className="mb-5 rounded-xl border border-rose-200 bg-rose-50 p-3.5 text-xs text-rose-700 flex items-center gap-2.5 animate-in fade-in duration-200">
+          <AlertCircle className="size-4 shrink-0 text-rose-600" />
           <span>{authError}</span>
         </div>
       )}
@@ -107,12 +107,12 @@ export function LoginForm() {
         <div>
           <label
             htmlFor="email"
-            className="block text-xs font-mono font-semibold text-neutral-300 mb-1.5"
+            className="block text-xs font-mono font-semibold text-slate-700 mb-1.5"
           >
             Email Address
           </label>
           <div className="relative">
-            <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 size-4 text-neutral-500" />
+            <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 size-4 text-slate-400" />
             <Input
               id="email"
               type="email"
@@ -129,7 +129,7 @@ export function LoginForm() {
             />
           </div>
           {fieldErrors.email && (
-            <p className="mt-1 flex items-center gap-1 text-[11px] text-rose-400">
+            <p className="mt-1 flex items-center gap-1 text-[11px] text-rose-600">
               <AlertCircle className="size-3" />
               <span>{fieldErrors.email}</span>
             </p>
@@ -141,16 +141,16 @@ export function LoginForm() {
           <div className="flex items-center justify-between mb-1.5">
             <label
               htmlFor="password"
-              className="block text-xs font-mono font-semibold text-neutral-300"
+              className="block text-xs font-mono font-semibold text-slate-700"
             >
               Password
             </label>
-            <span className="text-[11px] font-mono text-neutral-500">
+            <span className="text-[11px] font-mono text-slate-400">
               Min 8 characters
             </span>
           </div>
           <div className="relative">
-            <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 size-4 text-neutral-500" />
+            <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 size-4 text-slate-400" />
             <Input
               id="password"
               type={showPassword ? "text" : "password"}
@@ -170,7 +170,7 @@ export function LoginForm() {
               type="button"
               onClick={() => setShowPassword(!showPassword)}
               disabled={isPending || isSuccess}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 hover:text-white transition-colors cursor-pointer"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-900 transition-colors cursor-pointer"
             >
               {showPassword ? (
                 <EyeOff className="size-4" />
@@ -180,7 +180,7 @@ export function LoginForm() {
             </button>
           </div>
           {fieldErrors.password && (
-            <p className="mt-1 flex items-center gap-1 text-[11px] text-rose-400">
+            <p className="mt-1 flex items-center gap-1 text-[11px] text-rose-600">
               <AlertCircle className="size-3" />
               <span>{fieldErrors.password}</span>
             </p>
@@ -195,9 +195,9 @@ export function LoginForm() {
               checked={rememberMe}
               disabled={isPending || isSuccess}
               onChange={(e) => setRememberMe(e.target.checked)}
-              className="size-4 rounded border-neutral-800 bg-black text-[#EEF35F] focus:ring-[#EEF35F]"
+              className="size-4 rounded border-slate-300 bg-white text-[#0F766E] focus:ring-[#0F766E]"
             />
-            <span className="text-xs text-neutral-400 font-normal select-none">
+            <span className="text-xs text-slate-600 font-normal select-none">
               Remember me
             </span>
           </label>
@@ -208,7 +208,7 @@ export function LoginForm() {
           <button
             type="submit"
             disabled={isPending || isSuccess}
-            className="w-full inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[#EEF35F] px-8 text-xs sm:text-sm font-bold text-black hover:bg-[#e5ea4e] hover:shadow-[0_0_20px_rgba(238,243,95,0.3)] transition-all active:scale-95 disabled:opacity-80 shadow-md shadow-[#EEF35F]/20 cursor-pointer"
+            className="w-full inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[#0F766E] px-8 text-xs sm:text-sm font-bold text-white hover:bg-[#115E59] transition-all active:scale-95 disabled:opacity-80 shadow-md shadow-teal-900/10 cursor-pointer"
           >
             {isPending ? (
               <>
@@ -217,7 +217,7 @@ export function LoginForm() {
               </>
             ) : isSuccess ? (
               <>
-                <CheckCircle2 className="size-4" />
+                <CheckCircle2 className="size-4 text-emerald-300" />
                 <span>Authenticated • Redirecting...</span>
               </>
             ) : (

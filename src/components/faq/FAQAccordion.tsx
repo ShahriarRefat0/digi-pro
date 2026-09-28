@@ -36,8 +36,8 @@ export function FAQAccordion({ items }: FAQAccordionProps) {
             key={item.id}
             className={`rounded-2xl transition-all duration-200 overflow-hidden ${
               isOpen
-                ? "border-2 border-neutral-700 bg-neutral-950 shadow-xl"
-                : "border border-neutral-900 bg-neutral-950/40 hover:border-neutral-800 hover:bg-neutral-950/80"
+                ? "border-2 border-teal-400 bg-white shadow-xs"
+                : "border border-slate-200 bg-white hover:border-slate-300"
             }`}
           >
             <button
@@ -48,7 +48,7 @@ export function FAQAccordion({ items }: FAQAccordionProps) {
             >
               <span
                 className={`text-sm sm:text-base font-bold font-heading transition-colors ${
-                  isOpen ? "text-[#EEF35F]" : "text-white hover:text-neutral-200"
+                  isOpen ? "text-[#0F766E]" : "text-slate-900 hover:text-slate-700"
                 }`}
               >
                 {item.question}
@@ -57,8 +57,8 @@ export function FAQAccordion({ items }: FAQAccordionProps) {
               <div
                 className={`size-8 rounded-full flex items-center justify-center shrink-0 transition-colors ${
                   isOpen
-                    ? "bg-[#EEF35F] text-black"
-                    : "bg-neutral-900 border border-neutral-800 text-neutral-400 group-hover:text-white"
+                    ? "bg-[#0F766E] text-white"
+                    : "bg-slate-100 border border-slate-200 text-slate-500 group-hover:text-slate-900"
                 }`}
               >
                 {isOpen ? (
@@ -77,7 +77,7 @@ export function FAQAccordion({ items }: FAQAccordionProps) {
                   exit={{ height: 0, opacity: 0 }}
                   transition={{ duration: 0.25, ease: "easeOut" }}
                 >
-                  <div className="px-5 pb-6 sm:px-6 sm:pb-7 text-xs sm:text-sm text-neutral-400 leading-relaxed font-normal border-t border-neutral-900/60 pt-4">
+                  <div className="px-5 pb-6 sm:px-6 sm:pb-7 text-xs sm:text-sm text-slate-600 leading-relaxed font-normal border-t border-slate-100 pt-4">
                     {item.answer}
                   </div>
                 </motion.div>

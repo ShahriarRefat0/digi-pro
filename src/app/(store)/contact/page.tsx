@@ -19,17 +19,17 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen flex flex-col bg-black text-white selection:bg-[#EEF35F] selection:text-black">
+    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 selection:bg-[#F0FDFA] selection:text-[#0F766E]">
       {/* 1. Navbar */}
       <Navbar />
 
       {/* Main Content */}
-      <main className="flex-1 bg-black">
+      <main className="flex-1 bg-slate-50">
         {/* 2. Hero */}
         <ContactHero />
 
         {/* 3. Main Form & Info Section */}
-        <section className="py-20 sm:py-28 border-b border-neutral-900 bg-black">
+        <section className="py-20 sm:py-28 border-b border-slate-200 bg-white">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
               {/* Left Column: Contact Information */}

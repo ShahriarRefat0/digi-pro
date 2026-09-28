@@ -43,21 +43,21 @@ export function ManageProductsClient({ initialProducts }: ManageProductsClientPr
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-neutral-900">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-gray-200">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight font-heading text-white">
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight font-heading text-gray-900">
             Manage Products
           </h1>
-          <p className="text-xs sm:text-sm text-neutral-400 mt-1 font-normal">
-            Create, update, and manage your digital products catalog.
+          <p className="text-xs sm:text-sm text-gray-500 mt-1 font-normal">
+            Create, update, and manage your Careproff catalog products.
           </p>
         </div>
 
         <Link
           href="/dashboard/products/new"
-          className="inline-flex h-9 items-center justify-center gap-1.5 rounded-full bg-[#EEF35F] px-5 text-xs font-bold text-black hover:bg-[#e5ea4e] hover:shadow-[0_0_15px_rgba(238,243,95,0.3)] transition-all shadow-sm shrink-0"
+          className="inline-flex h-10 items-center justify-center gap-1.5 rounded-full bg-[#0F766E] px-5 text-xs font-bold text-white hover:bg-[#115E59] transition-all shadow-xs shrink-0"
         >
-          <Plus className="size-3.5" />
+          <Plus className="size-4" />
           <span>Add Product</span>
         </Link>
       </div>
@@ -80,3 +80,4 @@ export function ManageProductsClient({ initialProducts }: ManageProductsClientPr
 }
 
 export default ManageProductsClient;
+

@@ -11,9 +11,9 @@ export function ProductStatusBadge({ status }: ProductStatusBadgeProps) {
     return (
       <Badge
         variant="outline"
-        className="border-emerald-500/30 bg-emerald-500/10 text-emerald-400 font-mono text-[11px] font-semibold"
+        className="border-emerald-200 bg-emerald-50 text-emerald-700 font-semibold text-[11px]"
       >
-        <span className="size-1.5 rounded-full bg-emerald-400 mr-1 animate-pulse" />
+        <span className="size-1.5 rounded-full bg-emerald-500 mr-1.5 animate-pulse" />
         Published
       </Badge>
     );
@@ -23,9 +23,9 @@ export function ProductStatusBadge({ status }: ProductStatusBadgeProps) {
     return (
       <Badge
         variant="outline"
-        className="border-amber-500/30 bg-amber-500/10 text-amber-300 font-mono text-[11px] font-semibold"
+        className="border-amber-200 bg-amber-50 text-amber-700 font-semibold text-[11px]"
       >
-        <span className="size-1.5 rounded-full bg-amber-400 mr-1" />
+        <span className="size-1.5 rounded-full bg-amber-500 mr-1.5" />
         Draft
       </Badge>
     );
@@ -34,7 +34,7 @@ export function ProductStatusBadge({ status }: ProductStatusBadgeProps) {
   return (
     <Badge
       variant="outline"
-      className="border-neutral-800 bg-neutral-900 text-neutral-400 font-mono text-[11px] font-semibold"
+      className="border-gray-200 bg-gray-100 text-gray-600 font-semibold text-[11px]"
     >
       Archived
     </Badge>
@@ -42,3 +42,4 @@ export function ProductStatusBadge({ status }: ProductStatusBadgeProps) {
 }
 
 export default ProductStatusBadge;
+

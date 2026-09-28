@@ -18,12 +18,12 @@ export const metadata: Metadata = {
 
 export default function ServicesPage() {
   return (
-    <div className="min-h-screen flex flex-col bg-black text-white selection:bg-[#EEF35F] selection:text-black">
+    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 selection:bg-[#F0FDFA] selection:text-[#0F766E]">
       {/* 1. Navbar */}
       <Navbar />
 
       {/* Main Content */}
-      <main className="flex-1 bg-black">
+      <main className="flex-1 bg-slate-50">
         {/* 2. Hero Section */}
         <ServiceHero />
 

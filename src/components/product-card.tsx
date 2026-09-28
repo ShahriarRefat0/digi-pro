@@ -4,7 +4,7 @@ import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "motion/react";
-import { Star, ArrowRight, Package } from "lucide-react";
+import { Star, ArrowRight, Package, ShoppingBag } from "lucide-react";
 
 export interface ProductItem {
   id: string;
@@ -37,12 +37,12 @@ export function ProductCard({
   product: ProductItem;
   index?: number;
 }) {
-  const title = product.name || product.title || "Digital Product";
+  const title = product.name || product.title || "Care Product";
   const authorName =
-    product.creator?.name || product.authorName || "DigiForge";
+    product.creator?.name || product.authorName || "Careproff Essentials";
   const slug = product.slug || product.id;
   const formattedPrice =
-    typeof product.price === "number" ? `$${product.price}` : product.price;
+    typeof product.price === "number" ? `৳${product.price}` : (product.price.toString().startsWith("৳") ? product.price : `$${product.price}`);
 
   const imageSrc = product.thumbnail || product.coverImage;
   const hasValidImage =
@@ -56,17 +56,17 @@ export function ProductCard({
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 24 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-30px" }}
-      transition={{ duration: 0.5, delay: index * 0.06, ease: "easeOut" }}
-      whileHover={{ y: -6, transition: { duration: 0.25, ease: "easeOut" } }}
-      className="group relative flex flex-col rounded-2xl border border-neutral-800 bg-neutral-950 overflow-hidden transition-all duration-300 hover:border-neutral-700 hover:shadow-2xl hover:shadow-black/90"
+      transition={{ duration: 0.4, delay: index * 0.05, ease: "easeOut" }}
+      whileHover={{ y: -4, transition: { duration: 0.2, ease: "easeOut" } }}
+      className="group relative flex flex-col rounded-2xl border border-gray-200 bg-white overflow-hidden transition-all duration-300 hover:border-teal-200 hover:shadow-md"
     >
       {/* Full-Width Image Visual Panel */}
       <Link
         href={`/products/${slug}`}
-        className="relative aspect-[16/10] w-full overflow-hidden bg-neutral-900 select-none block"
+        className="relative aspect-[16/10] w-full overflow-hidden bg-slate-50 select-none block"
       >
         {hasValidImage ? (
           <Image
@@ -77,22 +77,19 @@ export function ProductCard({
             className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
           />
         ) : (
-          <div className="size-full flex flex-col items-center justify-center bg-gradient-to-br from-neutral-900 to-neutral-950 p-6 text-center">
-            <div className="size-12 rounded-2xl border border-neutral-800 bg-neutral-900 flex items-center justify-center text-[#EEF35F] mb-2 shadow-inner">
+          <div className="size-full flex flex-col items-center justify-center bg-gradient-to-br from-teal-50/50 to-slate-100 p-6 text-center">
+            <div className="size-12 rounded-2xl border border-teal-200 bg-white flex items-center justify-center text-[#0F766E] mb-2 shadow-xs">
               <Package className="size-6" />
             </div>
-            <span className="text-[11px] font-mono uppercase tracking-widest text-neutral-400">
+            <span className="text-[11px] font-semibold uppercase tracking-widest text-gray-500">
               {product.category}
             </span>
           </div>
         )}
 
-        {/* Subtle Vignette & Gradient Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 pointer-events-none" />
-
         {/* Category Pill Badge (Top Left) */}
         <div className="absolute top-3 left-3 z-10">
-          <span className="rounded-full bg-black/70 backdrop-blur-md px-2.5 py-1 text-[10px] font-mono font-semibold uppercase tracking-wider text-[#EEF35F] border border-white/10 shadow-sm">
+          <span className="rounded-full bg-white/90 backdrop-blur-md px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-[#0F766E] border border-teal-200 shadow-xs">
             {product.category}
           </span>
         </div>
@@ -100,7 +97,7 @@ export function ProductCard({
         {/* Optional Featured / Custom Badge (Top Right) */}
         {product.badge && (
           <div className="absolute top-3 right-3 z-10">
-            <span className="rounded-full bg-[#EEF35F] px-2.5 py-0.5 text-[10px] font-bold text-black shadow-md shadow-[#EEF35F]/20">
+            <span className="rounded-full bg-[#0F766E] px-2.5 py-0.5 text-[10px] font-bold text-white shadow-xs">
               {product.badge}
             </span>
           </div>
@@ -108,59 +105,52 @@ export function ProductCard({
       </Link>
 
       {/* Middle Body Information */}
-      <div className="p-5 flex flex-col flex-1 bg-neutral-950 text-white justify-between">
+      <div className="p-5 flex flex-col flex-1 bg-white text-gray-900 justify-between">
         <div>
           {/* Title */}
           <Link href={`/products/${slug}`}>
-            <h3 className="text-base sm:text-lg font-bold text-white leading-snug group-hover:text-[#EEF35F] transition-colors line-clamp-2 font-heading">
+            <h3 className="text-base sm:text-lg font-bold text-gray-900 leading-snug group-hover:text-[#0F766E] transition-colors line-clamp-2 font-heading">
               {title}
             </h3>
           </Link>
 
-          {/* Creator / Author */}
-          <div className="mt-3 flex items-center gap-2">
-            <div className="size-6 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center text-[10px] font-bold text-[#EEF35F] shrink-0 overflow-hidden">
+          {/* Brand/Category */}
+          <div className="mt-2.5 flex items-center gap-2">
+            <div className="size-6 rounded-full bg-teal-50 border border-teal-200 flex items-center justify-center text-[10px] font-bold text-[#0F766E] shrink-0 overflow-hidden">
               {authorName.charAt(0)}
             </div>
-            <span className="text-xs font-medium text-neutral-300">
+            <span className="text-xs font-medium text-gray-600">
               {authorName}
             </span>
           </div>
         </div>
 
         {/* Rating */}
-        <div className="mt-4 flex items-center gap-1.5 text-xs text-white">
-          <Star className="size-3.5 fill-[#EEF35F] text-[#EEF35F]" />
-          <span className="font-semibold">{product.rating || "5.0"}</span>
-          <span className="text-neutral-400 font-normal">
-            ({product.reviews || 48})
+        <div className="mt-4 flex items-center gap-1.5 text-xs text-gray-900">
+          <Star className="size-3.5 fill-amber-400 text-amber-400" />
+          <span className="font-semibold text-gray-900">{product.rating || "4.9"}</span>
+          <span className="text-gray-500 font-normal">
+            ({product.reviews || 126})
           </span>
         </div>
       </div>
 
-      {/* Footer / Price Tag Ribbon */}
-      <div className="border-t border-neutral-900 bg-black px-5 py-3.5 flex items-center justify-between">
+      {/* Footer / Price Tag Ribbon & CTA */}
+      <div className="border-t border-gray-100 bg-[#FAFAF8] px-5 py-3.5 flex items-center justify-between">
         {/* Price Tag */}
-        <div className="relative inline-flex items-center">
-          <div
-            className="bg-[#EEF35F] text-black font-black text-sm sm:text-base px-3.5 py-1.5 flex items-center justify-center font-mono tracking-tight"
-            style={{
-              clipPath:
-                "polygon(0 0, 100% 0, calc(100% - 9px) 50%, 100% 100%, 0 100%)",
-              paddingRight: "1.25rem",
-            }}
-          >
+        <div className="flex items-baseline gap-1.5">
+          <span className="text-lg font-bold text-gray-900 tracking-tight font-heading">
             {formattedPrice}
-          </div>
+          </span>
         </div>
 
-        {/* Quick View Link */}
+        {/* Add to Cart / View CTA */}
         <Link
           href={`/products/${slug}`}
-          className="text-xs font-semibold text-neutral-400 hover:text-white inline-flex items-center gap-1 transition-colors group/view"
+          className="inline-flex h-8 items-center justify-center gap-1.5 rounded-lg bg-[#0F766E] px-3 text-xs font-bold text-white transition-all hover:bg-[#115E59] active:scale-95 shadow-xs"
         >
-          <span>View</span>
-          <ArrowRight className="size-3.5 transition-transform group-hover/view:translate-x-1" />
+          <ShoppingBag className="size-3.5" />
+          <span>Add to Cart</span>
         </Link>
       </div>
     </motion.div>
@@ -168,3 +158,4 @@ export function ProductCard({
 }
 
 export default ProductCard;
+

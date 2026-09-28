@@ -1,22 +1,23 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Hind_Siliguri } from "next/font/google";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "sonner";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-sans",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const hindSiliguri = Hind_Siliguri({
+  variable: "--font-bengali",
+  weight: ["300", "400", "500", "600", "700"],
+  subsets: ["bengali"],
 });
 
 export const metadata: Metadata = {
-  title: "DigiPro Store - Premium Digital Assets & Resources",
-  description: "Marketplace for high quality UI kits, 3D assets, fonts, icons, and developer templates.",
+  title: "Careproff - Premium Baby & Maternal Care Essentials",
+  description: "Safe, gentle, dermatologist-tested maternal and pediatric care products for mothers and caregivers.",
 };
 
 export default function RootLayout({
@@ -27,14 +28,15 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${inter.variable} ${hindSiliguri.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-background text-foreground selection:bg-primary selection:text-primary-foreground">
+      <body className="min-h-full flex flex-col bg-background text-foreground selection:bg-teal-700 selection:text-white">
         <TooltipProvider delay={150}>
           {children}
         </TooltipProvider>
-        <Toaster richColors position="top-right" theme="dark" closeButton />
+        <Toaster richColors position="top-right" theme="light" closeButton />
       </body>
     </html>
   );
 }
+

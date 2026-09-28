@@ -12,7 +12,7 @@ export default function DashboardLayout({
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
 
   return (
-    <div className="min-h-screen flex bg-black text-white selection:bg-[#EEF35F] selection:text-black">
+    <div className="min-h-screen flex bg-[#FAFAF8] text-gray-900 selection:bg-teal-700 selection:text-white">
       {/* Persistent Sidebar */}
       <Sidebar
         mobileOpen={mobileMenuOpen}
@@ -29,3 +29,4 @@ export default function DashboardLayout({
     </div>
   );
 }
+

@@ -100,7 +100,7 @@ export function CategoriesSection() {
 
   return (
     <section
-      className="py-16 sm:py-24 border-b border-neutral-900 bg-black selection:bg-[#EEF35F] selection:text-black overflow-hidden"
+      className="py-16 sm:py-24 border-b border-slate-200 bg-slate-50 selection:bg-teal-100 selection:text-teal-900 overflow-hidden"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
@@ -108,11 +108,11 @@ export function CategoriesSection() {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 sm:mb-12">
           <div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight font-heading text-white">
-              Explore Digital Products
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight font-heading text-slate-900">
+              Explore Digital Categories
             </h2>
-            <p className="mt-2 text-xs sm:text-sm text-neutral-400 max-w-xl font-normal">
-              Discover ready-to-use digital products designed to help you build, design, and create faster.
+            <p className="mt-2 text-xs sm:text-sm text-slate-500 max-w-xl font-normal">
+              Discover ready-to-use digital products designed to help you care, organize, and create faster.
             </p>
           </div>
 
@@ -120,7 +120,7 @@ export function CategoriesSection() {
           <div className="flex items-center gap-4 sm:gap-6 self-start md:self-end">
             <Link
               href="/products"
-              className="text-xs font-semibold text-neutral-400 hover:text-white transition-colors inline-flex items-center gap-1.5 group"
+              className="text-xs font-semibold text-slate-500 hover:text-slate-900 transition-colors inline-flex items-center gap-1.5 group"
             >
               <span>View all categories</span>
               <ArrowRight className="size-3.5 transition-transform duration-200 group-hover:translate-x-1" />
@@ -130,14 +130,14 @@ export function CategoriesSection() {
               <button
                 onClick={handlePrev}
                 aria-label="Previous categories"
-                className="size-8 rounded-full border border-neutral-800 bg-neutral-950 flex items-center justify-center text-neutral-400 hover:text-white hover:border-neutral-600 hover:bg-neutral-900 transition-colors active:scale-95 cursor-pointer"
+                className="size-8 rounded-full border border-slate-300 bg-white flex items-center justify-center text-slate-600 hover:text-slate-900 hover:border-slate-400 hover:bg-slate-100 transition-colors active:scale-95 cursor-pointer shadow-xs"
               >
                 <ArrowLeft className="size-4" />
               </button>
               <button
                 onClick={handleNext}
                 aria-label="Next categories"
-                className="size-8 rounded-full border border-neutral-800 bg-neutral-950 flex items-center justify-center text-neutral-400 hover:text-white hover:border-neutral-600 hover:bg-neutral-900 transition-colors active:scale-95 cursor-pointer"
+                className="size-8 rounded-full border border-slate-300 bg-white flex items-center justify-center text-slate-600 hover:text-slate-900 hover:border-slate-400 hover:bg-slate-100 transition-colors active:scale-95 cursor-pointer shadow-xs"
               >
                 <ArrowRight className="size-4" />
               </button>
@@ -175,7 +175,7 @@ export function CategoriesSection() {
                   >
                     <Link
                       href={`/products?category=${cat.slug}`}
-                      className="group flex flex-col justify-between h-full rounded-2xl border border-neutral-800 bg-neutral-950 p-6 transition-colors duration-200 hover:border-neutral-700 hover:bg-neutral-900/80 hover:shadow-xl hover:shadow-black/70 relative"
+                      className="group flex flex-col justify-between h-full rounded-2xl border border-slate-200 bg-white p-6 transition-all duration-200 hover:border-teal-300 hover:bg-teal-50/20 shadow-xs hover:shadow-md relative"
                     >
                       <div>
                         {/* Colored Icon Badge */}
@@ -187,23 +187,23 @@ export function CategoriesSection() {
 
                         {/* Title & Product Count */}
                         <div className="flex items-center justify-between mb-2 gap-2">
-                          <h3 className="font-bold text-sm text-white group-hover:text-[#EEF35F] transition-colors font-heading">
+                          <h3 className="font-bold text-sm text-slate-900 group-hover:text-[#0F766E] transition-colors font-heading">
                             {cat.name}
                           </h3>
-                          <span className="text-[10px] font-mono font-medium text-neutral-400 bg-neutral-900 border border-neutral-800 px-2 py-0.5 rounded-full shrink-0">
+                          <span className="text-[10px] font-mono font-medium text-slate-500 bg-slate-100 border border-slate-200 px-2 py-0.5 rounded-full shrink-0">
                             {cat.productCount}
                           </span>
                         </div>
 
                         {/* Description */}
-                        <p className="text-xs text-neutral-400 leading-relaxed font-normal">
+                        <p className="text-xs text-slate-500 leading-relaxed font-normal">
                           {cat.description}
                         </p>
                       </div>
 
                       {/* Micro arrow indicator on hover */}
                       <div className="mt-5 flex justify-end">
-                        <span className="text-neutral-600 group-hover:text-[#EEF35F] transition-colors text-xs inline-flex items-center gap-1">
+                        <span className="text-slate-400 group-hover:text-[#0F766E] transition-colors text-xs inline-flex items-center gap-1">
                           <ArrowRight className="size-3.5 transition-transform duration-200 group-hover:translate-x-1" />
                         </span>
                       </div>
@@ -228,8 +228,8 @@ export function CategoriesSection() {
                 aria-label={`Go to slide ${idx + 1}`}
                 className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
                   currentIndex === idx
-                    ? "w-7 bg-[#EEF35F]"
-                    : "w-2 bg-neutral-800 hover:bg-neutral-600"
+                    ? "w-7 bg-[#0F766E]"
+                    : "w-2 bg-slate-300 hover:bg-slate-400"
                 }`}
               />
             ))}

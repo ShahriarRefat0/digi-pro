@@ -9,25 +9,25 @@ import { Package } from "lucide-react";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Discover Digital Products — DigiForge",
-  description: "Browse curated premium digital assets, templates, UI kits, and developer tools.",
+  title: "Discover Careproff Products — Careproff",
+  description: "Browse curated premium digital assets, products, and care guides.",
 };
 
 export default async function ProductsPage() {
   const products = await getPublishedProducts();
 
   return (
-    <div className="min-h-screen flex flex-col bg-black text-white selection:bg-[#EEF35F] selection:text-black">
+    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 selection:bg-teal-100 selection:text-teal-900">
       <Navbar />
 
-      <main className="flex-1 mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 w-full bg-black">
+      <main className="flex-1 mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 w-full bg-slate-50">
         {/* Page Header */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-8 border-b border-neutral-900">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-8 border-b border-slate-200">
           <div>
-            <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight font-heading text-white">
-              All Digital Assets &amp; Resources
+            <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight font-heading text-slate-900">
+              All Digital Products &amp; Resources
             </h1>
-            <p className="text-xs sm:text-sm text-neutral-400 mt-1">
+            <p className="text-xs sm:text-sm text-slate-500 mt-1">
               Showing {products.length} curated premium items with instant digital download.
             </p>
           </div>
@@ -35,15 +35,15 @@ export default async function ProductsPage() {
 
         {/* Products Grid or Empty State */}
         {products.length === 0 ? (
-          <div className="rounded-3xl border border-neutral-800 bg-neutral-950 p-16 text-center mt-10">
-            <div className="size-14 rounded-2xl bg-neutral-900 border border-neutral-800 flex items-center justify-center text-[#EEF35F] mx-auto mb-4">
+          <div className="rounded-3xl border border-slate-200 bg-white p-16 text-center mt-10 shadow-xs">
+            <div className="size-14 rounded-2xl bg-teal-50 border border-teal-100 flex items-center justify-center text-[#0F766E] mx-auto mb-4">
               <Package className="size-7" />
             </div>
-            <h2 className="text-xl font-bold font-heading text-white">
+            <h2 className="text-xl font-bold font-heading text-slate-900">
               Products are coming soon.
             </h2>
-            <p className="text-xs text-neutral-400 mt-1 max-w-md mx-auto">
-              Our creators are finalizing new developer boilerplates and digital kits. Check back shortly.
+            <p className="text-xs text-slate-500 mt-1 max-w-md mx-auto">
+              Our creators are finalizing new products and digital resources. Check back shortly.
             </p>
           </div>
         ) : (
@@ -59,7 +59,7 @@ export default async function ProductsPage() {
                   price: prod.price,
                   thumbnail: prod.thumbnail,
                   badge: prod.featured ? "Featured" : undefined,
-                  authorName: "DigiForge",
+                  authorName: "Careproff",
                 }}
                 index={idx}
               />

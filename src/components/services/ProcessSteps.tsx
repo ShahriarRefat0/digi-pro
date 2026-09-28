@@ -2,10 +2,10 @@
 
 import * as React from "react";
 import { motion } from "motion/react";
-import { MessageSquare, Code2, Rocket } from "lucide-react";
+import { MessageSquare, Code2, Rocket, LucideIcon } from "lucide-react";
 import { PROCESS_STEPS } from "@/lib/services";
 
-const ICON_MAP = {
+const ICON_MAP: Record<string, LucideIcon> = {
   MessageSquare: MessageSquare,
   Code2: Code2,
   Rocket: Rocket,
@@ -13,7 +13,7 @@ const ICON_MAP = {
 
 export function ProcessSteps() {
   return (
-    <section className="relative overflow-hidden bg-black py-20 sm:py-28 border-b border-neutral-900 selection:bg-[#EEF35F] selection:text-black">
+    <section className="relative overflow-hidden bg-slate-50 py-20 sm:py-28 border-b border-slate-200">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
@@ -23,13 +23,13 @@ export function ProcessSteps() {
           transition={{ duration: 0.5, ease: "easeOut" }}
           className="text-center max-w-2xl mx-auto mb-16 sm:mb-20"
         >
-          <div className="inline-flex items-center gap-2 rounded-full border border-neutral-800 bg-neutral-950 px-3.5 py-1 text-xs font-semibold text-[#EEF35F] mb-3">
+          <div className="inline-flex items-center gap-2 rounded-full border border-[#CCFBF1] bg-[#F0FDFA] px-3.5 py-1 text-xs font-semibold text-[#0F766E] mb-3">
             <span>Workflow</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight font-heading text-white">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight font-heading text-slate-900">
             Simple Process
           </h2>
-          <p className="mt-2 text-xs sm:text-sm text-neutral-400">
+          <p className="mt-2 text-xs sm:text-sm text-slate-500 font-normal">
             A transparent and efficient path from initial conversation to final deployment.
           </p>
         </motion.div>
@@ -46,31 +46,31 @@ export function ProcessSteps() {
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.5, delay: idx * 0.12, ease: "easeOut" }}
                 whileHover={{ y: -6, transition: { duration: 0.25, ease: "easeOut" } }}
-                className="group relative rounded-2xl border border-neutral-800 bg-neutral-950 p-8 transition-colors duration-300 hover:border-neutral-700 hover:bg-neutral-900/50 hover:shadow-[0_20px_50px_-15px_rgba(0,0,0,0.9),0_0_25px_rgba(238,243,95,0.06)]"
+                className="group relative rounded-2xl border border-slate-200 bg-white p-8 transition-all duration-300 hover:border-[#0F766E]/40 hover:shadow-md"
               >
                 {/* Step Number Badge */}
                 <div className="flex items-center justify-between mb-6">
-                  <span className="text-xs font-mono font-bold text-[#EEF35F] bg-neutral-900 border border-neutral-800 px-3 py-1 rounded-full group-hover:border-[#EEF35F]/40 transition-colors">
+                  <span className="text-xs font-mono font-bold text-[#0F766E] bg-[#F0FDFA] border border-[#CCFBF1] px-3 py-1 rounded-full transition-colors">
                     {step.number}
                   </span>
-                  <div className="size-10 rounded-xl bg-neutral-900 border border-neutral-800 flex items-center justify-center text-neutral-400 group-hover:text-[#EEF35F] group-hover:border-[#EEF35F]/30 group-hover:scale-110 transition-all duration-300">
+                  <div className="size-10 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-600 group-hover:text-[#0F766E] group-hover:bg-[#F0FDFA] group-hover:border-[#CCFBF1] group-hover:scale-110 transition-all duration-300">
                     <Icon className="size-5" />
                   </div>
                 </div>
 
                 {/* Step Title */}
-                <h3 className="text-xl font-bold text-white font-heading mb-2.5 group-hover:text-[#EEF35F] transition-colors">
+                <h3 className="text-xl font-bold text-slate-900 font-heading mb-2.5 group-hover:text-[#0F766E] transition-colors">
                   {step.title}
                 </h3>
 
                 {/* Step Description */}
-                <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed font-normal">
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
                   {step.description}
                 </p>
 
                 {/* Subtle connector accent on desktop */}
                 {idx < PROCESS_STEPS.length - 1 && (
-                  <div className="hidden lg:block absolute -right-4 top-1/2 -translate-y-1/2 z-20 text-neutral-700 font-mono text-lg pointer-events-none">
+                  <div className="hidden lg:block absolute -right-4 top-1/2 -translate-y-1/2 z-20 text-slate-300 font-mono text-lg pointer-events-none">
                     &rarr;
                   </div>
                 )}

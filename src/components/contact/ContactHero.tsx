@@ -2,18 +2,18 @@
 
 import * as React from "react";
 import { motion } from "motion/react";
-import { MessageCircle, Code2, ArrowRight, Terminal } from "lucide-react";
+import { MessageCircle, Code2, Terminal } from "lucide-react";
 
 export function ContactHero() {
   return (
-    <section className="relative overflow-hidden bg-black py-20 sm:py-28 border-b border-neutral-900 selection:bg-[#EEF35F] selection:text-black">
+    <section className="relative overflow-hidden bg-slate-50 py-20 sm:py-28 border-b border-slate-200">
       {/* Ambient Glow */}
       <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 0.6, scale: 1 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
-          className="size-[600px] rounded-full bg-radial from-neutral-900/70 via-black to-black blur-3xl"
+          className="size-[600px] rounded-full bg-radial from-[#0F766E]/10 via-slate-50 to-slate-50 blur-3xl"
         />
       </div>
 
@@ -25,10 +25,10 @@ export function ContactHero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55, ease: "easeOut" }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight font-heading text-white leading-[1.08]"
+              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight font-heading text-slate-900 leading-[1.08]"
             >
               Let&apos;s Talk About{" "}
-              <span className="text-[#EEF35F] underline decoration-[#EEF35F]/40 decoration-wavy underline-offset-8">
+              <span className="text-[#0F766E] underline decoration-[#0F766E]/40 decoration-wavy underline-offset-8">
                 Your Project.
               </span>
             </motion.h1>
@@ -37,7 +37,7 @@ export function ContactHero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55, delay: 0.1, ease: "easeOut" }}
-              className="mt-6 text-base sm:text-lg text-neutral-400 max-w-2xl leading-relaxed mx-auto lg:mx-0 font-normal"
+              className="mt-6 text-base sm:text-lg text-slate-600 max-w-2xl leading-relaxed mx-auto lg:mx-0 font-normal"
             >
               Have a question about a digital product or need something built for you? We&apos;d love to hear what you&apos;re working on.
             </motion.p>
@@ -53,47 +53,47 @@ export function ContactHero() {
             <motion.div
               animate={{ y: [0, -6, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-              className="w-full max-w-md rounded-3xl border border-neutral-800 bg-neutral-950 p-6 sm:p-7 shadow-2xl relative overflow-hidden backdrop-blur-sm"
+              className="w-full max-w-md rounded-3xl border border-slate-200 bg-white p-6 sm:p-7 shadow-lg relative overflow-hidden backdrop-blur-sm"
             >
-              <div className="absolute inset-0 bg-radial from-[#EEF35F]/10 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-radial from-[#0F766E]/5 via-transparent to-transparent pointer-events-none" />
 
-              <div className="relative z-10 flex items-center justify-between pb-4 border-b border-neutral-800 mb-5">
+              <div className="relative z-10 flex items-center justify-between pb-4 border-b border-slate-100 mb-5">
                 <div className="flex items-center gap-2.5">
-                  <div className="size-9 rounded-xl bg-neutral-900 border border-neutral-800 flex items-center justify-center text-[#EEF35F]">
+                  <div className="size-9 rounded-xl bg-[#F0FDFA] border border-[#CCFBF1] flex items-center justify-center text-[#0F766E]">
                     <Terminal className="size-4" />
                   </div>
                   <div>
-                    <h3 className="text-xs font-bold text-white">Direct Channel</h3>
-                    <p className="text-[10px] font-mono text-neutral-400">Response time: ~24h</p>
+                    <h3 className="text-xs font-bold text-slate-900">Direct Channel</h3>
+                    <p className="text-[10px] font-mono text-slate-500">Response time: ~24h</p>
                   </div>
                 </div>
-                <span className="text-[10px] font-mono font-bold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-0.5 rounded-full">
+                <span className="text-[10px] font-mono font-bold text-[#0F766E] bg-[#F0FDFA] border border-[#CCFBF1] px-2.5 py-0.5 rounded-full">
                   Available
                 </span>
               </div>
 
               {/* Message Exchange Flow */}
               <div className="relative z-10 space-y-3 font-mono text-xs">
-                <div className="rounded-xl bg-neutral-900/90 border border-neutral-800 p-3.5 flex items-start gap-3">
-                  <MessageCircle className="size-4 text-neutral-400 shrink-0 mt-0.5" />
+                <div className="rounded-xl bg-slate-50 border border-slate-200 p-3.5 flex items-start gap-3">
+                  <MessageCircle className="size-4 text-slate-400 shrink-0 mt-0.5" />
                   <div>
-                    <p className="text-neutral-300 font-semibold">&ldquo;Have an idea in mind?&rdquo;</p>
-                    <p className="text-[11px] text-neutral-500 mt-0.5">Tell us what you want to build or achieve.</p>
+                    <p className="text-slate-800 font-semibold">&ldquo;Have an idea in mind?&rdquo;</p>
+                    <p className="text-[11px] text-slate-500 mt-0.5">Tell us what you want to build or achieve.</p>
                   </div>
                 </div>
 
-                <div className="rounded-xl bg-[#EEF35F]/10 border border-[#EEF35F]/30 p-3.5 flex items-start gap-3 text-white">
-                  <Code2 className="size-4 text-[#EEF35F] shrink-0 mt-0.5" />
+                <div className="rounded-xl bg-[#F0FDFA] border border-[#CCFBF1] p-3.5 flex items-start gap-3 text-slate-900">
+                  <Code2 className="size-4 text-[#0F766E] shrink-0 mt-0.5" />
                   <div>
-                    <p className="text-[#EEF35F] font-bold">&ldquo;Let&apos;s build it.&rdquo;</p>
-                    <p className="text-[11px] text-neutral-400 mt-0.5">Ready-made assets or tailored code solutions.</p>
+                    <p className="text-[#0F766E] font-bold">&ldquo;Let&apos;s build it.&rdquo;</p>
+                    <p className="text-[11px] text-slate-600 mt-0.5">Ready-made assets or tailored code solutions.</p>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-5 pt-4 border-t border-neutral-900 flex items-center justify-between text-[11px] text-neutral-400 font-mono">
+              <div className="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500 font-mono">
                 <span>Start a conversation</span>
-                <span className="text-[#EEF35F] font-bold inline-flex items-center gap-1">
+                <span className="text-[#0F766E] font-bold inline-flex items-center gap-1">
                   Connect below &rarr;
                 </span>
               </div>

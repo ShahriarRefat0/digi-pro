@@ -222,13 +222,13 @@ export function GlobalSearch() {
           onKeyDown={handleKeyDown}
           isLoading={isLoading}
           shortcutKey={shortcutKey}
-          placeholder="Search products, services, articles..."
+          placeholder="Search products, services, advice..."
           variant="compact"
         />
 
         {/* Desktop Suggestions Dropdown */}
         {isOpen && (
-          <div className="absolute top-full left-0 right-0 mt-2 z-50 rounded-2xl border border-neutral-800/90 bg-black/95 backdrop-blur-2xl shadow-2xl shadow-black/80 overflow-hidden animate-in fade-in-0 zoom-in-95 duration-150">
+          <div className="absolute top-full left-0 right-0 mt-2 z-50 rounded-2xl border border-gray-200 bg-white shadow-xl shadow-gray-300/40 overflow-hidden animate-in fade-in-0 zoom-in-95 duration-150">
             <SearchResults
               query={query}
               results={results}
@@ -250,20 +250,20 @@ export function GlobalSearch() {
           setTimeout(() => mobileInputRef.current?.focus(), 50);
         }}
         aria-label="Open search dialog"
-        className="flex lg:hidden ml-auto size-9 rounded-full border border-neutral-800 bg-neutral-950 items-center justify-center text-neutral-300 hover:border-neutral-700 hover:text-white transition-colors shrink-0"
+        className="flex lg:hidden ml-auto size-9 rounded-full border border-gray-300 bg-white items-center justify-center text-gray-700 hover:border-[#0F766E] hover:text-[#0F766E] transition-colors shrink-0"
       >
         <Search className="size-4" />
       </button>
 
       {/* Mobile Full-Screen Search Dialog / Drawer */}
       {isMobileOpen && (
-        <div className="fixed inset-0 z-[100] flex flex-col bg-black/98 backdrop-blur-2xl lg:hidden animate-in fade-in duration-200">
+        <div className="fixed inset-0 z-[100] flex flex-col bg-white lg:hidden animate-in fade-in duration-200">
           {/* Mobile Header Bar */}
-          <div className="flex items-center gap-2 border-b border-neutral-900 px-4 py-3">
+          <div className="flex items-center gap-2 border-b border-gray-200 px-4 py-3 bg-white">
             <button
               type="button"
               onClick={closeAll}
-              className="flex size-9 shrink-0 items-center justify-center rounded-full border border-neutral-800 bg-neutral-950 text-neutral-300 hover:text-white"
+              className="flex size-9 shrink-0 items-center justify-center rounded-full border border-gray-300 bg-white text-gray-700 hover:text-[#0F766E]"
               aria-label="Close search"
             >
               <ArrowLeft className="size-4" />
@@ -277,7 +277,7 @@ export function GlobalSearch() {
                 onClear={handleClear}
                 onKeyDown={handleKeyDown}
                 isLoading={isLoading}
-                placeholder="Search everything..."
+                placeholder="Search care products, services..."
                 variant="dialog"
                 autoFocus
               />
@@ -285,7 +285,7 @@ export function GlobalSearch() {
           </div>
 
           {/* Mobile Results Container */}
-          <div className="flex-1 overflow-y-auto">
+          <div className="flex-1 overflow-y-auto bg-white">
             <SearchResults
               query={query}
               results={results}
@@ -303,3 +303,4 @@ export function GlobalSearch() {
 }
 
 export default GlobalSearch;
+

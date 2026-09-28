@@ -3,12 +3,11 @@
 import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, Bell, Search, User, ChevronRight } from "lucide-react";
+import { Menu, Bell, Search } from "lucide-react";
 import {
   Breadcrumb,
   BreadcrumbList,
   BreadcrumbItem,
-  BreadcrumbLink,
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
@@ -44,13 +43,13 @@ export function DashboardHeader({ onOpenMobileMenu }: DashboardHeaderProps) {
   const crumbs = getBreadcrumbs();
 
   return (
-    <header className="sticky top-0 z-40 flex h-16 w-full items-center justify-between border-b border-neutral-900 bg-black/90 px-4 sm:px-6 lg:px-8 backdrop-blur-xl">
+    <header className="sticky top-0 z-40 flex h-16 w-full items-center justify-between border-b border-gray-200 bg-white/95 px-4 sm:px-6 lg:px-8 backdrop-blur-md shadow-xs">
       {/* Left: Mobile Toggle & Breadcrumb */}
       <div className="flex items-center gap-3">
         <button
           type="button"
           onClick={onOpenMobileMenu}
-          className="lg:hidden size-9 rounded-xl border border-neutral-800 bg-neutral-950 flex items-center justify-center text-neutral-400 hover:text-white"
+          className="lg:hidden size-9 rounded-xl border border-gray-300 bg-white flex items-center justify-center text-gray-700 hover:text-[#0F766E]"
           aria-label="Open sidebar"
         >
           <Menu className="size-4.5" />
@@ -67,7 +66,7 @@ export function DashboardHeader({ onOpenMobileMenu }: DashboardHeaderProps) {
                   ) : (
                     <Link
                       href={crumb.href}
-                      className="transition-colors hover:text-white"
+                      className="transition-colors hover:text-[#0F766E]"
                     >
                       {crumb.label}
                     </Link>
@@ -85,12 +84,12 @@ export function DashboardHeader({ onOpenMobileMenu }: DashboardHeaderProps) {
         {/* Quick Search Button */}
         <button
           type="button"
-          onClick={() => alert("Search shortcut (Demo)")}
-          className="hidden sm:inline-flex items-center gap-2 rounded-full border border-neutral-800 bg-neutral-950 px-3 py-1.5 text-xs text-neutral-400 hover:border-neutral-700 hover:text-white transition-colors"
+          onClick={() => alert("Search shortcut")}
+          className="hidden sm:inline-flex items-center gap-2 rounded-full border border-gray-300 bg-gray-50 px-3 py-1.5 text-xs text-gray-600 hover:border-[#0F766E] hover:text-[#0F766E] transition-colors"
         >
           <Search className="size-3.5" />
-          <span>Quick search...</span>
-          <kbd className="rounded bg-neutral-900 px-1.5 py-0.5 text-[10px] font-mono text-neutral-500">
+          <span>Search dashboard...</span>
+          <kbd className="rounded bg-gray-200 px-1.5 py-0.5 text-[10px] font-mono text-gray-600">
             ⌘K
           </kbd>
         </button>
@@ -98,16 +97,16 @@ export function DashboardHeader({ onOpenMobileMenu }: DashboardHeaderProps) {
         {/* Notification Bell */}
         <button
           type="button"
-          onClick={() => alert("Notifications: No new alerts (Demo)")}
-          className="relative size-9 rounded-xl border border-neutral-800 bg-neutral-950 flex items-center justify-center text-neutral-400 hover:text-white hover:border-neutral-700 transition-colors"
+          onClick={() => alert("Notifications: All systems operational")}
+          className="relative size-9 rounded-xl border border-gray-300 bg-white flex items-center justify-center text-gray-600 hover:text-[#0F766E] hover:border-[#0F766E] transition-colors"
           aria-label="Notifications"
         >
           <Bell className="size-4" />
-          <span className="absolute top-2 right-2 size-2 rounded-full bg-[#EEF35F]" />
+          <span className="absolute top-2 right-2 size-2 rounded-full bg-[#0F766E]" />
         </button>
 
         {/* Admin Avatar */}
-        <div className="size-9 rounded-full bg-gradient-to-tr from-neutral-800 to-neutral-700 border border-neutral-700 flex items-center justify-center text-xs font-bold text-white shadow-sm">
+        <div className="size-9 rounded-full bg-[#F0FDFA] border border-teal-200 flex items-center justify-center text-xs font-bold text-[#0F766E] shadow-xs">
           AD
         </div>
       </div>
@@ -116,3 +115,4 @@ export function DashboardHeader({ onOpenMobileMenu }: DashboardHeaderProps) {
 }
 
 export default DashboardHeader;
+

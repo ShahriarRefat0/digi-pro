@@ -64,7 +64,7 @@ export const BLOG_POSTS: BlogPost[] = [
     featured: true,
     tags: ["Next.js", "TypeScript", "Architecture", "Turbopack"],
     canvasBg: "#111827",
-    accentColor: "#EEF35F",
+    accentColor: "#0F766E",
     tableOfContents: [
       { id: "introduction", title: "Introduction" },
       { id: "project-structure", title: "Project Structure" },
@@ -123,7 +123,7 @@ export function ActionButton({ label }: { label: string }) {
     <motion.button 
       whileHover={{ scale: 1.05 }} 
       whileTap={{ scale: 0.95 }}
-      className="bg-[#EEF35F] text-black font-bold px-6 py-2.5 rounded-full"
+      className="bg-[#0F766E] text-white font-bold px-6 py-2.5 rounded-full"
     >
       {label}
     </motion.button>
@@ -418,7 +418,7 @@ export class ProductsModule {}`,
     readTime: "4 min read",
     tags: ["Digital Products", "Productivity", "Development", "UI Kits"],
     canvasBg: "#1e293b",
-    accentColor: "#EEF35F",
+    accentColor: "#0F766E",
     tableOfContents: [
       { id: "leverage", title: "Developer Leverage in 2026" },
       { id: "boilerplate-advantage", title: "The Boilerplate Advantage" },

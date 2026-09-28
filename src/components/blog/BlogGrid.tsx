@@ -45,10 +45,10 @@ export function BlogGrid({ articles }: BlogGridProps) {
   };
 
   return (
-    <section className="relative overflow-hidden bg-black py-16 sm:py-20 border-b border-neutral-900 selection:bg-[#EEF35F] selection:text-black">
+    <section className="relative overflow-hidden bg-slate-50 py-16 sm:py-20 border-b border-slate-200">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Filter and Search Controls Bar */}
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-8 border-b border-neutral-900">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-8 border-b border-slate-200">
           {/* Horizontal Category Nav */}
           <BlogCategoryFilter
             selectedCategory={selectedCategory}
@@ -60,12 +60,12 @@ export function BlogGrid({ articles }: BlogGridProps) {
         </div>
 
         {/* Results Counter / Filter Indicator */}
-        <div className="mt-8 mb-6 flex items-center justify-between text-xs text-neutral-400">
+        <div className="mt-8 mb-6 flex items-center justify-between text-xs text-slate-500">
           <div className="flex items-center gap-2">
-            <BookOpen className="size-3.5 text-[#EEF35F]" />
+            <BookOpen className="size-3.5 text-[#0F766E]" />
             <span>
               Showing{" "}
-              <strong className="text-white">{filteredArticles.length}</strong>{" "}
+              <strong className="text-slate-900">{filteredArticles.length}</strong>{" "}
               articles
               {selectedCategory !== "All" && ` in "${selectedCategory}"`}
               {searchQuery && ` matching "${searchQuery}"`}
@@ -75,7 +75,7 @@ export function BlogGrid({ articles }: BlogGridProps) {
           {(selectedCategory !== "All" || searchQuery) && (
             <button
               onClick={handleClearFilters}
-              className="text-xs text-neutral-400 hover:text-[#EEF35F] transition-colors underline underline-offset-4"
+              className="text-xs text-slate-600 hover:text-[#0F766E] transition-colors underline underline-offset-4 cursor-pointer"
             >
               Reset filters
             </button>
@@ -94,25 +94,25 @@ export function BlogGrid({ articles }: BlogGridProps) {
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="my-16 flex flex-col items-center justify-center rounded-3xl border border-neutral-800 bg-neutral-950 p-12 text-center"
+            className="my-16 flex flex-col items-center justify-center rounded-3xl border border-slate-200 bg-white p-12 text-center shadow-xs"
           >
-            <div className="size-16 rounded-2xl bg-neutral-900 border border-neutral-800 flex items-center justify-center text-[#EEF35F] mb-4">
+            <div className="size-16 rounded-2xl bg-[#F0FDFA] border border-[#CCFBF1] flex items-center justify-center text-[#0F766E] mb-4">
               <SearchX className="size-8" />
             </div>
 
-            <h3 className="text-xl font-bold text-white font-heading">
+            <h3 className="text-xl font-bold text-slate-900 font-heading">
               No articles found
             </h3>
-            <p className="mt-2 text-xs sm:text-sm text-neutral-400 max-w-sm">
+            <p className="mt-2 text-xs sm:text-sm text-slate-500 max-w-sm">
               We couldn&apos;t find any articles matching &quot;{searchQuery}&quot; in{" "}
               {selectedCategory}. Try another search term or reset filters.
             </p>
 
             <button
               onClick={handleClearFilters}
-              className="mt-6 inline-flex items-center justify-center rounded-full bg-[#EEF35F] px-6 py-2.5 text-xs font-bold text-black transition-all hover:bg-[#e5ea4e] active:scale-95 shadow-md shadow-[#EEF35F]/20"
+              className="mt-6 inline-flex items-center justify-center rounded-full bg-[#0F766E] px-6 py-2.5 text-xs font-bold text-white transition-all hover:bg-[#115E59] active:scale-95 shadow-xs cursor-pointer"
             >
-              <span>Clear Search & Filters</span>
+              <span>Clear Search &amp; Filters</span>
             </button>
           </motion.div>
         )}

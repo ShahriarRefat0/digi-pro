@@ -9,8 +9,8 @@ import { ReviewItem } from "./drift-wall";
 const DriftWall = dynamic(() => import("./drift-wall"), {
   ssr: false,
   loading: () => (
-    <div className="absolute inset-0 size-full bg-black flex items-center justify-center">
-      <div className="size-8 rounded-full border-2 border-[#EEF35F] border-t-transparent animate-spin" />
+    <div className="absolute inset-0 size-full bg-slate-50 flex items-center justify-center">
+      <div className="size-8 rounded-full border-2 border-[#0F766E] border-t-transparent animate-spin" />
     </div>
   ),
 });
@@ -110,14 +110,14 @@ const REVIEWS_DATA: ReviewItem[] = [
 
 export function ReviewsSection() {
   return (
-    <section className="relative w-full overflow-hidden bg-black py-20 sm:py-28 border-b border-neutral-900 selection:bg-[#EEF35F] selection:text-black">
+    <section className="relative w-full overflow-hidden bg-slate-50 py-20 sm:py-28 border-b border-slate-200 selection:bg-teal-100 selection:text-teal-900">
       {/* Section Header */}
       <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center mb-8 sm:mb-12">
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight font-heading text-white">
-          Trusted by builders, designers, and founders
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight font-heading text-slate-900">
+          Trusted by families, caregivers, and creators
         </h2>
-        <p className="text-xs sm:text-sm text-neutral-400 mt-2 max-w-xl mx-auto">
-          See what world-class developers and creative teams have to say about our premium digital assets.
+        <p className="text-xs sm:text-sm text-slate-500 mt-2 max-w-xl mx-auto">
+          See what parents and care experts have to say about Careproff digital products.
         </p>
       </div>
 
@@ -141,21 +141,21 @@ export function ReviewsSection() {
             parallax={0.45}
             lift={45}
             fade={0.65}
-            dim={0.55}
-            overlayColor="#000000"
+            dim={0.75}
+            overlayColor="#FAFAF8"
             radius={16}
             pauseOnHover={true}
           />
         </div>
 
         {/* Center Vignette & Fog Overlays */}
-        <div className="absolute inset-0 bg-radial-[at_50%_50%] from-black/20 via-black/60 to-black pointer-events-none" />
+        <div className="absolute inset-0 bg-radial-[at_50%_50%] from-slate-50/20 via-slate-50/60 to-slate-50 pointer-events-none" />
 
-        {/* Center Floating Rating Badge (Matching the uploaded design) */}
+        {/* Center Floating Rating Badge */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20 px-4">
-          <div className="pointer-events-auto group relative flex items-center gap-5 sm:gap-6 rounded-2xl border border-neutral-800/90 bg-black/90 backdrop-blur-xl px-7 py-4.5 sm:px-8 sm:py-5 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.9),0_0_30px_rgba(238,243,95,0.15)] transition-all hover:scale-105 hover:border-neutral-700">
+          <div className="pointer-events-auto group relative flex items-center gap-5 sm:gap-6 rounded-2xl border border-slate-200 bg-white/95 backdrop-blur-xl px-7 py-4.5 sm:px-8 sm:py-5 shadow-lg transition-all hover:scale-105 hover:border-teal-300">
             {/* Big Rating Number */}
-            <div className="text-4xl sm:text-5xl font-black font-heading text-white tracking-tight">
+            <div className="text-4xl sm:text-5xl font-black font-heading text-slate-900 tracking-tight">
               4.9
             </div>
 
@@ -165,12 +165,12 @@ export function ReviewsSection() {
                 {Array.from({ length: 5 }).map((_, i) => (
                   <Star
                     key={i}
-                    className="size-4 sm:size-4.5 fill-[#EEF35F] text-[#EEF35F]"
+                    className="size-4 sm:size-4.5 fill-[#0F766E] text-[#0F766E]"
                   />
                 ))}
               </div>
-              <span className="text-[11px] sm:text-xs font-mono font-medium text-neutral-400 mt-1 tracking-tight">
-                Based on 2,800+ creator reviews
+              <span className="text-[11px] sm:text-xs font-mono font-medium text-slate-500 mt-1 tracking-tight">
+                Based on 2,800+ customer reviews
               </span>
             </div>
           </div>

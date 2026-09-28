@@ -17,19 +17,19 @@ import {
 } from "@/components/about";
 
 export const metadata: Metadata = {
-  title: "About — Building Digital Products That Help People Build Better",
+  title: "About Careproff — Digital Products for Maternal & Baby Care",
   description:
-    "We create practical digital products and provide development services that help creators, developers, and businesses turn ideas into reality.",
+    "We create practical digital products and provide care resources that help families and caregivers nurture with confidence.",
 };
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen flex flex-col bg-black text-white selection:bg-[#EEF35F] selection:text-black">
+    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 selection:bg-teal-100 selection:text-teal-900">
       {/* 1. Navbar */}
       <Navbar />
 
       {/* Main Content Sections */}
-      <main className="flex-1 bg-black">
+      <main className="flex-1 bg-slate-50">
         {/* 2. Hero */}
         <AboutHero />
 

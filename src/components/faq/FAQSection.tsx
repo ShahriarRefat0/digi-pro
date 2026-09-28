@@ -27,25 +27,25 @@ export function FAQSection() {
   }, [activeCategory]);
 
   return (
-    <section className="relative overflow-hidden bg-black py-20 sm:py-28 border-b border-neutral-900 selection:bg-[#EEF35F] selection:text-black">
+    <section className="relative overflow-hidden bg-slate-50 py-20 sm:py-28 border-b border-slate-200 selection:bg-teal-100 selection:text-teal-900">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Top Header Card (Inspired by reference banner) */}
+        {/* Top Header Card */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-40px" }}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="rounded-3xl border border-neutral-800 bg-gradient-to-b from-neutral-900/90 via-neutral-950 to-neutral-950 p-8 sm:p-12 lg:p-14 shadow-2xl relative overflow-hidden mb-12"
+          className="rounded-3xl border border-slate-200 bg-gradient-to-b from-white via-slate-50 to-slate-50 p-8 sm:p-12 lg:p-14 shadow-xs relative overflow-hidden mb-12"
         >
           {/* Subtle Ambient Light */}
-          <div className="absolute top-0 right-0 size-96 bg-radial from-[#EEF35F]/10 via-transparent to-transparent pointer-events-none blur-3xl" />
+          <div className="absolute top-0 right-0 size-96 bg-radial from-teal-100/30 via-transparent to-transparent pointer-events-none blur-3xl" />
 
           <div className="relative z-10 max-w-3xl">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight font-heading text-white leading-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight font-heading text-slate-900 leading-tight">
               Questions about digital products?
             </h2>
 
-            <p className="mt-4 text-sm sm:text-base text-neutral-400 font-normal leading-relaxed">
+            <p className="mt-4 text-sm sm:text-base text-slate-500 font-normal leading-relaxed">
               Everything you need to know before choosing and using our digital products.
             </p>
 
@@ -70,21 +70,21 @@ export function FAQSection() {
             className="lg:col-span-4"
           >
             <div className="lg:sticky lg:top-24">
-              <div className="flex items-center gap-2 text-xs font-mono text-[#EEF35F] uppercase tracking-wider mb-2">
+              <div className="flex items-center gap-2 text-xs font-mono text-[#0F766E] uppercase tracking-wider mb-2 font-semibold">
                 <HelpCircle className="size-3.5" />
                 <span>Frequently Asked</span>
               </div>
 
-              <h3 className="text-3xl sm:text-4xl font-extrabold tracking-tight font-heading text-white">
+              <h3 className="text-3xl sm:text-4xl font-extrabold tracking-tight font-heading text-slate-900">
                 {activeCategory}
               </h3>
 
-              <p className="mt-3 text-sm text-neutral-400 leading-relaxed font-normal">
+              <p className="mt-3 text-sm text-slate-500 leading-relaxed font-normal">
                 {CATEGORY_DESCRIPTIONS[activeCategory]}
               </p>
 
-              <div className="mt-6 pt-6 border-t border-neutral-900 hidden lg:block">
-                <span className="text-xs font-mono text-neutral-500">
+              <div className="mt-6 pt-6 border-t border-slate-200 hidden lg:block">
+                <span className="text-xs font-mono text-slate-400">
                   Showing {filteredFaqs.length} questions in {activeCategory}
                 </span>
               </div>

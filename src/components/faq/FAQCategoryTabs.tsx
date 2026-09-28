@@ -33,13 +33,13 @@ export function FAQCategoryTabs({
             onClick={() => onSelectCategory(category)}
             className={`group relative inline-flex items-center gap-2 rounded-2xl px-5 py-2.5 text-xs sm:text-sm font-bold transition-all duration-200 cursor-pointer active:scale-95 ${
               isSelected
-                ? "bg-[#EEF35F] text-black shadow-lg shadow-[#EEF35F]/20 border-2 border-[#EEF35F] -rotate-1 scale-105"
-                : "border border-neutral-800 bg-neutral-950/80 text-neutral-300 hover:border-neutral-600 hover:bg-neutral-900 hover:text-white"
+                ? "bg-[#0F766E] text-white shadow-md shadow-teal-900/10 border-2 border-[#0F766E] -rotate-1 scale-105"
+                : "border border-slate-300 bg-white text-slate-700 hover:border-slate-400 hover:bg-slate-100 hover:text-slate-900 shadow-xs"
             }`}
           >
             <Icon
               className={`size-4 transition-transform group-hover:scale-110 ${
-                isSelected ? "text-black" : "text-[#EEF35F]"
+                isSelected ? "text-white" : "text-[#0F766E]"
               }`}
             />
             <span>{category}</span>

@@ -12,7 +12,7 @@ import {
   LogOut,
   X,
 } from "lucide-react";
-import { MAIN_DASHBOARD_NAV, BOTTOM_DASHBOARD_NAV } from "@/lib/dashboard-navigation";
+import { MAIN_DASHBOARD_NAV } from "@/lib/dashboard-navigation";
 import { logoutAdminAction } from "@/app/actions/auth";
 
 const ICON_MAP = {
@@ -38,19 +38,19 @@ export function Sidebar({ mobileOpen, onCloseMobile }: SidebarProps) {
   };
 
   const sidebarContent = (
-    <div className="flex h-full w-full flex-col justify-between bg-black text-white">
+    <div className="flex h-full w-full flex-col justify-between bg-white text-gray-900 border-r border-gray-200">
       {/* Top Header / Brand */}
       <div>
-        <div className="flex h-16 items-center justify-between px-6 border-b border-neutral-900">
+        <div className="flex h-16 items-center justify-between px-6 border-b border-gray-200">
           <Link
             href="/dashboard"
             onClick={onCloseMobile}
-            className="flex items-center gap-2 font-heading font-extrabold text-lg tracking-tight text-white hover:text-[#EEF35F] transition-colors"
+            className="flex items-center gap-2 font-heading font-bold text-lg tracking-tight text-gray-900 hover:text-[#0F766E] transition-colors"
           >
-            <div className="size-7 rounded-lg bg-[#EEF35F] text-black flex items-center justify-center font-black text-sm shadow-sm">
-              D
+            <div className="size-8 rounded-lg bg-[#0F766E] text-white flex items-center justify-center font-black text-sm shadow-xs">
+              C
             </div>
-            <span>DigiForge</span>
+            <span>Careproff Admin</span>
           </Link>
 
           {/* Close button on mobile */}
@@ -58,7 +58,7 @@ export function Sidebar({ mobileOpen, onCloseMobile }: SidebarProps) {
             <button
               type="button"
               onClick={onCloseMobile}
-              className="lg:hidden size-8 rounded-lg border border-neutral-800 bg-neutral-950 flex items-center justify-center text-neutral-400 hover:text-white"
+              className="lg:hidden size-8 rounded-lg border border-gray-200 bg-white flex items-center justify-center text-gray-500 hover:text-gray-900"
             >
               <X className="size-4" />
             </button>
@@ -68,8 +68,8 @@ export function Sidebar({ mobileOpen, onCloseMobile }: SidebarProps) {
         {/* Navigation List */}
         <div className="p-4 space-y-6">
           <div>
-            <p className="px-3 pb-2 text-[10px] font-mono font-semibold uppercase tracking-wider text-neutral-500">
-              Main Menu
+            <p className="px-3 pb-2 text-[10px] font-semibold uppercase tracking-wider text-gray-400">
+              Admin Menu
             </p>
             <nav className="space-y-1">
               {MAIN_DASHBOARD_NAV.map((item) => {
@@ -86,8 +86,8 @@ export function Sidebar({ mobileOpen, onCloseMobile }: SidebarProps) {
                     onClick={onCloseMobile}
                     className={`flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-xs font-semibold transition-all ${
                       isActive
-                        ? "bg-[#EEF35F] text-black font-bold shadow-md shadow-[#EEF35F]/20"
-                        : "text-neutral-400 hover:bg-neutral-900 hover:text-white"
+                        ? "bg-[#CCFBF1] text-[#0F766E] font-bold shadow-xs border border-teal-200"
+                        : "text-gray-600 hover:bg-slate-50 hover:text-[#0F766E]"
                     }`}
                   >
                     <Icon className="size-4 shrink-0" />
@@ -101,29 +101,29 @@ export function Sidebar({ mobileOpen, onCloseMobile }: SidebarProps) {
       </div>
 
       {/* Bottom Section: Website Link + Admin Profile + Logout */}
-      <div className="p-4 border-t border-neutral-900 space-y-3">
+      <div className="p-4 border-t border-gray-200 space-y-3 bg-[#FAFAF8]">
         {/* View Website */}
         <Link
           href="/"
           target="_blank"
-          className="flex items-center justify-between rounded-xl px-3.5 py-2.5 text-xs font-medium text-neutral-400 hover:bg-neutral-900 hover:text-white transition-colors border border-neutral-800/80"
+          className="flex items-center justify-between rounded-xl px-3.5 py-2.5 text-xs font-semibold text-gray-700 hover:bg-white hover:text-[#0F766E] transition-colors border border-gray-200 shadow-xs"
         >
           <span className="flex items-center gap-2.5">
-            <ExternalLink className="size-4 text-neutral-500" />
-            <span>View Website</span>
+            <ExternalLink className="size-4 text-gray-500" />
+            <span>View Public Store</span>
           </span>
-          <span className="text-[10px] font-mono text-neutral-500">Public</span>
+          <span className="text-[10px] text-gray-400 font-medium">Public</span>
         </Link>
 
         {/* Admin Profile */}
-        <div className="rounded-2xl border border-neutral-800 bg-neutral-950 p-3 flex items-center justify-between">
+        <div className="rounded-2xl border border-gray-200 bg-white p-3 flex items-center justify-between shadow-xs">
           <div className="flex items-center gap-3">
-            <div className="size-9 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center text-[#EEF35F]">
+            <div className="size-9 rounded-full bg-[#F0FDFA] border border-teal-200 flex items-center justify-center text-[#0F766E]">
               <UserCircle className="size-5" />
             </div>
             <div>
-              <p className="text-xs font-bold text-white leading-none">Admin</p>
-              <p className="text-[10px] font-mono text-neutral-400 mt-1">Administrator</p>
+              <p className="text-xs font-bold text-gray-900 leading-none">Admin</p>
+              <p className="text-[10px] text-gray-500 mt-1">Administrator</p>
             </div>
           </div>
 
@@ -131,7 +131,7 @@ export function Sidebar({ mobileOpen, onCloseMobile }: SidebarProps) {
             type="button"
             title="Log Out"
             onClick={handleLogout}
-            className="size-8 rounded-lg border border-neutral-800 bg-neutral-900 flex items-center justify-center text-neutral-400 hover:text-rose-400 hover:border-rose-500/30 transition-colors cursor-pointer"
+            className="size-8 rounded-lg border border-gray-200 bg-white flex items-center justify-center text-gray-500 hover:text-rose-600 hover:bg-rose-50 hover:border-rose-200 transition-colors cursor-pointer"
           >
             <LogOut className="size-3.5" />
           </button>
@@ -143,7 +143,7 @@ export function Sidebar({ mobileOpen, onCloseMobile }: SidebarProps) {
   return (
     <>
       {/* Desktop Persistent Sidebar */}
-      <aside className="hidden lg:flex w-64 flex-col border-r border-neutral-900 bg-black shrink-0 h-screen sticky top-0">
+      <aside className="hidden lg:flex w-64 flex-col border-r border-gray-200 bg-white shrink-0 h-screen sticky top-0">
         {sidebarContent}
       </aside>
 
@@ -151,10 +151,10 @@ export function Sidebar({ mobileOpen, onCloseMobile }: SidebarProps) {
       {mobileOpen && (
         <div className="fixed inset-0 z-50 lg:hidden flex">
           <div
-            className="fixed inset-0 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200"
+            className="fixed inset-0 bg-black/50 backdrop-blur-xs animate-in fade-in duration-200"
             onClick={onCloseMobile}
           />
-          <div className="relative w-72 max-w-[80vw] h-full bg-black border-r border-neutral-800 z-10 shadow-2xl animate-in slide-in-from-left duration-200">
+          <div className="relative w-72 max-w-[80vw] h-full bg-white border-r border-gray-200 z-10 shadow-2xl animate-in slide-in-from-left duration-200">
             {sidebarContent}
           </div>
         </div>
@@ -164,3 +164,4 @@ export function Sidebar({ mobileOpen, onCloseMobile }: SidebarProps) {
 }
 
 export default Sidebar;
+
