@@ -11,6 +11,7 @@ import {
   UserCircle,
   LogOut,
   X,
+  Images,
 } from "lucide-react";
 import { MAIN_DASHBOARD_NAV } from "@/lib/dashboard-navigation";
 import { logoutAdminAction } from "@/app/actions/auth";
@@ -20,6 +21,7 @@ const ICON_MAP = {
   Package: Package,
   Plus: Plus,
   ExternalLink: ExternalLink,
+  Images: Images,
 };
 
 interface SidebarProps {

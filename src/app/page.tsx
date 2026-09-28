@@ -11,11 +11,17 @@ import { ReviewsSection } from "@/components/reviews";
 import { StatsSection } from "@/components/stats-section";
 import { FAQSection } from "@/components/faq";
 import { getFeaturedProducts } from "@/lib/products/product.repository";
+import { getActiveHeroSlides } from "@/lib/hero/hero.repository";
 
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  const featuredProducts = (await getFeaturedProducts(6)).slice(0, 6);
+  const [featuredProductsResult, heroSlides] = await Promise.all([
+    getFeaturedProducts(6),
+    getActiveHeroSlides(),
+  ]);
+
+  const featuredProducts = featuredProductsResult.slice(0, 6);
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 selection:bg-teal-100 selection:text-teal-900">
@@ -24,8 +30,8 @@ export default async function Home() {
 
       {/* Main Page Content */}
       <main className="flex-1 bg-slate-50">
-        {/* Hero Banner Section */}
-        <Hero />
+        {/* Dynamic Hero Banner Section */}
+        <Hero slides={heroSlides} />
 
         {/* Logo Loop - Digital Product Tools & Ecosystem */}
         <TechStackLoopSection />

@@ -1,7 +1,7 @@
 export interface DashboardNavItem {
   label: string;
   href: string;
-  icon: "LayoutDashboard" | "Package" | "Plus" | "ExternalLink" | "Settings" | "Users";
+  icon: "LayoutDashboard" | "Package" | "Plus" | "ExternalLink" | "Settings" | "Users" | "Images";
   badge?: string;
   permission?: string;
 }
@@ -24,6 +24,12 @@ export const MAIN_DASHBOARD_NAV: DashboardNavItem[] = [
     href: "/dashboard/products/new",
     icon: "Plus",
     permission: "PRODUCT_CREATE",
+  },
+  {
+    label: "Hero Carousel",
+    href: "/dashboard/hero",
+    icon: "Images",
+    permission: "HERO_MANAGE",
   },
 ];
 
