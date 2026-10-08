@@ -57,10 +57,10 @@ export function ContactInfo() {
                 Tell us about your website, application, or custom development idea.
               </p>
               <Link
-                href="/services"
+                href="/products"
                 className="inline-flex items-center gap-1 text-xs font-bold text-[#0F766E] mt-2 group hover:underline underline-offset-4"
               >
-                <span>View Our Services</span>
+                <span>Browse Products</span>
                 <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" />
               </Link>
             </div>

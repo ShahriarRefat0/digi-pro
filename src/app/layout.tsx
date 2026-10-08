@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Hind_Siliguri } from "next/font/google";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { CartProvider } from "@/context/CartContext";
 import { Toaster } from "sonner";
 import "./globals.css";
 
@@ -31,9 +32,11 @@ export default function RootLayout({
       className={`${inter.variable} ${hindSiliguri.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground selection:bg-teal-700 selection:text-white">
-        <TooltipProvider delay={150}>
-          {children}
-        </TooltipProvider>
+        <CartProvider>
+          <TooltipProvider delay={150}>
+            {children}
+          </TooltipProvider>
+        </CartProvider>
         <Toaster richColors position="top-right" theme="light" closeButton />
       </body>
     </html>

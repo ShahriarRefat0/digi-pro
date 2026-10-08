@@ -11,21 +11,38 @@ import {
   Check,
   Tag,
   ArrowLeft,
+  MessageCircle,
 } from "lucide-react";
-import { BlogPost } from "@/lib/blog";
+import { JournalArticle } from "@/types/journal";
+import { toast } from "sonner";
 
 interface ArticleHeaderProps {
-  article: BlogPost;
+  article: JournalArticle;
 }
 
 export function ArticleHeader({ article }: ArticleHeaderProps) {
   const [copied, setCopied] = React.useState(false);
 
-  const handleShare = () => {
+  const handleCopyLink = () => {
     if (typeof window !== "undefined") {
       navigator.clipboard.writeText(window.location.href);
       setCopied(true);
+      toast.success("Link copied to clipboard!");
       setTimeout(() => setCopied(false), 2000);
+    }
+  };
+
+  const handleShareFacebook = () => {
+    if (typeof window !== "undefined") {
+      const url = encodeURIComponent(window.location.href);
+      window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, "_blank");
+    }
+  };
+
+  const handleShareWhatsApp = () => {
+    if (typeof window !== "undefined") {
+      const text = encodeURIComponent(`Check out this Careproff article: ${article.title}\n${window.location.href}`);
+      window.open(`https://api.whatsapp.com/send?text=${text}`, "_blank");
     }
   };
 
@@ -49,21 +66,15 @@ export function ArticleHeader({ article }: ArticleHeaderProps) {
           transition={{ duration: 0.35 }}
           className="flex flex-wrap items-center gap-1.5 text-xs text-slate-500 mb-8"
         >
-          <Link
-            href="/"
-            className="hover:text-slate-900 transition-colors"
-          >
+          <Link href="/" className="hover:text-slate-900 transition-colors">
             Home
           </Link>
           <ChevronRight className="size-3.5 text-slate-400" />
-          <Link
-            href="/blog"
-            className="hover:text-slate-900 transition-colors"
-          >
-            Blog
+          <Link href="/care-journal" className="hover:text-slate-900 transition-colors">
+            Care Journal
           </Link>
           <ChevronRight className="size-3.5 text-slate-400" />
-          <span className="text-slate-600 font-mono">{article.category}</span>
+          <span className="text-slate-700 font-semibold">{article.category}</span>
         </motion.div>
 
         {/* Back Link */}
@@ -74,11 +85,11 @@ export function ArticleHeader({ article }: ArticleHeaderProps) {
           className="mb-6"
         >
           <Link
-            href="/blog"
+            href="/care-journal"
             className="group inline-flex items-center gap-1.5 text-xs font-semibold text-slate-600 hover:text-[#0F766E] transition-colors"
           >
             <ArrowLeft className="size-3.5 transition-transform duration-200 group-hover:-translate-x-1" />
-            <span>Back to all articles</span>
+            <span>Back to Care Journal</span>
           </Link>
         </motion.div>
 
@@ -87,7 +98,7 @@ export function ArticleHeader({ article }: ArticleHeaderProps) {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.1 }}
-          className="inline-flex items-center gap-1.5 rounded-full border border-[#CCFBF1] bg-[#F0FDFA] px-3.5 py-1 text-xs font-semibold text-[#0F766E] mb-4"
+          className="inline-flex items-center gap-1.5 rounded-full border border-[#CCFBF1] bg-[#F0FDFA] px-3.5 py-1 text-xs font-bold text-[#0F766E] mb-4"
         >
           <Tag className="size-3" />
           <span>{article.category}</span>
@@ -122,12 +133,12 @@ export function ArticleHeader({ article }: ArticleHeaderProps) {
         >
           <div className="flex items-center gap-3">
             <div className="size-10 rounded-full bg-[#F0FDFA] border border-[#CCFBF1] flex items-center justify-center text-xs font-bold text-[#0F766E] shrink-0">
-              {article.author.charAt(0)}
+              {(article.author || "Careproff").charAt(0)}
             </div>
             <div>
-              <p className="text-xs font-bold text-slate-900">{article.author}</p>
+              <p className="text-xs font-bold text-slate-900">{article.author || "Careproff Care Team"}</p>
               <p className="text-[11px] text-slate-500 font-mono">
-                {article.authorRole}
+                {article.authorRole || "Pediatric &amp; Maternal Care Experts"}
               </p>
             </div>
           </div>
@@ -141,22 +152,34 @@ export function ArticleHeader({ article }: ArticleHeaderProps) {
               <Clock3 className="size-3.5 text-slate-400" />
               <span>{article.readTime}</span>
             </div>
-            <button
-              onClick={handleShare}
-              className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs text-slate-700 transition-colors hover:border-slate-300 hover:text-[#0F766E] cursor-pointer shadow-xs"
-            >
-              {copied ? (
-                <>
-                  <Check className="size-3 text-emerald-600" />
-                  <span className="text-emerald-600">Copied!</span>
-                </>
-              ) : (
-                <>
-                  <Share2 className="size-3" />
-                  <span>Share</span>
-                </>
-              )}
-            </button>
+
+            {/* Share Menu */}
+            <div className="flex items-center gap-1.5 pl-2 border-l border-slate-200">
+              <button
+                type="button"
+                onClick={handleShareFacebook}
+                title="Share on Facebook"
+                className="p-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:text-[#0F766E] hover:border-[#0F766E] transition-colors cursor-pointer"
+              >
+                <Share2 className="size-3.5" />
+              </button>
+              <button
+                type="button"
+                onClick={handleShareWhatsApp}
+                title="Share on WhatsApp"
+                className="p-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:text-emerald-600 hover:border-emerald-500 transition-colors cursor-pointer"
+              >
+                <MessageCircle className="size-3.5" />
+              </button>
+              <button
+                type="button"
+                onClick={handleCopyLink}
+                className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-white px-2.5 py-1 text-xs text-slate-700 hover:border-slate-300 hover:text-[#0F766E] transition-colors cursor-pointer"
+              >
+                {copied ? <Check className="size-3 text-emerald-600" /> : <Share2 className="size-3" />}
+                <span>{copied ? "Copied!" : "Copy"}</span>
+              </button>
+            </div>
           </div>
         </motion.div>
       </div>

@@ -59,10 +59,10 @@ export const QUICK_HELP_ITEMS: QuickHelpCard[] = [
     icon: "Package",
   },
   {
-    title: "Need Custom Development?",
-    description: "Have something specific you want built?",
-    cta: "View Services",
-    href: "/services",
+    title: "About Careproff",
+    description: "Learn more about our philosophy and standards.",
+    cta: "Read About Us",
+    href: "/about",
     icon: "Code2",
   },
   {

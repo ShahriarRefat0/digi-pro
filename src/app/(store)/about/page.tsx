@@ -9,7 +9,6 @@ import {
   Philosophy,
   BentoThinking,
   TechnologySection,
-  ProductServiceSection,
   SimpleStats,
   AudienceSection,
   ProcessSection,
@@ -48,10 +47,7 @@ export default function AboutPage() {
         {/* 7. Technology Stack */}
         <TechnologySection />
 
-        {/* 8. Products vs Services Relationship */}
-        <ProductServiceSection />
-
-        {/* 9. Neutral Stats */}
+        {/* 8. Neutral Stats */}
         <SimpleStats />
 
         {/* 10. Who We Build For */}

@@ -1,7 +1,6 @@
 import { getDatabase } from "@/lib/mongodb";
 import { ProductDocument } from "@/types/product";
-import { SERVICES_DATA } from "@/lib/services";
-import { BLOG_POSTS } from "@/lib/blog";
+import { getPublishedJournals } from "@/lib/journals/journal.repository";
 import { STATIC_PAGES } from "./pages";
 import { GroupedSearchResults, SearchResultItem } from "@/types/search";
 
@@ -10,7 +9,6 @@ const PRODUCTS_COLLECTION = "products";
 export interface SearchOptions {
   limitPerCategory?: {
     products?: number;
-    services?: number;
     blogs?: number;
     pages?: number;
   };
@@ -72,7 +70,6 @@ export async function searchAll(
   if (!cleanQuery) {
     return {
       products: [],
-      services: [],
       blogs: [],
       pages: [],
       totalCount: 0,
@@ -81,7 +78,6 @@ export async function searchAll(
 
   const limits = {
     products: options.limitPerCategory?.products ?? 5,
-    services: options.limitPerCategory?.services ?? 3,
     blogs: options.limitPerCategory?.blogs ?? 3,
     pages: options.limitPerCategory?.pages ?? 3,
   };
@@ -160,60 +156,39 @@ export async function searchAll(
     matchedProducts = [];
   }
 
-  // 2. Services (from SERVICES_DATA)
-  const matchedServices: SearchResultItem[] = SERVICES_DATA.map((service) => {
-    const tagsAndTech = [
-      ...(service.technologies || []),
-      ...(service.features || []),
-    ];
-    const score = calculateRelevanceScore(
-      cleanQuery,
-      service.title,
-      tagsAndTech,
-      service.description
-    );
+  // 2. Care Journal Articles (from MongoDB)
+  let matchedBlogs: SearchResultItem[] = [];
+  try {
+    const journalArticles = await getPublishedJournals();
+    matchedBlogs = journalArticles
+      .map((post) => {
+        const categoryAndTags = [post.category, ...(post.tags || [])];
+        const score = calculateRelevanceScore(
+          cleanQuery,
+          post.title,
+          categoryAndTags,
+          post.description
+        );
 
-    return {
-      id: service.id,
-      type: "service" as const,
-      title: service.title,
-      description: service.description,
-      href: `/services`,
-      category: "Engineering Service",
-      icon: service.icon,
-      tags: service.technologies || [],
-      score,
-    };
-  })
-    .filter((item) => (item.score || 0) > 0)
-    .sort((a, b) => (b.score || 0) - (a.score || 0));
+        return {
+          id: post.id,
+          type: "blog" as const,
+          title: post.title,
+          description: post.description,
+          href: `/care-journal/${post.slug}`,
+          category: post.category,
+          date: post.date,
+          tags: post.tags || [],
+          score,
+        };
+      })
+      .filter((item) => (item.score || 0) > 0)
+      .sort((a, b) => (b.score || 0) - (a.score || 0));
+  } catch (err) {
+    console.error("Error searching Care Journal articles:", err);
+  }
 
-  // 3. Blog (from BLOG_POSTS)
-  const matchedBlogs: SearchResultItem[] = BLOG_POSTS.map((post) => {
-    const categoryAndTags = [post.category, ...(post.tags || [])];
-    const score = calculateRelevanceScore(
-      cleanQuery,
-      post.title,
-      categoryAndTags,
-      post.description
-    );
-
-    return {
-      id: post.id,
-      type: "blog" as const,
-      title: post.title,
-      description: post.description,
-      href: `/blog/${post.slug}`,
-      category: post.category,
-      date: post.date,
-      tags: post.tags || [],
-      score,
-    };
-  })
-    .filter((item) => (item.score || 0) > 0)
-    .sort((a, b) => (b.score || 0) - (a.score || 0));
-
-  // 4. Static Pages (from STATIC_PAGES)
+  // 3. Static Pages (from STATIC_PAGES)
   const matchedPages: SearchResultItem[] = STATIC_PAGES.map((page) => {
     const score = calculateRelevanceScore(
       cleanQuery,
@@ -239,13 +214,11 @@ export async function searchAll(
 
   const totalCount =
     matchedProducts.length +
-    matchedServices.length +
     matchedBlogs.length +
     matchedPages.length;
 
   return {
     products: matchedProducts.slice(0, limits.products),
-    services: matchedServices.slice(0, limits.services),
     blogs: matchedBlogs.slice(0, limits.blogs),
     pages: matchedPages.slice(0, limits.pages),
     totalCount,

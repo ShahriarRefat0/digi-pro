@@ -1,20 +1,20 @@
 "use client";
 
 import * as React from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion } from "motion/react";
 import { SearchX, BookOpen } from "lucide-react";
-import { BlogPost, BlogCategory } from "@/lib/blog";
+import { JournalArticle, JournalCategory } from "@/types/journal";
 import { BlogCard } from "./BlogCard";
 import { BlogCategoryFilter } from "./BlogCategoryFilter";
 import { BlogSearch } from "./BlogSearch";
 
 interface BlogGridProps {
-  articles: BlogPost[];
+  articles: JournalArticle[];
 }
 
 export function BlogGrid({ articles }: BlogGridProps) {
   const [selectedCategory, setSelectedCategory] =
-    React.useState<BlogCategory>("All");
+    React.useState<JournalCategory>("All");
   const [searchQuery, setSearchQuery] = React.useState("");
 
   // Filter articles based on Category and Search query
@@ -23,8 +23,10 @@ export function BlogGrid({ articles }: BlogGridProps) {
       const matchesCategory =
         selectedCategory === "All" ||
         article.category.toLowerCase() === selectedCategory.toLowerCase() ||
-        (selectedCategory === "Web Development" &&
-          (article.category === "Next.js" || article.category === "React"));
+        (selectedCategory === "Baby Care" &&
+          (article.category === "Newborn Care" || article.category === "Baby Skin Care")) ||
+        (selectedCategory === "Mother Care" &&
+          (article.category === "Pregnancy Care" || article.category === "Postpartum Care"));
 
       const query = searchQuery.trim().toLowerCase();
       if (!query) return matchesCategory;
@@ -33,7 +35,7 @@ export function BlogGrid({ articles }: BlogGridProps) {
         article.title.toLowerCase().includes(query) ||
         article.description.toLowerCase().includes(query) ||
         article.category.toLowerCase().includes(query) ||
-        article.tags.some((tag) => tag.toLowerCase().includes(query));
+        (article.tags && article.tags.some((tag) => tag.toLowerCase().includes(query)));
 
       return matchesCategory && matchesSearch;
     });
@@ -59,13 +61,14 @@ export function BlogGrid({ articles }: BlogGridProps) {
           <BlogSearch value={searchQuery} onChange={setSearchQuery} />
         </div>
 
-        {/* Results Counter / Filter Indicator */}
+        {/* Dynamic Results Counter */}
         <div className="mt-8 mb-6 flex items-center justify-between text-xs text-slate-500">
           <div className="flex items-center gap-2">
             <BookOpen className="size-3.5 text-[#0F766E]" />
             <span>
               Showing{" "}
               <strong className="text-slate-900">{filteredArticles.length}</strong>{" "}
+              {articles.length !== filteredArticles.length && `of ${articles.length} `}
               articles
               {selectedCategory !== "All" && ` in "${selectedCategory}"`}
               {searchQuery && ` matching "${searchQuery}"`}
@@ -74,6 +77,7 @@ export function BlogGrid({ articles }: BlogGridProps) {
 
           {(selectedCategory !== "All" || searchQuery) && (
             <button
+              type="button"
               onClick={handleClearFilters}
               className="text-xs text-slate-600 hover:text-[#0F766E] transition-colors underline underline-offset-4 cursor-pointer"
             >
@@ -90,7 +94,7 @@ export function BlogGrid({ articles }: BlogGridProps) {
             ))}
           </div>
         ) : (
-          /* Friendly Empty State */
+          /* Empty State */
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -101,14 +105,14 @@ export function BlogGrid({ articles }: BlogGridProps) {
             </div>
 
             <h3 className="text-xl font-bold text-slate-900 font-heading">
-              No articles found
+              No care articles found
             </h3>
             <p className="mt-2 text-xs sm:text-sm text-slate-500 max-w-sm">
-              We couldn&apos;t find any articles matching &quot;{searchQuery}&quot; in{" "}
-              {selectedCategory}. Try another search term or reset filters.
+              We couldn&apos;t find any care articles matching &quot;{searchQuery}&quot;. Try another search term or reset filters.
             </p>
 
             <button
+              type="button"
               onClick={handleClearFilters}
               className="mt-6 inline-flex items-center justify-center rounded-full bg-[#0F766E] px-6 py-2.5 text-xs font-bold text-white transition-all hover:bg-[#115E59] active:scale-95 shadow-xs cursor-pointer"
             >

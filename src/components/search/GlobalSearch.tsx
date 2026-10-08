@@ -9,7 +9,6 @@ import { SearchResults } from "./SearchResults";
 
 const INITIAL_RESULTS: GroupedSearchResults = {
   products: [],
-  services: [],
   blogs: [],
   pages: [],
   totalCount: 0,
@@ -42,7 +41,6 @@ export function GlobalSearch() {
   const flatItems = React.useMemo<SearchResultItemType[]>(() => {
     return [
       ...results.products,
-      ...results.services,
       ...results.blogs,
       ...results.pages,
     ];
@@ -222,7 +220,7 @@ export function GlobalSearch() {
           onKeyDown={handleKeyDown}
           isLoading={isLoading}
           shortcutKey={shortcutKey}
-          placeholder="Search products, services, advice..."
+          placeholder="Search products, articles..."
           variant="compact"
         />
 
@@ -277,7 +275,7 @@ export function GlobalSearch() {
                 onClear={handleClear}
                 onKeyDown={handleKeyDown}
                 isLoading={isLoading}
-                placeholder="Search care products, services..."
+                placeholder="Search care products, articles..."
                 variant="dialog"
                 autoFocus
               />

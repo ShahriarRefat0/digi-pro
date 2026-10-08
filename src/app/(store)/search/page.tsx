@@ -19,7 +19,7 @@ export async function generateMetadata({
 
   return {
     title: q ? `Search Results for "${q}" - Careproff` : "Search - Careproff",
-    description: `Search across products, services, and articles on Careproff.`,
+    description: `Search across products and articles on Careproff.`,
   };
 }
 
@@ -30,7 +30,6 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
   const initialResults = await searchAll(query, {
     limitPerCategory: {
       products: 50,
-      services: 20,
       blogs: 20,
       pages: 10,
     },

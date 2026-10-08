@@ -1,4 +1,4 @@
-export type SearchResultType = "product" | "service" | "blog" | "page";
+export type SearchResultType = "product" | "blog" | "page";
 
 export interface SearchResultItem {
   id: string;
@@ -17,7 +17,6 @@ export interface SearchResultItem {
 
 export interface GroupedSearchResults {
   products: SearchResultItem[];
-  services: SearchResultItem[];
   blogs: SearchResultItem[];
   pages: SearchResultItem[];
   totalCount: number;

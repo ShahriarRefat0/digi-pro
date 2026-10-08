@@ -4,7 +4,6 @@ export * from "./WhatWeDo";
 export * from "./Philosophy";
 export * from "./BentoThinking";
 export * from "./TechnologySection";
-export * from "./ProductServiceSection";
 export * from "./SimpleStats";
 export * from "./AudienceSection";
 export * from "./ProcessSection";

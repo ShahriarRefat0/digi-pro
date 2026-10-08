@@ -66,15 +66,12 @@ export function Footer() {
           <div className="grid grid-cols-2 gap-8 sm:gap-16 lg:col-span-5 lg:justify-end">
             {/* Column 1 */}
             <div className="flex flex-col space-y-3.5">
-              <span className="text-xs font-bold uppercase tracking-wider text-gray-400">Products & Services</span>
+              <span className="text-xs font-bold uppercase tracking-wider text-gray-400">Care Catalog</span>
               <Link href="/products" className="text-sm text-gray-600 transition-colors hover:text-[#0F766E] hover:underline underline-offset-4">
                 Maternal Care
               </Link>
               <Link href="/products" className="text-sm text-gray-600 transition-colors hover:text-[#0F766E] hover:underline underline-offset-4">
                 Baby Essentials
-              </Link>
-              <Link href="/services" className="text-sm text-gray-600 transition-colors hover:text-[#0F766E] hover:underline underline-offset-4">
-                Pediatric Services
               </Link>
               <Link href="/blog" className="text-sm text-gray-600 transition-colors hover:text-[#0F766E] hover:underline underline-offset-4">
                 Care Journal

@@ -9,7 +9,7 @@ import { SearchResultItem } from "./SearchResultItem";
 const POPULAR_CATEGORIES = [
   { name: "Maternal Care", href: "/products?category=Maternal+Care" },
   { name: "Baby Essentials", href: "/products?category=Baby+Essentials" },
-  { name: "Pediatric Services", href: "/services" },
+  { name: "About Us", href: "/about" },
   { name: "Care Journal", href: "/blog" },
 ];
 
@@ -72,11 +72,11 @@ export const SearchResults: React.FC<SearchResultsProps> = ({
               Browse Products
             </Link>
             <Link
-              href="/services"
+              href="/about"
               onClick={onItemClick}
               className="rounded-full border border-gray-200 bg-white px-3 py-1 text-xs text-gray-600 hover:border-[#0F766E] hover:text-[#0F766E] transition-colors"
             >
-              Pediatric Services
+              About Careproff
             </Link>
             <Link
               href="/blog"
@@ -159,31 +159,7 @@ export const SearchResults: React.FC<SearchResultsProps> = ({
         </div>
       )}
 
-      {/* Services Category */}
-      {results.services.length > 0 && (
-        <div className="px-3 py-1.5">
-          <div className="flex items-center justify-between px-2 pb-1.5 text-[10px] font-semibold uppercase tracking-wider text-gray-400">
-            <span>Services</span>
-            <span className="text-[10px] text-gray-400">
-              {results.services.length} found
-            </span>
-          </div>
-          <div className="space-y-1">
-            {results.services.map((item) => {
-              const itemIdx = runningIndex++;
-              return (
-                <SearchResultItem
-                  key={item.id}
-                  item={item}
-                  isSelected={selectedIndex === itemIdx}
-                  onSelect={() => onSelectIndex(itemIdx)}
-                  onClick={onItemClick}
-                />
-              );
-            })}
-          </div>
-        </div>
-      )}
+
 
       {/* Blog Category */}
       {results.blogs.length > 0 && (

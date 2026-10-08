@@ -24,7 +24,7 @@ interface SearchViewProps {
   initialResults: GroupedSearchResults;
 }
 
-type FilterTab = "all" | "products" | "services" | "blogs" | "pages";
+type FilterTab = "all" | "products" | "blogs" | "pages";
 
 export function SearchView({ initialQuery, initialResults }: SearchViewProps) {
   const router = useRouter();
@@ -47,7 +47,7 @@ export function SearchView({ initialQuery, initialResults }: SearchViewProps) {
   const performSearch = async (searchQuery: string) => {
     const trimmed = searchQuery.trim();
     if (!trimmed) {
-      setResults({ products: [], services: [], blogs: [], pages: [], totalCount: 0 });
+      setResults({ products: [], blogs: [], pages: [], totalCount: 0 });
       setIsLoading(false);
       return;
     }
@@ -85,7 +85,7 @@ export function SearchView({ initialQuery, initialResults }: SearchViewProps) {
 
   const handleClear = () => {
     setQuery("");
-    setResults({ products: [], services: [], blogs: [], pages: [], totalCount: 0 });
+    setResults({ products: [], blogs: [], pages: [], totalCount: 0 });
     const params = new URLSearchParams(window.location.search);
     params.delete("q");
     router.replace(`/search`, { scroll: false });
@@ -177,24 +177,7 @@ export function SearchView({ initialQuery, initialResults }: SearchViewProps) {
             </span>
           </button>
 
-          <button
-            onClick={() => setActiveTab("services")}
-            className={`flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-bold transition-all whitespace-nowrap ${
-              activeTab === "services"
-                ? "bg-[#0F766E] text-white shadow-sm"
-                : "border border-slate-300 bg-white text-slate-600 hover:border-slate-400 hover:text-slate-900"
-            }`}
-          >
-            <Code2 className="size-3.5" />
-            <span>Services</span>
-            <span
-              className={`rounded-full px-1.5 py-0.2 text-[10px] font-mono ${
-                activeTab === "services" ? "bg-teal-900 text-white" : "bg-slate-100 text-slate-500"
-              }`}
-            >
-              {results.services.length}
-            </span>
-          </button>
+
 
           <button
             onClick={() => setActiveTab("blogs")}
@@ -351,66 +334,7 @@ export function SearchView({ initialQuery, initialResults }: SearchViewProps) {
             </div>
           )}
 
-          {/* Services Section */}
-          {(activeTab === "all" || activeTab === "services") && results.services.length > 0 && (
-            <div>
-              <div className="flex items-center justify-between mb-6">
-                <div className="flex items-center gap-2">
-                  <Code2 className="size-5 text-teal-600" />
-                  <h2 className="text-xl font-bold font-heading text-slate-900">Services &amp; Consultation</h2>
-                  <span className="rounded-full bg-slate-100 border border-slate-200 px-2 py-0.5 text-xs font-mono text-slate-500">
-                    {results.services.length}
-                  </span>
-                </div>
-                <Link
-                  href="/services"
-                  className="text-xs font-semibold text-slate-500 hover:text-slate-900 inline-flex items-center gap-1 group"
-                >
-                  <span>All services</span>
-                  <ArrowRight className="size-3 transition-transform group-hover:translate-x-1" />
-                </Link>
-              </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {results.services.map((item) => (
-                  <Link
-                    key={item.id}
-                    href={item.href}
-                    className="group flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-5 hover:border-teal-300 hover:shadow-md transition-all shadow-xs"
-                  >
-                    <div>
-                      <div className="flex size-10 items-center justify-center rounded-xl border border-slate-200 bg-teal-50 text-[#0F766E] mb-3">
-                        <Code2 className="size-5" />
-                      </div>
-                      <h3 className="text-base font-bold text-slate-900 group-hover:text-[#0F766E] transition-colors font-heading">
-                        {item.title}
-                      </h3>
-                      <p className="text-xs text-slate-500 line-clamp-2 leading-relaxed mt-1">
-                        {item.description}
-                      </p>
-                      {item.tags && item.tags.length > 0 && (
-                        <div className="flex flex-wrap gap-1.5 mt-3">
-                          {item.tags.slice(0, 3).map((tag) => (
-                            <span
-                              key={tag}
-                              className="rounded-full border border-slate-200 bg-slate-100 px-2 py-0.5 text-[10px] text-slate-600"
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-
-                    <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-slate-500 group-hover:text-slate-900">
-                      <span>Learn more</span>
-                      <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" />
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          )}
 
           {/* Blog Section */}
           {(activeTab === "all" || activeTab === "blogs") && results.blogs.length > 0 && (

@@ -36,11 +36,11 @@ export function ContactCTA() {
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
               <Link
-                href="/services"
+                href="/products"
                 className="group inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#0F766E] px-8 text-sm font-bold text-white transition-all hover:bg-[#115E59] active:scale-95 shadow-md shadow-[#0F766E]/20"
               >
-                <Code2 className="size-4" />
-                <span>Start a Project</span>
+                <Package className="size-4" />
+                <span>Explore Products</span>
                 <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
               </Link>
 

@@ -15,14 +15,29 @@ import {
   Code,
   FileCheck,
   Terminal,
+  ShoppingCart,
+  Plus,
+  Minus,
 } from "lucide-react";
 import { Product } from "@/types/product";
+import { useCart } from "@/context/CartContext";
 
 interface ProductDetailClientProps {
   product: Product;
 }
 
 export function ProductDetailClient({ product }: ProductDetailClientProps) {
+  const { addToCart, buyNow } = useCart();
+  const [quantity, setQuantity] = React.useState<number>(1);
+
+  const handleDecreaseQuantity = () => {
+    setQuantity((prev) => Math.max(1, prev - 1));
+  };
+
+  const handleIncreaseQuantity = () => {
+    setQuantity((prev) => prev + 1);
+  };
+
   const allImages = React.useMemo(() => {
     const list: string[] = [];
     const isValidUrl = (url?: string) =>
@@ -54,14 +69,22 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
 
   const hasDemoUrl = isValidHttpUrl(product.demoUrl);
   const hasDocsUrl = isValidHttpUrl(product.documentationUrl);
-  const hasPurchaseUrl = isValidHttpUrl(product.purchaseUrl);
+
+  const cartProduct = {
+    id: product.id,
+    name: product.name,
+    slug: product.slug,
+    thumbnail: product.thumbnail,
+    price: product.price,
+    category: product.category,
+  };
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="space-y-10 pb-16 lg:pb-0"
+      className="space-y-10 pb-20 lg:pb-0"
     >
       {/* Back Link */}
       <div>
@@ -83,9 +106,11 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
               <span className="rounded-full border border-teal-100 bg-teal-50 px-3 py-1 text-xs font-mono text-[#0F766E] font-semibold">
                 {product.category}
               </span>
-              <span className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-mono text-slate-500">
-                v{product.version}
-              </span>
+              {product.version && (
+                <span className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-mono text-slate-500">
+                  v{product.version}
+                </span>
+              )}
               {product.featured && (
                 <span className="rounded-full border border-rose-200 bg-rose-50 px-3 py-1 text-xs font-semibold text-rose-700">
                   Featured Asset
@@ -145,7 +170,7 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
           {/* Description Section */}
           <div className="space-y-3 pt-4 border-t border-slate-200">
             <h2 className="text-sm font-mono font-semibold uppercase tracking-wider text-slate-500">
-              Overview &amp; Architecture
+              Overview &amp; Details
             </h2>
             <div className="text-sm text-slate-700 leading-relaxed whitespace-pre-line bg-white rounded-2xl border border-slate-200 p-6 shadow-xs">
               {product.description}
@@ -241,7 +266,7 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
             {/* Price Header */}
             <div>
               <span className="text-xs font-mono text-slate-500 uppercase tracking-wider">
-                Lifetime Access
+                Price
               </span>
               <div className="flex items-baseline gap-2 mt-1">
                 <span className="text-4xl font-extrabold font-mono text-slate-900">
@@ -251,17 +276,55 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
               </div>
             </div>
 
-            {/* Action Buttons with Strict Conditional Rendering */}
-            <div className="space-y-2.5">
-              {/* Buy Now (Direct link to external checkout) */}
-              <a
-                href={hasPurchaseUrl ? product.purchaseUrl : "#"}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#0F766E] px-8 text-sm font-bold text-white hover:bg-[#115E59] transition-all shadow-md shadow-teal-900/10 active:scale-95 text-center cursor-pointer"
+            {/* Quantity Selector */}
+            <div className="space-y-2 pt-2 border-t border-slate-100">
+              <label className="text-xs font-semibold text-slate-700 uppercase tracking-wider block">
+                Quantity
+              </label>
+              <div className="inline-flex items-center gap-3 rounded-full border border-slate-200 bg-slate-50 p-1">
+                <button
+                  type="button"
+                  onClick={handleDecreaseQuantity}
+                  disabled={quantity <= 1}
+                  aria-label="Decrease quantity"
+                  className="size-8 rounded-full border border-slate-200 bg-white flex items-center justify-center text-slate-700 hover:bg-slate-100 disabled:opacity-40 disabled:cursor-not-allowed transition-colors cursor-pointer"
+                >
+                  <Minus className="size-3.5" />
+                </button>
+                <span className="w-8 text-center text-sm font-bold font-mono text-slate-900">
+                  {quantity}
+                </span>
+                <button
+                  type="button"
+                  onClick={handleIncreaseQuantity}
+                  aria-label="Increase quantity"
+                  className="size-8 rounded-full border border-slate-200 bg-white flex items-center justify-center text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
+                >
+                  <Plus className="size-3.5" />
+                </button>
+              </div>
+            </div>
+
+            {/* Action Buttons: Add to Cart & Buy Now */}
+            <div className="space-y-2.5 pt-2">
+              {/* Add to Cart */}
+              <button
+                type="button"
+                onClick={() => addToCart(cartProduct, quantity)}
+                className="w-full inline-flex h-12 items-center justify-center gap-2 rounded-full border-2 border-[#0F766E] bg-white px-6 text-sm font-bold text-[#0F766E] hover:bg-teal-50 transition-all active:scale-[0.98] text-center cursor-pointer"
               >
-                <span>Buy Now &rarr;</span>
-              </a>
+                <ShoppingCart className="size-4" />
+                <span>Add to Cart</span>
+              </button>
+
+              {/* Buy Now */}
+              <button
+                type="button"
+                onClick={() => buyNow(cartProduct, quantity)}
+                className="w-full inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#0F766E] px-6 text-sm font-bold text-white hover:bg-[#115E59] transition-all shadow-md shadow-teal-900/10 active:scale-[0.98] text-center cursor-pointer"
+              >
+                <span>Buy Now</span>
+              </button>
 
               {/* Live Demo (Render ONLY if demoUrl exists) */}
               {hasDemoUrl && (
@@ -294,15 +357,15 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
             <div className="space-y-3 pt-5 border-t border-slate-100 text-xs text-slate-500">
               <div className="flex items-center gap-2.5">
                 <Zap className="size-4 text-[#0F766E] shrink-0" />
-                <span>Instant digital file delivery</span>
+                <span>Fast &amp; reliable delivery</span>
               </div>
               <div className="flex items-center gap-2.5">
                 <ShieldCheck className="size-4 text-[#0F766E] shrink-0" />
-                <span>Commercial license included</span>
+                <span>100% Authentic products</span>
               </div>
               <div className="flex items-center gap-2.5">
                 <RefreshCw className="size-4 text-[#0F766E] shrink-0" />
-                <span>Free future updates &amp; patches</span>
+                <span>Easy returns &amp; customer support</span>
               </div>
             </div>
           </div>
@@ -310,19 +373,54 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
       </div>
 
       {/* Mobile Sticky Bottom Purchase Bar */}
-      <div className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200 p-3.5 lg:hidden shadow-lg flex items-center justify-between gap-4">
+      <div className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200 p-3 lg:hidden shadow-lg flex items-center justify-between gap-2">
         <div>
           <span className="text-[10px] text-slate-500 font-mono uppercase block">Price</span>
-          <span className="text-xl font-bold font-mono text-slate-900">৳{product.price}</span>
+          <span className="text-lg font-bold font-mono text-slate-900">৳{product.price}</span>
         </div>
-        <a
-          href={hasPurchaseUrl ? product.purchaseUrl : "#"}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex h-10 items-center justify-center gap-2 rounded-full bg-[#0F766E] px-6 text-xs font-bold text-white hover:bg-[#115E59] transition-all shadow-md shadow-teal-900/10"
-        >
-          <span>Buy Now &rarr;</span>
-        </a>
+
+        <div className="flex items-center gap-2">
+          {/* Mobile Quantity selector compact */}
+          <div className="inline-flex items-center border border-slate-200 rounded-full bg-slate-50 px-1 py-0.5">
+            <button
+              type="button"
+              onClick={handleDecreaseQuantity}
+              disabled={quantity <= 1}
+              aria-label="Decrease quantity"
+              className="size-7 rounded-full flex items-center justify-center text-slate-600 disabled:opacity-30"
+            >
+              <Minus className="size-3" />
+            </button>
+            <span className="w-5 text-center text-xs font-bold text-slate-900 font-mono">
+              {quantity}
+            </span>
+            <button
+              type="button"
+              onClick={handleIncreaseQuantity}
+              aria-label="Increase quantity"
+              className="size-7 rounded-full flex items-center justify-center text-slate-600"
+            >
+              <Plus className="size-3" />
+            </button>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => addToCart(cartProduct, quantity)}
+            aria-label="Add to cart"
+            className="inline-flex h-9 items-center justify-center rounded-full border border-[#0F766E] bg-white px-3 text-xs font-bold text-[#0F766E] active:scale-95"
+          >
+            <ShoppingCart className="size-3.5" />
+          </button>
+
+          <button
+            type="button"
+            onClick={() => buyNow(cartProduct, quantity)}
+            className="inline-flex h-9 items-center justify-center rounded-full bg-[#0F766E] px-4 text-xs font-bold text-white hover:bg-[#115E59] active:scale-95"
+          >
+            <span>Buy Now</span>
+          </button>
+        </div>
       </div>
     </motion.div>
   );

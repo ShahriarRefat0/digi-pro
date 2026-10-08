@@ -6,6 +6,8 @@ import Image from "next/image";
 import { motion } from "motion/react";
 import { Star, ArrowRight, Package, ShoppingBag } from "lucide-react";
 
+import { useCart } from "@/context/CartContext";
+
 export interface ProductItem {
   id: string;
   name?: string;
@@ -37,6 +39,7 @@ export function ProductCard({
   product: ProductItem;
   index?: number;
 }) {
+  const { addToCart, buyNow } = useCart();
   const title = product.name || product.title || "Care Product";
   const authorName =
     product.creator?.name || product.authorName || "Careproff Essentials";
@@ -135,23 +138,53 @@ export function ProductCard({
         </div>
       </div>
 
-      {/* Footer / Price Tag Ribbon & CTA */}
-      <div className="border-t border-gray-100 bg-[#FAFAF8] px-5 py-3.5 flex items-center justify-between">
+      {/* Footer / Price Tag Ribbon & Dual CTAs */}
+      <div className="border-t border-gray-100 bg-[#FAFAF8] px-4 py-3 flex items-center justify-between gap-2">
         {/* Price Tag */}
-        <div className="flex items-baseline gap-1.5">
-          <span className="text-lg font-bold text-gray-900 tracking-tight font-heading">
+        <div className="flex items-baseline shrink-0">
+          <span className="text-base sm:text-lg font-bold text-gray-900 tracking-tight font-heading">
             {formattedPrice}
           </span>
         </div>
 
-        {/* Add to Cart / View CTA */}
-        <Link
-          href={`/products/${slug}`}
-          className="inline-flex h-8 items-center justify-center gap-1.5 rounded-lg bg-[#0F766E] px-3 text-xs font-bold text-white transition-all hover:bg-[#115E59] active:scale-95 shadow-xs"
-        >
-          <ShoppingBag className="size-3.5" />
-          <span>Add to Cart</span>
-        </Link>
+        {/* Both Add to Cart & Buy Now Buttons */}
+        <div className="flex items-center gap-1.5">
+          <button
+            type="button"
+            onClick={() =>
+              addToCart({
+                id: product.id,
+                name: title,
+                slug,
+                thumbnail: imageSrc,
+                price: product.price,
+                category: product.category,
+              })
+            }
+            className="inline-flex h-8 items-center justify-center gap-1 rounded-lg border border-slate-200 bg-white px-2.5 text-xs font-bold text-slate-800 hover:border-[#0F766E] hover:text-[#0F766E] transition-all active:scale-95 shadow-xs cursor-pointer"
+          >
+            <ShoppingBag className="size-3.5" />
+            <span className="hidden sm:inline">Add to Cart</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() =>
+              buyNow({
+                id: product.id,
+                name: title,
+                slug,
+                thumbnail: imageSrc,
+                price: product.price,
+                category: product.category,
+              })
+            }
+            className="inline-flex h-8 items-center justify-center gap-1 rounded-lg bg-[#0F766E] px-2.5 text-xs font-bold text-white hover:bg-[#115E59] transition-all active:scale-95 shadow-xs cursor-pointer shrink-0"
+          >
+            <span>Buy Now</span>
+            <ArrowRight className="size-3" />
+          </button>
+        </div>
       </div>
     </motion.div>
   );

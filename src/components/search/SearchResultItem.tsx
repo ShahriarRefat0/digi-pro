@@ -50,10 +50,6 @@ function getIcon(item: SearchResultItemType) {
     }
   }
 
-  if (item.type === "service") {
-    return <HeartPulse className="size-4 text-[#0F766E]" />;
-  }
-
   if (item.type === "blog") {
     return <FileText className="size-4 text-teal-700" />;
   }

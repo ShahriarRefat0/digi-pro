@@ -12,6 +12,8 @@ import {
   LogOut,
   X,
   Images,
+  ShoppingCart,
+  BookOpen,
 } from "lucide-react";
 import { MAIN_DASHBOARD_NAV } from "@/lib/dashboard-navigation";
 import { logoutAdminAction } from "@/app/actions/auth";
@@ -22,6 +24,8 @@ const ICON_MAP = {
   Plus: Plus,
   ExternalLink: ExternalLink,
   Images: Images,
+  ShoppingCart: ShoppingCart,
+  BookOpen: BookOpen,
 };
 
 interface SidebarProps {

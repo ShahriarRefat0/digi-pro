@@ -32,11 +32,11 @@ export function BlogCTA() {
 
           <div className="relative z-10 max-w-xl mx-auto">
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight font-heading text-slate-900">
-              Stay in the Loop
+              Stay Informed About Baby &amp; Mother Care
             </h2>
 
             <p className="mt-3 text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
-              Get practical development insights, digital product drops, and architectural guides delivered directly to your inbox. No spam, ever.
+              Get helpful baby care tips, motherhood guidance, product education, and exclusive Careproff offers delivered to your inbox.
             </p>
 
             {subscribed ? (
@@ -75,8 +75,8 @@ export function BlogCTA() {
               </form>
             )}
 
-            <p className="mt-4 text-[10px] text-slate-500 font-mono">
-              Join 1,400+ developers, designers &amp; creators. Unsubscribe anytime.
+            <p className="mt-4 text-[11px] text-slate-500 font-mono">
+              Helpful care tips and exclusive offers from Careproff.
             </p>
           </div>
         </motion.div>

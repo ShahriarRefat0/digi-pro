@@ -3,7 +3,23 @@
 import * as React from "react";
 import { motion } from "motion/react";
 import { Cpu } from "lucide-react";
-import { TECHNOLOGIES_DATA } from "@/lib/services";
+
+interface TechItem {
+  name: string;
+  category: string;
+  description: string;
+}
+
+const TECHNOLOGIES_DATA: TechItem[] = [
+  { name: "Next.js 16", category: "Framework", description: "React 19 App Router & Server Components" },
+  { name: "TypeScript 5", category: "Language", description: "Strict static typing and safe schemas" },
+  { name: "Tailwind CSS v4", category: "Styling", description: "Utility-first CSS styling engine" },
+  { name: "MongoDB", category: "Database", description: "Flexible document database" },
+  { name: "Cloudflare R2", category: "Storage", description: "S3-compatible object storage" },
+  { name: "Lucide Icons", category: "UI Assets", description: "Clean vector iconography" },
+  { name: "Framer Motion", category: "Animation", description: "Smooth layout transitions" },
+  { name: "Zod", category: "Validation", description: "Runtime schema validation" },
+];
 
 export function TechnologySection() {
   return (
