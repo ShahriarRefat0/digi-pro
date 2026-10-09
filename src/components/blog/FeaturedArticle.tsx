@@ -29,11 +29,11 @@ export function FeaturedArticle({ article }: FeaturedArticleProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-40px" }}
           transition={{ duration: 0.55, ease: "easeOut" }}
-          className="group relative rounded-3xl border border-slate-200 bg-slate-50/50 overflow-hidden shadow-md transition-all duration-300 hover:border-[#0F766E]/40"
+          className="group relative rounded-3xl border border-slate-200 bg-slate-50/50 overflow-hidden shadow-md transition-all duration-300 hover:border-[#A8CFB2]"
         >
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 items-stretch">
             {/* Left Cover Image */}
-            <div className="lg:col-span-6 relative overflow-hidden min-h-[300px] sm:min-h-[360px] lg:min-h-[420px] bg-teal-50/60 border-b lg:border-b-0 lg:border-r border-slate-200">
+            <div className="lg:col-span-6 relative overflow-hidden min-h-[300px] sm:min-h-[360px] lg:min-h-[420px] bg-[#F2F8F3] border-b lg:border-b-0 lg:border-r border-slate-200">
               {article.coverImage ? (
                 <Image
                   src={article.coverImage}
@@ -43,9 +43,9 @@ export function FeaturedArticle({ article }: FeaturedArticleProps) {
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               ) : (
-                <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center bg-teal-50">
-                  <Sparkles className="size-12 text-[#0F766E] mb-3 opacity-60" />
-                  <span className="text-sm font-semibold font-heading text-[#0F766E]">
+                <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center bg-[#F2F8F3]">
+                  <Sparkles className="size-12 text-[#2D5536] mb-3 opacity-60" />
+                  <span className="text-sm font-semibold font-heading text-[#2D5536]">
                     Careproff Featured Journal
                   </span>
                 </div>
@@ -53,7 +53,7 @@ export function FeaturedArticle({ article }: FeaturedArticleProps) {
 
               {/* Ambient Badge Overlay */}
               <div className="absolute top-4 left-4 z-10">
-                <span className="inline-flex items-center gap-1.5 rounded-full border border-teal-200 bg-white/90 backdrop-blur-md px-3.5 py-1 text-xs font-bold text-[#0F766E] shadow-sm">
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-[#A8CFB2]/50 bg-white/90 backdrop-blur-md px-3.5 py-1 text-xs font-bold text-[#2D5536] shadow-sm">
                   <ShieldCheck className="size-3.5" />
                   <span>Dermatologist Approved Tips</span>
                 </span>
@@ -64,7 +64,7 @@ export function FeaturedArticle({ article }: FeaturedArticleProps) {
             <div className="lg:col-span-6 p-8 sm:p-12 lg:p-14 flex flex-col justify-between bg-white">
               <div>
                 <div className="flex items-center gap-3 mb-5">
-                  <span className="inline-flex items-center rounded-full border border-[#CCFBF1] bg-[#F0FDFA] px-3.5 py-1 text-xs font-bold text-[#0F766E]">
+                  <span className="inline-flex items-center rounded-full border border-[#A8CFB2]/50 bg-[#F2F8F3] px-3.5 py-1 text-xs font-bold text-[#1C3A22]">
                     Featured Article
                   </span>
                   <span className="text-xs font-mono font-medium text-slate-600 bg-slate-100 border border-slate-200 px-3 py-0.5 rounded-full">
@@ -73,7 +73,7 @@ export function FeaturedArticle({ article }: FeaturedArticleProps) {
                 </div>
 
                 <Link href={`/care-journal/${article.slug}`}>
-                  <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight font-heading text-slate-900 group-hover:text-[#0F766E] transition-colors leading-tight">
+                  <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight font-heading text-slate-900 group-hover:text-[#2D5536] transition-colors leading-tight">
                     {article.title}
                   </h2>
                 </Link>
@@ -118,7 +118,7 @@ export function FeaturedArticle({ article }: FeaturedArticleProps) {
 
                 <Link
                   href={`/care-journal/${article.slug}`}
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-[#0F766E] px-6 py-2.5 text-xs font-bold text-white transition-all hover:bg-[#115E59] active:scale-95 shrink-0 shadow-xs"
+                  className="inline-flex items-center justify-center gap-2 rounded-full bg-[#A8CFB2] px-6 py-2.5 text-xs font-bold text-[#1C3A22] transition-all hover:brightness-95 active:scale-95 shrink-0 shadow-sm"
                 >
                   <span>Read Article</span>
                   <ArrowUpRight className="size-4" />

@@ -103,26 +103,26 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
         <div className="lg:col-span-2 space-y-8">
           <div>
             <div className="flex flex-wrap items-center gap-2 mb-3">
-              <span className="rounded-full border border-teal-100 bg-teal-50 px-3 py-1 text-xs font-mono text-[#0F766E] font-semibold">
+              <span className="rounded-full border border-[#7C9473]/30 bg-[#7C9473]/10 px-3 py-1 text-xs font-semibold text-[#7C9473]">
                 {product.category}
               </span>
               {product.version && (
-                <span className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-mono text-slate-500">
+                <span className="rounded-full border border-[#29332D]/10 bg-white px-3 py-1 text-xs text-[#29332D]/70">
                   v{product.version}
                 </span>
               )}
               {product.featured && (
-                <span className="rounded-full border border-rose-200 bg-rose-50 px-3 py-1 text-xs font-semibold text-rose-700">
-                  Featured Asset
+                <span className="rounded-full border border-[#F3E1DD] bg-[#F3E1DD]/50 px-3 py-1 text-xs font-semibold text-[#29332D]">
+                  Careoff Special
                 </span>
               )}
             </div>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-heading text-slate-900 tracking-tight leading-tight">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-heading text-[#29332D] tracking-tight leading-tight">
               {product.name}
             </h1>
 
-            <p className="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed">
+            <p className="mt-4 text-base sm:text-lg text-[#29332D]/80 leading-relaxed">
               {product.shortDescription}
             </p>
           </div>
@@ -130,7 +130,7 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
           {/* Product Media Display */}
           {activeImage && activeImage !== "/images/placeholder.webp" && (
             <div className="space-y-3">
-              <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+              <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl border border-[#29332D]/10 bg-white shadow-sm">
                 <Image
                   src={activeImage}
                   alt={product.name}
@@ -150,8 +150,8 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
                       onClick={() => setActiveImage(img)}
                       className={`relative aspect-[16/10] h-14 shrink-0 rounded-lg overflow-hidden border transition-all cursor-pointer ${
                         activeImage === img
-                          ? "border-[#0F766E] ring-2 ring-[#0F766E]/20"
-                          : "border-slate-200 opacity-60 hover:opacity-100"
+                          ? "border-[#7C9473] ring-2 ring-[#7C9473]/20"
+                          : "border-[#29332D]/10 opacity-60 hover:opacity-100"
                       }`}
                     >
                       <Image
@@ -168,28 +168,28 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
           )}
 
           {/* Description Section */}
-          <div className="space-y-3 pt-4 border-t border-slate-200">
-            <h2 className="text-sm font-mono font-semibold uppercase tracking-wider text-slate-500">
-              Overview &amp; Details
+          <div className="space-y-3 pt-4 border-t border-[#29332D]/10">
+            <h2 className="text-xs font-bold uppercase tracking-wider text-[#29332D]/60 font-heading">
+              Overview &amp; Product Details
             </h2>
-            <div className="text-sm text-slate-700 leading-relaxed whitespace-pre-line bg-white rounded-2xl border border-slate-200 p-6 shadow-xs">
+            <div className="text-sm text-[#29332D]/90 leading-relaxed whitespace-pre-line bg-white rounded-2xl border border-[#29332D]/10 p-6 shadow-sm">
               {product.description}
             </div>
           </div>
 
           {/* Key Features List */}
           {product.features && product.features.length > 0 && (
-            <div className="space-y-4 pt-4 border-t border-slate-200">
-              <h2 className="text-sm font-mono font-semibold uppercase tracking-wider text-slate-500">
-                Key Highlights
+            <div className="space-y-4 pt-4 border-t border-[#29332D]/10">
+              <h2 className="text-xs font-bold uppercase tracking-wider text-[#29332D]/60 font-heading">
+                Key Care Benefits
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {product.features.map((feature, idx) => (
                   <div
                     key={idx}
-                    className="flex items-start gap-2.5 rounded-xl border border-slate-200 bg-white p-3.5 text-xs text-slate-800 shadow-xs"
+                    className="flex items-start gap-2.5 rounded-xl border border-[#29332D]/10 bg-white p-3.5 text-xs text-[#29332D] shadow-sm"
                   >
-                    <div className="size-4 rounded-full bg-teal-50 text-[#0F766E] flex items-center justify-center shrink-0 mt-0.5">
+                    <div className="size-4 rounded-full bg-[#7C9473]/10 text-[#7C9473] flex items-center justify-center shrink-0 mt-0.5">
                       <Check className="size-3" />
                     </div>
                     <span>{feature}</span>
@@ -201,17 +201,17 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
 
           {/* What's Included */}
           {product.included && product.included.length > 0 && (
-            <div className="space-y-4 pt-4 border-t border-slate-200">
-              <h2 className="text-sm font-mono font-semibold uppercase tracking-wider text-slate-500">
-                What&apos;s Included in this Package
+            <div className="space-y-4 pt-4 border-t border-[#29332D]/10">
+              <h2 className="text-xs font-bold uppercase tracking-wider text-[#29332D]/60 font-heading">
+                What&apos;s Included in the Box
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {product.included.map((item, idx) => (
                   <div
                     key={idx}
-                    className="flex items-center gap-2.5 rounded-xl border border-slate-200 bg-white p-3.5 text-xs text-slate-800 shadow-xs"
+                    className="flex items-center gap-2.5 rounded-xl border border-[#29332D]/10 bg-white p-3.5 text-xs text-[#29332D] shadow-sm"
                   >
-                    <FileCheck className="size-4 text-[#0F766E] shrink-0" />
+                    <FileCheck className="size-4 text-[#7C9473] shrink-0" />
                     <span>{item}</span>
                   </div>
                 ))}
@@ -219,40 +219,20 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
             </div>
           )}
 
-          {/* Requirements */}
+          {/* Requirements / Care Notes */}
           {product.requirements && product.requirements.length > 0 && (
-            <div className="space-y-4 pt-4 border-t border-slate-200">
-              <h2 className="text-sm font-mono font-semibold uppercase tracking-wider text-slate-500">
-                System Requirements
+            <div className="space-y-4 pt-4 border-t border-[#29332D]/10">
+              <h2 className="text-xs font-bold uppercase tracking-wider text-[#29332D]/60 font-heading">
+                Usage Instructions &amp; Age Group
               </h2>
               <div className="flex flex-wrap gap-2">
                 {product.requirements.map((req, idx) => (
                   <span
                     key={idx}
-                    className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-3.5 py-2 text-xs font-mono text-slate-700 shadow-xs"
+                    className="inline-flex items-center gap-1.5 rounded-xl border border-[#29332D]/10 bg-white px-3.5 py-2 text-xs text-[#29332D]/80 shadow-sm"
                   >
-                    <Terminal className="size-3.5 text-slate-400" />
+                    <ShieldCheck className="size-3.5 text-[#7C9473]" />
                     <span>{req}</span>
-                  </span>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Technologies Badges */}
-          {product.technologies && product.technologies.length > 0 && (
-            <div className="space-y-3 pt-4 border-t border-slate-200">
-              <h2 className="text-sm font-mono font-semibold uppercase tracking-wider text-slate-500">
-                Built With
-              </h2>
-              <div className="flex flex-wrap gap-2">
-                {product.technologies.map((tech, idx) => (
-                  <span
-                    key={idx}
-                    className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-3.5 py-1 text-xs font-mono text-slate-700 shadow-xs"
-                  >
-                    <Code className="size-3 text-[#0F766E]" />
-                    <span>{tech}</span>
                   </span>
                 ))}
               </div>
@@ -262,43 +242,43 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
 
         {/* Right 1 Col: Purchase Card & Action Buttons */}
         <div className="space-y-6">
-          <div className="rounded-3xl border border-slate-200 bg-white p-6 sm:p-7 shadow-lg space-y-6 sticky top-24">
+          <div className="rounded-3xl border border-[#29332D]/10 bg-white p-6 sm:p-7 shadow-md space-y-6 sticky top-24">
             {/* Price Header */}
             <div>
-              <span className="text-xs font-mono text-slate-500 uppercase tracking-wider">
+              <span className="text-xs font-semibold text-[#29332D]/60 uppercase tracking-wider block">
                 Price
               </span>
               <div className="flex items-baseline gap-2 mt-1">
-                <span className="text-4xl font-extrabold font-mono text-slate-900">
+                <span className="text-4xl font-extrabold font-mono text-[#29332D]">
                   ৳{product.price}
                 </span>
-                <span className="text-xs text-slate-500 font-mono">BDT</span>
+                <span className="text-xs text-[#29332D]/60 font-mono">BDT</span>
               </div>
             </div>
 
             {/* Quantity Selector */}
-            <div className="space-y-2 pt-2 border-t border-slate-100">
-              <label className="text-xs font-semibold text-slate-700 uppercase tracking-wider block">
+            <div className="space-y-2 pt-2 border-t border-[#29332D]/10">
+              <label className="text-xs font-semibold text-[#29332D] uppercase tracking-wider block">
                 Quantity
               </label>
-              <div className="inline-flex items-center gap-3 rounded-full border border-slate-200 bg-slate-50 p-1">
+              <div className="inline-flex items-center gap-3 rounded-full border border-[#29332D]/10 bg-[#FAF7F0] p-1">
                 <button
                   type="button"
                   onClick={handleDecreaseQuantity}
                   disabled={quantity <= 1}
                   aria-label="Decrease quantity"
-                  className="size-8 rounded-full border border-slate-200 bg-white flex items-center justify-center text-slate-700 hover:bg-slate-100 disabled:opacity-40 disabled:cursor-not-allowed transition-colors cursor-pointer"
+                  className="size-8 rounded-full border border-[#29332D]/10 bg-white flex items-center justify-center text-[#29332D] hover:bg-[#FAF7F0] disabled:opacity-40 disabled:cursor-not-allowed transition-colors cursor-pointer"
                 >
                   <Minus className="size-3.5" />
                 </button>
-                <span className="w-8 text-center text-sm font-bold font-mono text-slate-900">
+                <span className="w-8 text-center text-sm font-bold font-mono text-[#29332D]">
                   {quantity}
                 </span>
                 <button
                   type="button"
                   onClick={handleIncreaseQuantity}
                   aria-label="Increase quantity"
-                  className="size-8 rounded-full border border-slate-200 bg-white flex items-center justify-center text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
+                  className="size-8 rounded-full border border-[#29332D]/10 bg-white flex items-center justify-center text-[#29332D] hover:bg-[#FAF7F0] transition-colors cursor-pointer"
                 >
                   <Plus className="size-3.5" />
                 </button>
@@ -311,7 +291,7 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
               <button
                 type="button"
                 onClick={() => addToCart(cartProduct, quantity)}
-                className="w-full inline-flex h-12 items-center justify-center gap-2 rounded-full border-2 border-[#0F766E] bg-white px-6 text-sm font-bold text-[#0F766E] hover:bg-teal-50 transition-all active:scale-[0.98] text-center cursor-pointer"
+                className="w-full inline-flex h-12 items-center justify-center gap-2 rounded-full border-2 border-[#7C9473] bg-white px-6 text-sm font-bold text-[#7C9473] hover:bg-[#7C9473]/10 transition-all active:scale-[0.98] text-center cursor-pointer"
               >
                 <ShoppingCart className="size-4" />
                 <span>Add to Cart</span>
@@ -321,50 +301,24 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
               <button
                 type="button"
                 onClick={() => buyNow(cartProduct, quantity)}
-                className="w-full inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#0F766E] px-6 text-sm font-bold text-white hover:bg-[#115E59] transition-all shadow-md shadow-teal-900/10 active:scale-[0.98] text-center cursor-pointer"
+                className="w-full inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#7C9473] px-6 text-sm font-bold text-white hover:bg-[#6b8262] transition-all shadow-md active:scale-[0.98] text-center cursor-pointer"
               >
                 <span>Buy Now</span>
               </button>
-
-              {/* Live Demo (Render ONLY if demoUrl exists) */}
-              {hasDemoUrl && (
-                <a
-                  href={product.demoUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full inline-flex h-10 items-center justify-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-6 text-xs font-semibold text-slate-700 hover:bg-slate-100 hover:text-slate-900 transition-colors"
-                >
-                  <ExternalLink className="size-3.5 text-[#0F766E]" />
-                  <span>Live Demo</span>
-                </a>
-              )}
-
-              {/* Documentation (Render ONLY if documentationUrl exists) */}
-              {hasDocsUrl && (
-                <a
-                  href={product.documentationUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full inline-flex h-10 items-center justify-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-6 text-xs font-semibold text-slate-700 hover:bg-slate-100 hover:text-slate-900 transition-colors"
-                >
-                  <BookOpen className="size-3.5 text-slate-400" />
-                  <span>Documentation</span>
-                </a>
-              )}
             </div>
 
             {/* Guarantees */}
-            <div className="space-y-3 pt-5 border-t border-slate-100 text-xs text-slate-500">
+            <div className="space-y-3 pt-5 border-t border-[#29332D]/10 text-xs text-[#29332D]/70">
               <div className="flex items-center gap-2.5">
-                <Zap className="size-4 text-[#0F766E] shrink-0" />
+                <Zap className="size-4 text-[#7C9473] shrink-0" />
                 <span>Fast &amp; reliable delivery</span>
               </div>
               <div className="flex items-center gap-2.5">
-                <ShieldCheck className="size-4 text-[#0F766E] shrink-0" />
+                <ShieldCheck className="size-4 text-[#7C9473] shrink-0" />
                 <span>100% Authentic products</span>
               </div>
               <div className="flex items-center gap-2.5">
-                <RefreshCw className="size-4 text-[#0F766E] shrink-0" />
+                <RefreshCw className="size-4 text-[#7C9473] shrink-0" />
                 <span>Easy returns &amp; customer support</span>
               </div>
             </div>
@@ -373,32 +327,32 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
       </div>
 
       {/* Mobile Sticky Bottom Purchase Bar */}
-      <div className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200 p-3 lg:hidden shadow-lg flex items-center justify-between gap-2">
+      <div className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-[#29332D]/10 p-3 lg:hidden shadow-lg flex items-center justify-between gap-2">
         <div>
-          <span className="text-[10px] text-slate-500 font-mono uppercase block">Price</span>
-          <span className="text-lg font-bold font-mono text-slate-900">৳{product.price}</span>
+          <span className="text-[10px] text-[#29332D]/60 font-mono uppercase block">Price</span>
+          <span className="text-lg font-bold font-mono text-[#29332D]">৳{product.price}</span>
         </div>
 
         <div className="flex items-center gap-2">
           {/* Mobile Quantity selector compact */}
-          <div className="inline-flex items-center border border-slate-200 rounded-full bg-slate-50 px-1 py-0.5">
+          <div className="inline-flex items-center border border-[#29332D]/10 rounded-full bg-[#FAF7F0] px-1 py-0.5">
             <button
               type="button"
               onClick={handleDecreaseQuantity}
               disabled={quantity <= 1}
               aria-label="Decrease quantity"
-              className="size-7 rounded-full flex items-center justify-center text-slate-600 disabled:opacity-30"
+              className="size-7 rounded-full flex items-center justify-center text-[#29332D] disabled:opacity-30"
             >
               <Minus className="size-3" />
             </button>
-            <span className="w-5 text-center text-xs font-bold text-slate-900 font-mono">
+            <span className="w-5 text-center text-xs font-bold text-[#29332D] font-mono">
               {quantity}
             </span>
             <button
               type="button"
               onClick={handleIncreaseQuantity}
               aria-label="Increase quantity"
-              className="size-7 rounded-full flex items-center justify-center text-slate-600"
+              className="size-7 rounded-full flex items-center justify-center text-[#29332D]"
             >
               <Plus className="size-3" />
             </button>
@@ -408,7 +362,7 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
             type="button"
             onClick={() => addToCart(cartProduct, quantity)}
             aria-label="Add to cart"
-            className="inline-flex h-9 items-center justify-center rounded-full border border-[#0F766E] bg-white px-3 text-xs font-bold text-[#0F766E] active:scale-95"
+            className="inline-flex h-9 items-center justify-center rounded-full border border-[#7C9473] bg-white px-3 text-xs font-bold text-[#7C9473] active:scale-95"
           >
             <ShoppingCart className="size-3.5" />
           </button>
@@ -416,7 +370,7 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
           <button
             type="button"
             onClick={() => buyNow(cartProduct, quantity)}
-            className="inline-flex h-9 items-center justify-center rounded-full bg-[#0F766E] px-4 text-xs font-bold text-white hover:bg-[#115E59] active:scale-95"
+            className="inline-flex h-9 items-center justify-center rounded-full bg-[#7C9473] px-4 text-xs font-bold text-white hover:bg-[#6b8262] active:scale-95"
           >
             <span>Buy Now</span>
           </button>

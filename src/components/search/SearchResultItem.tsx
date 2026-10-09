@@ -42,16 +42,16 @@ function getIcon(item: SearchResultItemType) {
   if (item.type === "product") {
     switch (item.category) {
       case "Maternal Care":
-        return <HeartPulse className="size-4 text-[#0F766E]" />;
+        return <HeartPulse className="size-4 text-[#2D5536]" />;
       case "Baby Essentials":
-        return <Baby className="size-4 text-teal-600" />;
+        return <Baby className="size-4 text-[#2D5536]" />;
       default:
-        return <Package className="size-4 text-[#0F766E]" />;
+        return <Package className="size-4 text-[#2D5536]" />;
     }
   }
 
   if (item.type === "blog") {
-    return <FileText className="size-4 text-teal-700" />;
+    return <FileText className="size-4 text-[#2D5536]" />;
   }
 
   return <Compass className="size-4 text-gray-500" />;
@@ -70,8 +70,8 @@ export const SearchResultItem: React.FC<SearchResultItemProps> = ({
       onMouseEnter={onSelect}
       className={`group relative flex items-center justify-between gap-3.5 rounded-xl px-3.5 py-2.5 transition-all text-left duration-150 outline-none ${
         isSelected
-          ? "bg-[#F0FDFA] text-[#0F766E] border border-teal-200 shadow-xs"
-          : "text-gray-800 hover:bg-slate-50 hover:text-[#0F766E]"
+          ? "bg-[#F2F8F3] text-[#2D5536] border border-[#A8CFB2] shadow-xs"
+          : "text-gray-800 hover:bg-[#F2F8F3]/60 hover:text-[#2D5536]"
       }`}
     >
       <div className="flex items-center gap-3 min-w-0 flex-1">
@@ -93,11 +93,11 @@ export const SearchResultItem: React.FC<SearchResultItemProps> = ({
         {/* Text Details */}
         <div className="flex flex-col min-w-0 flex-1">
           <div className="flex items-center gap-2">
-            <span className="truncate text-xs sm:text-sm font-semibold text-gray-900 group-hover:text-[#0F766E] transition-colors">
+            <span className="truncate text-xs sm:text-sm font-semibold text-gray-900 group-hover:text-[#2D5536] transition-colors">
               {item.title}
             </span>
             {item.type === "product" && item.price !== undefined && (
-              <span className="shrink-0 rounded-full border border-teal-200 bg-[#F0FDFA] px-2 py-0.2 text-[10px] font-bold text-[#0F766E]">
+              <span className="shrink-0 rounded-full border border-[#A8CFB2] bg-[#A8CFB2]/20 px-2 py-0.2 text-[10px] font-bold text-[#1C3A22]">
                 ৳{item.price}
               </span>
             )}
@@ -120,8 +120,8 @@ export const SearchResultItem: React.FC<SearchResultItemProps> = ({
         <ArrowRight
           className={`size-3.5 transition-transform duration-150 ${
             isSelected
-              ? "text-[#0F766E] translate-x-0.5 opacity-100"
-              : "text-gray-400 opacity-0 group-hover:opacity-100 group-hover:text-[#0F766E]"
+              ? "text-[#2D5536] translate-x-0.5 opacity-100"
+              : "text-gray-400 opacity-0 group-hover:opacity-100 group-hover:text-[#2D5536]"
           }`}
         />
       </div>

@@ -17,8 +17,8 @@ const hindSiliguri = Hind_Siliguri({
 });
 
 export const metadata: Metadata = {
-  title: "Careproff - Premium Baby & Maternal Care Essentials",
-  description: "Safe, gentle, dermatologist-tested maternal and pediatric care products for mothers and caregivers.",
+  title: "Careoffbd.com — Premium Baby, Maternity & Personal Care Store",
+  description: "Bangladesh's trusted e-commerce storefront for safe, gentle baby care, maternity essentials, and women's personal care products.",
 };
 
 export default function RootLayout({
@@ -31,7 +31,7 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${hindSiliguri.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-background text-foreground selection:bg-teal-700 selection:text-white">
+      <body className="min-h-full flex flex-col bg-background text-foreground selection:bg-[#7C9473] selection:text-white">
         <CartProvider>
           <TooltipProvider delay={150}>
             {children}

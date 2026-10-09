@@ -43,8 +43,8 @@ export function ArticleContent({ article }: ArticleContentProps) {
       </div>
 
       {/* Care Guarantee Callout Box */}
-      <div className="mt-12 p-6 rounded-2xl border border-teal-200 bg-teal-50/60 flex items-start gap-4 shadow-xs">
-        <div className="size-10 rounded-full bg-white border border-teal-200 flex items-center justify-center text-[#0F766E] shrink-0 mt-0.5 shadow-2xs">
+      <div className="mt-12 p-6 rounded-2xl border border-[#A8CFB2]/50 bg-[#F2F8F3] flex items-start gap-4 shadow-xs">
+        <div className="size-10 rounded-full bg-white border border-[#A8CFB2]/50 flex items-center justify-center text-[#2D5536] shrink-0 mt-0.5 shadow-2xs">
           <ShieldCheck className="size-5" />
         </div>
         <div>

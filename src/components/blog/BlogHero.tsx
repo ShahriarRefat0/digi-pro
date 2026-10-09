@@ -21,7 +21,7 @@ export function BlogHero() {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 0.6, scale: 1 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
-          className="size-[600px] rounded-full bg-radial from-[#0F766E]/10 via-slate-50 to-slate-50 blur-3xl"
+          className="size-[600px] rounded-full bg-radial from-[#A8CFB2]/30 via-slate-50 to-slate-50 blur-3xl"
         />
       </div>
 
@@ -31,9 +31,9 @@ export function BlogHero() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="inline-flex items-center gap-2 rounded-full border border-teal-200 bg-teal-50/80 px-4 py-1 text-xs font-semibold text-[#0F766E] mb-6 shadow-2xs"
+          className="inline-flex items-center gap-2 rounded-full border border-[#A8CFB2]/50 bg-[#F2F8F3] px-4 py-1 text-xs font-semibold text-[#2D5536] mb-6 shadow-2xs"
         >
-          <ShieldCheck className="size-4 text-[#0F766E]" />
+          <ShieldCheck className="size-4 text-[#2D5536]" />
           <span>Careproff Educational Journal</span>
         </motion.div>
 
@@ -45,7 +45,7 @@ export function BlogHero() {
           className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight font-heading text-slate-900 leading-[1.12]"
         >
           Trusted Guidance for{" "}
-          <span className="text-[#0F766E] underline decoration-[#0F766E]/30 decoration-wavy underline-offset-8">
+          <span className="text-[#2D5536] underline decoration-[#A8CFB2] decoration-wavy underline-offset-8">
             Better Baby &amp; Mother Care
           </span>
         </motion.h1>
@@ -72,9 +72,9 @@ export function BlogHero() {
             return (
               <span
                 key={pill.label}
-                className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-3.5 py-1.5 font-medium text-slate-700 shadow-2xs transition-colors hover:border-[#0F766E]/40"
+                className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-3.5 py-1.5 font-medium text-slate-700 shadow-2xs transition-colors hover:border-[#A8CFB2]"
               >
-                <IconComponent className="size-3.5 text-[#0F766E]" />
+                <IconComponent className="size-3.5 text-[#2D5536]" />
                 <span>{pill.label}</span>
               </span>
             );

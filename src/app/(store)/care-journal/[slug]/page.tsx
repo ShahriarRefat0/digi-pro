@@ -26,12 +26,12 @@ export async function generateMetadata({ params }: JournalDetailProps): Promise<
 
   if (!article) {
     return {
-      title: "Article Not Found | Careproff Journal",
+      title: "Article Not Found | Careoffbd.com Care Journal",
     };
   }
 
   return {
-    title: `${article.title} | Careproff Care Journal`,
+    title: `${article.title} | Careoffbd.com Care Journal`,
     description: article.description,
     openGraph: {
       title: article.seoTitle || article.title,
@@ -75,10 +75,10 @@ export default async function JournalDetailPage({ params }: JournalDetailProps) 
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 selection:bg-[#F0FDFA] selection:text-[#0F766E]">
+    <div className="min-h-screen flex flex-col bg-[#FAF7F0] text-[#29332D] selection:bg-[#7C9473]/20 selection:text-[#29332D]">
       <Navbar />
 
-      <main className="flex-1 bg-slate-50">
+      <main className="flex-1 bg-[#FAF7F0]">
         <ArticleHeader article={article} />
         <ArticleContent article={article} />
         <RelatedProducts products={relatedProducts} />

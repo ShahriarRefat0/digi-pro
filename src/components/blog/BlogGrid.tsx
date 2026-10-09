@@ -64,7 +64,7 @@ export function BlogGrid({ articles }: BlogGridProps) {
         {/* Dynamic Results Counter */}
         <div className="mt-8 mb-6 flex items-center justify-between text-xs text-slate-500">
           <div className="flex items-center gap-2">
-            <BookOpen className="size-3.5 text-[#0F766E]" />
+            <BookOpen className="size-3.5 text-[#2D5536]" />
             <span>
               Showing{" "}
               <strong className="text-slate-900">{filteredArticles.length}</strong>{" "}
@@ -79,7 +79,7 @@ export function BlogGrid({ articles }: BlogGridProps) {
             <button
               type="button"
               onClick={handleClearFilters}
-              className="text-xs text-slate-600 hover:text-[#0F766E] transition-colors underline underline-offset-4 cursor-pointer"
+              className="text-xs text-slate-600 hover:text-[#2D5536] transition-colors underline underline-offset-4 cursor-pointer"
             >
               Reset filters
             </button>
@@ -100,7 +100,7 @@ export function BlogGrid({ articles }: BlogGridProps) {
             animate={{ opacity: 1, scale: 1 }}
             className="my-16 flex flex-col items-center justify-center rounded-3xl border border-slate-200 bg-white p-12 text-center shadow-xs"
           >
-            <div className="size-16 rounded-2xl bg-[#F0FDFA] border border-[#CCFBF1] flex items-center justify-center text-[#0F766E] mb-4">
+            <div className="size-16 rounded-2xl bg-[#F2F8F3] border border-[#A8CFB2]/50 flex items-center justify-center text-[#2D5536] mb-4">
               <SearchX className="size-8" />
             </div>
 
@@ -114,7 +114,7 @@ export function BlogGrid({ articles }: BlogGridProps) {
             <button
               type="button"
               onClick={handleClearFilters}
-              className="mt-6 inline-flex items-center justify-center rounded-full bg-[#0F766E] px-6 py-2.5 text-xs font-bold text-white transition-all hover:bg-[#115E59] active:scale-95 shadow-xs cursor-pointer"
+              className="mt-6 inline-flex items-center justify-center rounded-full bg-[#A8CFB2] px-6 py-2.5 text-xs font-bold text-[#1C3A22] transition-all hover:brightness-95 active:scale-95 shadow-sm cursor-pointer"
             >
               <span>Clear Search &amp; Filters</span>
             </button>
