@@ -17,7 +17,7 @@ export function RelatedArticles({ articles }: RelatedArticlesProps) {
     <section className="bg-slate-50 py-16 border-t border-slate-200">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-2 mb-8">
-          <BookOpen className="size-5 text-[#0F766E]" />
+          <BookOpen className="size-5 text-[#2D5536]" />
           <h3 className="text-xl font-bold font-heading text-slate-900">
             More Care Articles You Might Like
           </h3>
@@ -27,7 +27,7 @@ export function RelatedArticles({ articles }: RelatedArticlesProps) {
           {articles.slice(0, 3).map((art) => (
             <div
               key={art.id}
-              className="flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-4 shadow-xs hover:border-[#0F766E]/40 hover:shadow-md transition-all group"
+              className="flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-4 shadow-xs hover:border-[#A8CFB2] hover:shadow-md transition-all group"
             >
               <div>
                 {art.coverImage && (
@@ -40,11 +40,11 @@ export function RelatedArticles({ articles }: RelatedArticlesProps) {
                     />
                   </div>
                 )}
-                <span className="text-[10px] font-mono font-bold text-[#0F766E] bg-teal-50 px-2 py-0.5 rounded-full inline-block mb-1.5 border border-teal-100">
+                <span className="text-[10px] font-mono font-bold text-[#1C3A22] bg-[#A8CFB2]/20 px-2 py-0.5 rounded-full inline-block mb-1.5 border border-[#A8CFB2]/40">
                   {art.category}
                 </span>
                 <Link href={`/care-journal/${art.slug}`}>
-                  <h4 className="text-sm font-bold text-slate-900 group-hover:text-[#0F766E] transition-colors line-clamp-2 leading-snug">
+                  <h4 className="text-sm font-bold text-slate-900 group-hover:text-[#2D5536] transition-colors line-clamp-2 leading-snug">
                     {art.title}
                   </h4>
                 </Link>
@@ -54,7 +54,7 @@ export function RelatedArticles({ articles }: RelatedArticlesProps) {
                 <span>{art.readTime}</span>
                 <Link
                   href={`/care-journal/${art.slug}`}
-                  className="inline-flex items-center gap-1 font-semibold text-slate-800 group-hover:text-[#0F766E] transition-colors"
+                  className="inline-flex items-center gap-1 font-semibold text-slate-800 group-hover:text-[#2D5536] transition-colors"
                 >
                   <span>Read</span>
                   <ArrowUpRight className="size-3" />

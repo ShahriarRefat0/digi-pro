@@ -3,20 +3,18 @@
 import * as React from "react";
 import LogoLoop, { LogoItem } from "@/components/LogoLoop";
 import {
-  Globe2,
-  PanelsTopLeft,
-  Rocket,
-  Code2,
-  ShoppingCart,
-  Blocks,
+  Baby,
+  Heart,
   Sparkles,
-  Palette,
-  Box,
-  Clapperboard,
-  Smartphone,
-  Zap,
-  BookOpen,
-  Layers3,
+  ShieldCheck,
+  Truck,
+  Droplet,
+  Milk,
+  Sun,
+  Smile,
+  Award,
+  Clock,
+  ThumbsUp,
 } from "lucide-react";
 
 // Helper to create category pill node
@@ -27,11 +25,11 @@ function createCategoryPill(
 ): LogoItem {
   return {
     node: (
-      <div className="inline-flex items-center gap-2.5 px-4 py-2.5 rounded-2xl border border-slate-200 bg-white text-slate-800 shadow-xs hover:border-teal-300 hover:bg-teal-50/40 transition-all cursor-pointer select-none">
+      <div className="inline-flex items-center gap-2.5 px-4 py-2.5 rounded-2xl border border-[#e2e8e3] bg-white text-[#29332D] shadow-xs hover:border-[#7C9473] hover:bg-[#FAF7F0] transition-all cursor-pointer select-none">
         <span className="flex size-4 items-center justify-center shrink-0">
           {icon}
         </span>
-        <span className="text-[13px] font-medium text-slate-800 tracking-tight whitespace-nowrap">
+        <span className="text-[13px] font-medium text-[#29332D] tracking-tight whitespace-nowrap">
           {label}
         </span>
       </div>
@@ -41,40 +39,37 @@ function createCategoryPill(
   };
 }
 
-// Row 1: Web Templates, UI Kits, SaaS Starters, Developer Tools, E-commerce, Web Components, AI Tools, Design Assets
+// Row 1: Baby & Mom Categories
 export const CATEGORY_ROW_1: LogoItem[] = [
-  createCategoryPill(<Globe2 className="size-4 text-[#0F766E]" />, "Web Templates", "/products?category=web-templates"),
-  createCategoryPill(<PanelsTopLeft className="size-4 text-[#6366F1]" />, "UI Kits", "/products?category=ui-kits"),
-  createCategoryPill(<Rocket className="size-4 text-[#10B981]" />, "SaaS Starters", "/products?category=saas-starters"),
-  createCategoryPill(<Code2 className="size-4 text-[#F59E0B]" />, "Developer Tools", "/products?category=developer-tools"),
-  createCategoryPill(<ShoppingCart className="size-4 text-[#F97316]" />, "E-commerce", "/products?category=e-commerce"),
-  createCategoryPill(<Blocks className="size-4 text-[#06B6D4]" />, "Web Components", "/products?category=web-components"),
-  createCategoryPill(<Sparkles className="size-4 text-[#0F766E]" />, "AI Tools", "/products?category=ai-tools"),
-  createCategoryPill(<Palette className="size-4 text-[#EC4899]" />, "Design Assets", "/products?category=design-assets"),
+  createCategoryPill(<Baby className="size-4 text-[#7C9473]" />, "Newborn Essentials", "/products?category=Baby+Essentials"),
+  createCategoryPill(<Heart className="size-4 text-[#F3E1DD]" />, "Maternal Care", "/products?category=Maternal+Care"),
+  createCategoryPill(<Droplet className="size-4 text-[#7C9473]" />, "Baby Bath & Skincare", "/products?category=Baby+Essentials"),
+  createCategoryPill(<Milk className="size-4 text-[#7C9473]" />, "Feeding & Nursing", "/products?category=Maternal+Care"),
+  createCategoryPill(<Sun className="size-4 text-amber-500" />, "Diapering & Wipes", "/products?category=Baby+Essentials"),
+  createCategoryPill(<Smile className="size-4 text-[#7C9473]" />, "Postpartum Wellness", "/products?category=Maternal+Care"),
+  createCategoryPill(<Sparkles className="size-4 text-[#7C9473]" />, "Gentle Organic Oils", "/products?category=Baby+Essentials"),
 ];
 
-// Row 2: 3D Assets, Motion & Animation, Mobile UI, Productivity, E-books & Guides, Digital Assets
+// Row 2: Customer Trust & Service Indicators
 export const CATEGORY_ROW_2: LogoItem[] = [
-  createCategoryPill(<Box className="size-4 text-[#8B5CF6]" />, "3D Assets", "/products?category=3d-assets"),
-  createCategoryPill(<Clapperboard className="size-4 text-[#D946EF]" />, "Motion & Animation", "/products?category=motion-animation"),
-  createCategoryPill(<Smartphone className="size-4 text-[#14B8A6]" />, "Mobile UI", "/products?category=mobile-ui"),
-  createCategoryPill(<Zap className="size-4 text-[#84CC16]" />, "Productivity", "/products?category=productivity"),
-  createCategoryPill(<BookOpen className="size-4 text-[#0284C7]" />, "E-books & Guides", "/products?category=ebooks-guides"),
-  createCategoryPill(<Layers3 className="size-4 text-[#A855F7]" />, "Digital Assets", "/products?category=digital-assets"),
-  createCategoryPill(<Globe2 className="size-4 text-[#0F766E]" />, "Web Templates", "/products?category=web-templates"),
-  createCategoryPill(<PanelsTopLeft className="size-4 text-[#6366F1]" />, "UI Kits", "/products?category=ui-kits"),
+  createCategoryPill(<ShieldCheck className="size-4 text-[#7C9473]" />, "100% Dermatologist Safe", "/about"),
+  createCategoryPill(<Truck className="size-4 text-[#7C9473]" />, "Cash on Delivery in BD", "/contact"),
+  createCategoryPill(<Award className="size-4 text-amber-500" />, "Authentic Products Guarantee", "/about"),
+  createCategoryPill(<Clock className="size-4 text-[#7C9473]" />, "Fast Nationwide Delivery", "/contact"),
+  createCategoryPill(<ThumbsUp className="size-4 text-[#7C9473]" />, "25,000+ Happy Caregivers", "/about"),
+  createCategoryPill(<Baby className="size-4 text-[#7C9473]" />, "Pediatrician Recommended", "/about"),
 ];
 
 export function TechStackLoopSection() {
   return (
-    <section className="relative overflow-hidden py-16 sm:py-24 bg-slate-50 text-slate-900 border-b border-slate-200">
+    <section className="relative overflow-hidden py-14 sm:py-20 bg-[#FAF7F0]/60 text-[#29332D] border-b border-[#e2e8e3]">
       {/* Header */}
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-12 text-center">
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900 font-heading">
-          Unlimited possibilities
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-10 text-center">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-[#29332D] font-heading">
+          Trusted Care for Baby &amp; Mother
         </h2>
-        <p className="text-xs sm:text-sm text-slate-500 mt-2 max-w-xl mx-auto">
-          Discover the best-selling products and services
+        <p className="text-xs sm:text-sm text-[#536358] mt-2 max-w-xl mx-auto">
+          Explore curated categories &amp; dermatologist-tested products for your family
         </p>
       </div>
 
@@ -83,26 +78,26 @@ export function TechStackLoopSection() {
         {/* Row 1: Leftward */}
         <LogoLoop
           logos={CATEGORY_ROW_1}
-          speed={38}
+          speed={36}
           direction="left"
           logoHeight={38}
           gap={14}
           pauseOnHover
           fadeOut
-          fadeOutColor="#FAFAF8"
+          fadeOutColor="#FAF7F0"
           ariaLabel="Category loop row 1"
         />
 
         {/* Row 2: Rightward */}
         <LogoLoop
           logos={CATEGORY_ROW_2}
-          speed={32}
+          speed={30}
           direction="right"
           logoHeight={38}
           gap={14}
           pauseOnHover
           fadeOut
-          fadeOutColor="#FAFAF8"
+          fadeOutColor="#FAF7F0"
           ariaLabel="Category loop row 2"
         />
       </div>

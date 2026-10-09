@@ -19,7 +19,7 @@ export function RelatedProducts({ products }: RelatedProductsProps) {
   return (
     <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8 border-t border-slate-200">
       <div className="flex items-center gap-2 mb-6">
-        <Sparkles className="size-5 text-[#0F766E]" />
+        <Sparkles className="size-5 text-[#2D5536]" />
         <h3 className="text-xl font-bold font-heading text-slate-900">
           Products Mentioned in This Article
         </h3>
@@ -29,7 +29,7 @@ export function RelatedProducts({ products }: RelatedProductsProps) {
         {products.map((product) => (
           <div
             key={product.id}
-            className="flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-4 shadow-xs hover:border-[#0F766E]/40 hover:shadow-md transition-all"
+            className="flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-4 shadow-xs hover:border-[#A8CFB2] hover:shadow-md transition-all"
           >
             <div>
               {/* Product Thumbnail */}
@@ -47,7 +47,7 @@ export function RelatedProducts({ products }: RelatedProductsProps) {
 
               {/* Title & Price */}
               <Link href={`/products/${product.slug}`}>
-                <h4 className="text-sm font-bold text-slate-900 hover:text-[#0F766E] transition-colors line-clamp-1">
+                <h4 className="text-sm font-bold text-slate-900 hover:text-[#2D5536] transition-colors line-clamp-1">
                   {product.name}
                 </h4>
               </Link>
@@ -82,7 +82,7 @@ export function RelatedProducts({ products }: RelatedProductsProps) {
                     category: product.category,
                   })
                 }
-                className="inline-flex h-9 items-center justify-center gap-1 rounded-full bg-[#0F766E] text-xs font-bold text-white hover:bg-[#115E59] active:scale-95 transition-all shadow-xs cursor-pointer"
+                className="inline-flex h-9 items-center justify-center gap-1 rounded-full bg-[#A8CFB2] text-xs font-bold text-[#1C3A22] hover:brightness-95 active:scale-95 transition-all shadow-sm cursor-pointer"
               >
                 <ShoppingCart className="size-3" />
                 <span>Add</span>

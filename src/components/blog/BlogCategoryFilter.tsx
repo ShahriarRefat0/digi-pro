@@ -23,7 +23,7 @@ export function BlogCategoryFilter({
             onClick={() => onSelectCategory(cat)}
             className={`whitespace-nowrap rounded-full px-4 py-2 text-xs transition-all duration-200 cursor-pointer active:scale-95 shrink-0 ${
               isSelected
-                ? "bg-[#0F766E] text-white shadow-xs font-bold"
+                ? "bg-[#A8CFB2] text-[#1C3A22] shadow-xs font-bold"
                 : "border border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900 font-semibold"
             }`}
           >

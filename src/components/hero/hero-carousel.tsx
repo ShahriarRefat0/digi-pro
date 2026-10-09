@@ -104,8 +104,8 @@ export function HeroCarousel({ slides }: HeroCarouselProps) {
     const isExternal = btn.link.startsWith("http://") || btn.link.startsWith("https://");
 
     const baseClasses = isPrimary
-      ? "inline-flex items-center justify-center gap-2 rounded-2xl bg-[#0F766E] px-6 py-3.5 text-xs sm:text-sm font-bold text-white transition-all duration-200 hover:bg-[#115E59] hover:scale-[1.02] active:scale-95 shadow-md shadow-teal-900/10 min-h-[48px]"
-      : "inline-flex items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-6 py-3.5 text-xs sm:text-sm font-semibold text-slate-800 transition-all duration-200 hover:bg-slate-50 hover:border-slate-300 hover:scale-[1.02] active:scale-95 shadow-xs min-h-[48px]";
+      ? "inline-flex items-center justify-center gap-2 rounded-2xl bg-[#7C9473] px-6 py-3.5 text-xs sm:text-sm font-bold text-white transition-all duration-200 hover:bg-[#5A7052] hover:scale-[1.02] active:scale-95 shadow-md shadow-[#7C9473]/20 min-h-[48px]"
+      : "inline-flex items-center justify-center gap-2 rounded-2xl border border-[#e2e8e3] bg-white px-6 py-3.5 text-xs sm:text-sm font-semibold text-[#29332D] transition-all duration-200 hover:bg-[#FAF7F0] hover:border-[#7C9473] hover:scale-[1.02] active:scale-95 shadow-xs min-h-[48px]";
 
     if (isExternal) {
       return (
@@ -141,11 +141,11 @@ export function HeroCarousel({ slides }: HeroCarouselProps) {
       onTouchStart={onTouchStart}
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
-      className="relative min-h-[70vh] lg:min-h-[75vh] w-full bg-gradient-to-b from-[#F0FDFA]/30 via-slate-50 to-slate-50 border-b border-slate-200 overflow-hidden flex flex-col justify-center focus:outline-none"
+      className="relative min-h-[65vh] lg:min-h-[70vh] w-full bg-gradient-to-b from-[#FAF7F0] via-white to-[#F0F4EE]/40 border-b border-[#e2e8e3] overflow-hidden flex flex-col justify-center focus:outline-none"
     >
       {/* Background Soft Glow Accents */}
-      <div className="absolute top-0 right-1/4 size-96 rounded-full bg-teal-100/40 blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-10 size-80 rounded-full bg-emerald-100/30 blur-3xl pointer-events-none" />
+      <div className="absolute top-0 right-1/4 size-96 rounded-full bg-[#FAF7F0] blur-3xl pointer-events-none opacity-80" />
+      <div className="absolute bottom-0 left-10 size-80 rounded-full bg-[#F3E1DD]/30 blur-3xl pointer-events-none" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 sm:py-16 lg:py-20 w-full">
         <AnimatePresence mode="wait">
@@ -160,7 +160,7 @@ export function HeroCarousel({ slides }: HeroCarouselProps) {
             {/* Desktop & Mobile Image composition */}
             <div className="lg:col-span-6 lg:order-2">
               {/* Desktop Image */}
-              <div className="hidden lg:block relative aspect-16/10 sm:aspect-4/3 rounded-3xl overflow-hidden border border-slate-200/80 bg-white p-2 shadow-xl shadow-teal-900/5 group">
+              <div className="hidden lg:block relative aspect-16/10 sm:aspect-4/3 rounded-3xl overflow-hidden border border-[#e2e8e3] bg-white p-2 shadow-xl shadow-[#7C9473]/10 group">
                 <div className="relative size-full rounded-2xl overflow-hidden bg-slate-100">
                   <Image
                     src={currentSlide.desktopImage.url || currentSlide.mobileImage.url}
@@ -174,7 +174,7 @@ export function HeroCarousel({ slides }: HeroCarouselProps) {
               </div>
 
               {/* Mobile Image */}
-              <div className="lg:hidden relative aspect-16/10 rounded-2xl overflow-hidden border border-slate-200 bg-white p-1.5 shadow-md">
+              <div className="lg:hidden relative aspect-16/10 rounded-2xl overflow-hidden border border-[#e2e8e3] bg-white p-1.5 shadow-md">
                 <div className="relative size-full rounded-xl overflow-hidden bg-slate-100">
                   <Image
                     src={currentSlide.mobileImage.url || currentSlide.desktopImage.url}
@@ -192,20 +192,20 @@ export function HeroCarousel({ slides }: HeroCarouselProps) {
             <div className="lg:col-span-6 lg:order-1 space-y-5 text-left">
               {/* Eyebrow Badge */}
               {currentSlide.eyebrow && (
-                <div className="inline-flex items-center gap-2 rounded-full border border-[#CCFBF1] bg-[#F0FDFA] px-4 py-1 text-xs font-semibold text-[#0F766E] shadow-2xs">
-                  <Sparkles className="size-3.5 text-[#0F766E]" />
+                <div className="inline-flex items-center gap-2 rounded-full border border-[#7C9473]/30 bg-[#FAF7F0] px-4 py-1 text-xs font-semibold text-[#7C9473] shadow-2xs">
+                  <Sparkles className="size-3.5 text-[#7C9473]" />
                   <span>{currentSlide.eyebrow}</span>
                 </div>
               )}
 
               {/* Headline Title */}
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight font-heading text-slate-900 leading-[1.12]">
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight font-heading text-[#29332D] leading-[1.12]">
                 {currentSlide.title}
               </h1>
 
               {/* Description */}
               {currentSlide.description && (
-                <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-xl font-normal">
+                <p className="text-sm sm:text-base text-[#536358] leading-relaxed max-w-xl font-normal">
                   {currentSlide.description}
                 </p>
               )}
@@ -221,7 +221,7 @@ export function HeroCarousel({ slides }: HeroCarouselProps) {
 
         {/* Navigation & Controls */}
         {totalSlides > 1 && (
-          <div className="mt-10 flex items-center justify-between pt-4 border-t border-slate-200/60">
+          <div className="mt-10 flex items-center justify-between pt-4 border-t border-[#e2e8e3]">
             {/* Pagination Dots */}
             <div className="flex items-center gap-2" role="tablist" aria-label="Hero slides">
               {slides.map((s, idx) => (
@@ -234,7 +234,7 @@ export function HeroCarousel({ slides }: HeroCarouselProps) {
                   onClick={() => setCurrentIndex(idx)}
                   className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
                     currentIndex === idx
-                      ? "w-8 bg-[#0F766E]"
+                      ? "w-8 bg-[#7C9473]"
                       : "w-2.5 bg-slate-300 hover:bg-slate-400"
                   }`}
                 />
@@ -247,7 +247,7 @@ export function HeroCarousel({ slides }: HeroCarouselProps) {
                 type="button"
                 aria-label="Previous Hero Slide"
                 onClick={handlePrev}
-                className="size-10 rounded-full border border-slate-200 bg-white flex items-center justify-center text-slate-700 hover:text-[#0F766E] hover:border-teal-200 hover:bg-[#F0FDFA] transition-all cursor-pointer shadow-xs active:scale-95"
+                className="size-10 rounded-full border border-[#e2e8e3] bg-white flex items-center justify-center text-[#29332D] hover:text-[#7C9473] hover:border-[#7C9473] hover:bg-[#FAF7F0] transition-all cursor-pointer shadow-xs active:scale-95"
               >
                 <ChevronLeft className="size-5" />
               </button>
@@ -255,7 +255,7 @@ export function HeroCarousel({ slides }: HeroCarouselProps) {
                 type="button"
                 aria-label="Next Hero Slide"
                 onClick={handleNext}
-                className="size-10 rounded-full border border-slate-200 bg-white flex items-center justify-center text-slate-700 hover:text-[#0F766E] hover:border-teal-200 hover:bg-[#F0FDFA] transition-all cursor-pointer shadow-xs active:scale-95"
+                className="size-10 rounded-full border border-[#e2e8e3] bg-white flex items-center justify-center text-[#29332D] hover:text-[#7C9473] hover:border-[#7C9473] hover:bg-[#FAF7F0] transition-all cursor-pointer shadow-xs active:scale-95"
               >
                 <ChevronRight className="size-5" />
               </button>

@@ -23,11 +23,11 @@ export function BlogCTA() {
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
           viewport={{ once: true, margin: "-40px" }}
           transition={{ duration: 0.55, ease: "easeOut" }}
-          className="relative rounded-3xl border border-[#CCFBF1] bg-gradient-to-b from-[#F0FDFA] via-white to-slate-50 p-8 sm:p-14 text-center shadow-md overflow-hidden"
+          className="relative rounded-3xl border border-[#A8CFB2]/40 bg-gradient-to-b from-[#F2F8F3] via-white to-slate-50 p-8 sm:p-14 text-center shadow-md overflow-hidden"
         >
           {/* Ambient Glow */}
           <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
-            <div className="size-[350px] rounded-full bg-radial from-[#0F766E]/10 via-transparent to-transparent blur-3xl" />
+            <div className="size-[350px] rounded-full bg-radial from-[#A8CFB2]/30 via-transparent to-transparent blur-3xl" />
           </div>
 
           <div className="relative z-10 max-w-xl mx-auto">
@@ -55,7 +55,7 @@ export function BlogCTA() {
               >
                 <div className="relative w-full">
                   <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-400">
-                    <Mail className="size-4 text-[#0F766E]" />
+                    <Mail className="size-4 text-[#2D5536]" />
                   </div>
                   <input
                     type="email"
@@ -63,12 +63,12 @@ export function BlogCTA() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter your email address"
-                    className="w-full rounded-full border border-slate-200 bg-white py-3 pl-10 pr-4 text-xs text-slate-900 placeholder:text-slate-400 transition-all focus:border-[#0F766E] focus:outline-none focus:ring-1 focus:ring-[#0F766E] shadow-xs"
+                    className="w-full rounded-full border border-slate-200 bg-white py-3 pl-10 pr-4 text-xs text-slate-900 placeholder:text-slate-400 transition-all focus:border-[#A8CFB2] focus:outline-none focus:ring-1 focus:ring-[#A8CFB2] shadow-xs"
                   />
                 </div>
                 <button
                   type="submit"
-                  className="w-full sm:w-auto inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[#0F766E] px-7 text-xs font-bold text-white transition-all hover:bg-[#115E59] active:scale-95 shrink-0 shadow-md shadow-[#0F766E]/20 cursor-pointer"
+                  className="w-full sm:w-auto inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[#A8CFB2] px-7 text-xs font-bold text-[#1C3A22] transition-all hover:brightness-95 active:scale-95 shrink-0 shadow-sm cursor-pointer"
                 >
                   <span>Subscribe</span>
                 </button>

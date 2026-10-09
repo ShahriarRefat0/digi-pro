@@ -14,6 +14,7 @@ import {
   Images,
   ShoppingCart,
   BookOpen,
+  FolderTree,
 } from "lucide-react";
 import { MAIN_DASHBOARD_NAV } from "@/lib/dashboard-navigation";
 import { logoutAdminAction } from "@/app/actions/auth";
@@ -26,6 +27,7 @@ const ICON_MAP = {
   Images: Images,
   ShoppingCart: ShoppingCart,
   BookOpen: BookOpen,
+  FolderTree: FolderTree,
 };
 
 interface SidebarProps {

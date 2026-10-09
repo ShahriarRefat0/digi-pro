@@ -11,9 +11,9 @@ import {
 import { getPublishedJournals, getFeaturedJournal } from "@/lib/journals/journal.repository";
 
 export const metadata: Metadata = {
-  title: "Care Journal — Trusted Guidance for Better Baby & Mother Care | Careproff",
+  title: "Care Journal — Trusted Guidance for Better Baby & Mother Care | Careoffbd.com",
   description:
-    "Helpful care tips, product guides, and practical advice for mothers, parents, and caregivers from Careproff pediatric & maternal care experts.",
+    "Helpful care tips, product guides, and practical advice for mothers, parents, and caregivers from Careoffbd.com pediatric & maternal care experts.",
 };
 
 export default async function CareJournalPage() {
@@ -23,12 +23,12 @@ export default async function CareJournalPage() {
   ]);
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 selection:bg-[#F0FDFA] selection:text-[#0F766E]">
+    <div className="min-h-screen flex flex-col bg-[#FAF7F0] text-[#29332D] selection:bg-[#7C9473]/20 selection:text-[#29332D]">
       {/* 1. Navbar */}
       <Navbar />
 
       {/* Main Journal Page Content */}
-      <main className="flex-1 bg-slate-50">
+      <main className="flex-1 bg-[#FAF7F0]">
         {/* 2. Journal Hero */}
         <BlogHero />
 

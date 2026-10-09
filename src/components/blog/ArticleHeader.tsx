@@ -53,7 +53,7 @@ export function ArticleHeader({ article }: ArticleHeaderProps) {
         <div
           className="size-[500px] rounded-full blur-3xl opacity-20"
           style={{
-            background: `radial-gradient(circle, #0F766E 0%, transparent 70%)`,
+            background: `radial-gradient(circle, #A8CFB2 0%, transparent 70%)`,
           }}
         />
       </div>
@@ -86,7 +86,7 @@ export function ArticleHeader({ article }: ArticleHeaderProps) {
         >
           <Link
             href="/care-journal"
-            className="group inline-flex items-center gap-1.5 text-xs font-semibold text-slate-600 hover:text-[#0F766E] transition-colors"
+            className="group inline-flex items-center gap-1.5 text-xs font-semibold text-slate-600 hover:text-[#2D5536] transition-colors"
           >
             <ArrowLeft className="size-3.5 transition-transform duration-200 group-hover:-translate-x-1" />
             <span>Back to Care Journal</span>
@@ -98,9 +98,9 @@ export function ArticleHeader({ article }: ArticleHeaderProps) {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.1 }}
-          className="inline-flex items-center gap-1.5 rounded-full border border-[#CCFBF1] bg-[#F0FDFA] px-3.5 py-1 text-xs font-bold text-[#0F766E] mb-4"
+          className="inline-flex items-center gap-1.5 rounded-full border border-[#A8CFB2]/50 bg-[#F2F8F3] px-3.5 py-1 text-xs font-bold text-[#1C3A22] mb-4"
         >
-          <Tag className="size-3" />
+          <Tag className="size-3 text-[#2D5536]" />
           <span>{article.category}</span>
         </motion.div>
 
@@ -132,7 +132,7 @@ export function ArticleHeader({ article }: ArticleHeaderProps) {
           className="mt-8 pt-6 border-t border-slate-200 flex flex-wrap items-center justify-between gap-4"
         >
           <div className="flex items-center gap-3">
-            <div className="size-10 rounded-full bg-[#F0FDFA] border border-[#CCFBF1] flex items-center justify-center text-xs font-bold text-[#0F766E] shrink-0">
+            <div className="size-10 rounded-full bg-[#F2F8F3] border border-[#A8CFB2]/50 flex items-center justify-center text-xs font-bold text-[#1C3A22] shrink-0">
               {(article.author || "Careproff").charAt(0)}
             </div>
             <div>
@@ -159,7 +159,7 @@ export function ArticleHeader({ article }: ArticleHeaderProps) {
                 type="button"
                 onClick={handleShareFacebook}
                 title="Share on Facebook"
-                className="p-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:text-[#0F766E] hover:border-[#0F766E] transition-colors cursor-pointer"
+                className="p-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:text-[#2D5536] hover:border-[#A8CFB2] transition-colors cursor-pointer"
               >
                 <Share2 className="size-3.5" />
               </button>
@@ -174,7 +174,7 @@ export function ArticleHeader({ article }: ArticleHeaderProps) {
               <button
                 type="button"
                 onClick={handleCopyLink}
-                className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-white px-2.5 py-1 text-xs text-slate-700 hover:border-slate-300 hover:text-[#0F766E] transition-colors cursor-pointer"
+                className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-white px-2.5 py-1 text-xs text-slate-700 hover:border-slate-300 hover:text-[#2D5536] transition-colors cursor-pointer"
               >
                 {copied ? <Check className="size-3 text-emerald-600" /> : <Share2 className="size-3" />}
                 <span>{copied ? "Copied!" : "Copy"}</span>

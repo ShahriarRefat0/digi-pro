@@ -20,12 +20,12 @@ export function BlogCard({ article, index = 0 }: BlogCardProps) {
       viewport={{ once: true, margin: "-30px" }}
       transition={{ duration: 0.45, delay: index * 0.06, ease: "easeOut" }}
       whileHover={{ y: -6, transition: { duration: 0.22, ease: "easeOut" } }}
-      className="group flex flex-col justify-between rounded-2xl border border-slate-200 bg-white overflow-hidden transition-all duration-300 hover:border-[#0F766E]/40 hover:shadow-lg"
+      className="group flex flex-col justify-between rounded-2xl border border-slate-200 bg-white overflow-hidden transition-all duration-300 hover:border-[#A8CFB2] hover:shadow-lg"
     >
       {/* Top Image / Visual Cover */}
       <Link
         href={`/care-journal/${article.slug}`}
-        className="relative h-48 w-full overflow-hidden bg-teal-50 block select-none"
+        className="relative h-48 w-full overflow-hidden bg-[#F2F8F3] block select-none"
       >
         {article.coverImage ? (
           <Image
@@ -35,9 +35,9 @@ export function BlogCard({ article, index = 0 }: BlogCardProps) {
             className="object-cover transition-transform duration-500 group-hover:scale-105"
           />
         ) : (
-          <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center bg-teal-50">
-            <Heart className="size-8 text-[#0F766E] mb-2 opacity-50" />
-            <span className="text-xs font-bold text-[#0F766E] font-heading">
+          <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center bg-[#F2F8F3]">
+            <Heart className="size-8 text-[#2D5536] mb-2 opacity-50" />
+            <span className="text-xs font-bold text-[#2D5536] font-heading">
               Careproff Care Journal
             </span>
           </div>
@@ -46,7 +46,7 @@ export function BlogCard({ article, index = 0 }: BlogCardProps) {
         {/* Category & Read Time Badges */}
         <div className="absolute top-3 left-3 right-3 z-10 flex items-center justify-between pointer-events-none">
           <span className="inline-flex items-center gap-1 text-[11px] font-mono font-bold text-slate-800 bg-white/95 backdrop-blur-md border border-slate-200 px-2.5 py-0.5 rounded-full shadow-xs">
-            <Tag className="size-3 text-[#0F766E]" />
+            <Tag className="size-3 text-[#2D5536]" />
             <span>{article.category}</span>
           </span>
 
@@ -61,7 +61,7 @@ export function BlogCard({ article, index = 0 }: BlogCardProps) {
         <div>
           {/* Article Title */}
           <Link href={`/care-journal/${article.slug}`}>
-            <h3 className="text-base sm:text-lg font-bold text-slate-900 font-heading leading-snug group-hover:text-[#0F766E] transition-colors line-clamp-2">
+            <h3 className="text-base sm:text-lg font-bold text-slate-900 font-heading leading-snug group-hover:text-[#2D5536] transition-colors line-clamp-2">
               {article.title}
             </h3>
           </Link>
@@ -87,7 +87,7 @@ export function BlogCard({ article, index = 0 }: BlogCardProps) {
 
           <Link
             href={`/care-journal/${article.slug}`}
-            className="inline-flex items-center gap-1 text-xs font-semibold text-slate-800 group-hover:text-[#0F766E] transition-colors shrink-0"
+            className="inline-flex items-center gap-1 text-xs font-semibold text-slate-800 group-hover:text-[#2D5536] transition-colors shrink-0"
           >
             <span>Read Article</span>
             <ArrowUpRight className="size-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

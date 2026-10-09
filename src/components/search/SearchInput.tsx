@@ -25,7 +25,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
   onFocus,
   onKeyDown,
   isLoading = false,
-  placeholder = "Search care products, services, advice...",
+  placeholder = "Search baby & mom care products...",
   shortcutKey = "⌘K",
   autoFocus = false,
   variant = "compact",

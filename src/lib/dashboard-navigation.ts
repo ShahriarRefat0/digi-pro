@@ -1,7 +1,7 @@
 export interface DashboardNavItem {
   label: string;
   href: string;
-  icon: "LayoutDashboard" | "Package" | "Plus" | "ExternalLink" | "Settings" | "Users" | "Images" | "ShoppingCart" | "BookOpen";
+  icon: "LayoutDashboard" | "Package" | "Plus" | "ExternalLink" | "Settings" | "Users" | "Images" | "ShoppingCart" | "BookOpen" | "FolderTree";
   badge?: string;
   permission?: string;
 }
@@ -11,6 +11,12 @@ export const MAIN_DASHBOARD_NAV: DashboardNavItem[] = [
     label: "Dashboard",
     href: "/dashboard",
     icon: "LayoutDashboard",
+    permission: "DASHBOARD_VIEW",
+  },
+  {
+    label: "Categories",
+    href: "/dashboard/categories",
+    icon: "FolderTree",
     permission: "DASHBOARD_VIEW",
   },
   {
