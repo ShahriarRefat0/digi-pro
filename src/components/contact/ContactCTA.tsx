@@ -14,14 +14,14 @@ export function ContactCTA() {
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
           viewport={{ once: true, margin: "-40px" }}
           transition={{ duration: 0.55, ease: "easeOut" }}
-          className="relative rounded-3xl border border-[#CCFBF1] bg-gradient-to-b from-[#F0FDFA] via-white to-slate-50 p-8 sm:p-14 text-center shadow-md overflow-hidden"
+          className="relative rounded-3xl border border-[#A8CFB2]/40 bg-gradient-to-b from-[#F2F8F3] via-white to-slate-50 p-8 sm:p-14 text-center shadow-md overflow-hidden"
         >
           {/* Ambient Glow */}
           <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
             <motion.div
               animate={{ scale: [1, 1.15, 1], opacity: [0.3, 0.5, 0.3] }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              className="size-[400px] rounded-full bg-radial from-[#0F766E]/10 via-transparent to-transparent blur-3xl"
+              className="size-[400px] rounded-full bg-radial from-[#A8CFB2]/30 via-transparent to-transparent blur-3xl"
             />
           </div>
 
@@ -37,7 +37,7 @@ export function ContactCTA() {
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
               <Link
                 href="/products"
-                className="group inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#0F766E] px-8 text-sm font-bold text-white transition-all hover:bg-[#115E59] active:scale-95 shadow-md shadow-[#0F766E]/20"
+                className="group inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#A8CFB2] px-8 text-sm font-bold text-[#1C3A22] transition-all hover:brightness-95 active:scale-95 shadow-sm"
               >
                 <Package className="size-4" />
                 <span>Explore Products</span>
@@ -46,7 +46,7 @@ export function ContactCTA() {
 
               <Link
                 href="/products"
-                className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-8 text-sm font-semibold text-slate-800 transition-all hover:bg-slate-100 hover:border-slate-300 hover:text-[#0F766E] active:scale-95 shadow-xs"
+                className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-8 text-sm font-semibold text-slate-800 transition-all hover:bg-slate-100 hover:border-slate-300 hover:text-[#2D5536] active:scale-95 shadow-xs"
               >
                 <Package className="size-4" />
                 <span>Explore Products</span>

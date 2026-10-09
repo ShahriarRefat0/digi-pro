@@ -12,10 +12,10 @@ export const metadata: Metadata = {
 
 export default function LoginPage() {
   return (
-    <div className="min-h-screen flex flex-col justify-between bg-slate-50 text-slate-900 selection:bg-teal-100 selection:text-teal-900 relative overflow-hidden">
+    <div className="min-h-screen flex flex-col justify-between bg-slate-50 text-slate-900 selection:bg-[#A8CFB2]/40 selection:text-[#1C3A22] relative overflow-hidden">
       {/* Background Radial Ambient Glow */}
       <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
-        <div className="size-[650px] rounded-full bg-radial from-teal-100/60 via-slate-50 to-slate-50 blur-3xl opacity-60" />
+        <div className="size-[650px] rounded-full bg-radial from-[#A8CFB2]/30 via-slate-50 to-slate-50 blur-3xl opacity-60" />
       </div>
 
       {/* Top Header */}
@@ -29,7 +29,7 @@ export default function LoginPage() {
         </Link>
 
         <div className="flex items-center gap-2 font-heading font-extrabold text-sm tracking-tight text-slate-700">
-          <Terminal className="size-4 text-[#0F766E]" />
+          <Terminal className="size-4 text-[#2D5536]" />
           <span className="font-mono text-xs uppercase tracking-wider text-slate-700">
             ADMIN PORTAL
           </span>
@@ -41,7 +41,7 @@ export default function LoginPage() {
         <Suspense
           fallback={
             <div className="flex items-center justify-center py-20 text-slate-500 gap-2">
-              <Loader2 className="size-5 animate-spin text-[#0F766E]" />
+              <Loader2 className="size-5 animate-spin text-[#2D5536]" />
               <span className="text-xs font-mono">Loading authentication...</span>
             </div>
           }

@@ -2,8 +2,8 @@ import { Metadata } from "next";
 import { CartClient } from "./cart-client";
 
 export const metadata: Metadata = {
-  title: "Shopping Cart | Careproff",
-  description: "View items in your Careproff shopping cart and proceed to checkout.",
+  title: "Shopping Cart — Careoffbd.com",
+  description: "View items in your Careoffbd.com shopping cart and proceed to checkout.",
 };
 
 export default function CartPage() {

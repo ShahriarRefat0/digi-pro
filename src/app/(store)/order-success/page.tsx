@@ -4,8 +4,8 @@ import { OrderSuccessClient } from "./order-success-client";
 import { Loader2 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Order Confirmed | Careproff",
-  description: "Your order has been successfully placed with Careproff.",
+  title: "Order Confirmed — Careoffbd.com",
+  description: "Your order has been successfully placed with Careoffbd.com.",
 };
 
 export default function OrderSuccessPage() {
@@ -14,8 +14,8 @@ export default function OrderSuccessPage() {
       <Suspense
         fallback={
           <div className="min-h-[50vh] flex flex-col items-center justify-center text-center p-8">
-            <Loader2 className="size-8 text-[#0F766E] animate-spin mb-3" />
-            <p className="text-xs text-slate-500 font-mono">Loading confirmation...</p>
+            <Loader2 className="size-8 text-[#7C9473] animate-spin mb-3" />
+            <p className="text-xs text-[#29332D]/60 font-mono">Loading confirmation...</p>
           </div>
         }
       >

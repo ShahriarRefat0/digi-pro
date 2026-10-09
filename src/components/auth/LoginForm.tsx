@@ -81,7 +81,7 @@ export function LoginForm() {
     <div className="w-full max-w-md rounded-3xl border border-slate-200 bg-white p-7 sm:p-9 shadow-lg relative">
       {/* Card Header */}
       <div className="text-center mb-6">
-        <div className="size-12 rounded-2xl bg-teal-50 border border-teal-100 flex items-center justify-center text-[#0F766E] mx-auto mb-4 shadow-xs">
+        <div className="size-12 rounded-2xl bg-[#F2F8F3] border border-[#A8CFB2]/50 flex items-center justify-center text-[#2D5536] mx-auto mb-4 shadow-xs">
           <KeyRound className="size-6" />
         </div>
 
@@ -195,7 +195,7 @@ export function LoginForm() {
               checked={rememberMe}
               disabled={isPending || isSuccess}
               onChange={(e) => setRememberMe(e.target.checked)}
-              className="size-4 rounded border-slate-300 bg-white text-[#0F766E] focus:ring-[#0F766E]"
+              className="size-4 rounded border-slate-300 bg-white text-[#2D5536] focus:ring-[#A8CFB2]"
             />
             <span className="text-xs text-slate-600 font-normal select-none">
               Remember me
@@ -208,7 +208,7 @@ export function LoginForm() {
           <button
             type="submit"
             disabled={isPending || isSuccess}
-            className="w-full inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[#0F766E] px-8 text-xs sm:text-sm font-bold text-white hover:bg-[#115E59] transition-all active:scale-95 disabled:opacity-80 shadow-md shadow-teal-900/10 cursor-pointer"
+            className="w-full inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[#A8CFB2] px-8 text-xs sm:text-sm font-bold text-[#1C3A22] hover:brightness-95 transition-all active:scale-95 disabled:opacity-80 shadow-sm cursor-pointer"
           >
             {isPending ? (
               <>

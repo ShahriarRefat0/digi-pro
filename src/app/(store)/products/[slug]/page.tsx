@@ -18,12 +18,12 @@ export async function generateMetadata({ params }: ProductDetailPageProps): Prom
 
   if (!product || product.status !== "published") {
     return {
-      title: "Product Not Found — Careproff",
+      title: "Product Not Found — Careoffbd.com",
     };
   }
 
   return {
-    title: `${product.name} — Careproff`,
+    title: `${product.name} — Careoffbd.com`,
     description: product.shortDescription,
   };
 }
@@ -38,10 +38,10 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 selection:bg-teal-100 selection:text-teal-900">
+    <div className="min-h-screen flex flex-col bg-[#FAF7F0] text-[#29332D] selection:bg-[#7C9473]/20 selection:text-[#29332D]">
       <Navbar />
 
-      <main className="flex-1 mx-auto max-w-5xl px-4 py-12 sm:px-6 lg:px-8 w-full bg-slate-50">
+      <main className="flex-1 mx-auto max-w-5xl px-4 py-12 sm:px-6 lg:px-8 w-full">
         <ProductDetailClient product={product} />
       </main>
 

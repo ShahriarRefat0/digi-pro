@@ -40,7 +40,7 @@ export const SearchResults: React.FC<SearchResultsProps> = ({
       <div className="p-4 sm:p-5 space-y-4 text-gray-900 bg-white">
         <div>
           <div className="flex items-center gap-1.5 px-2 pb-2 text-[10px] font-semibold uppercase tracking-wider text-gray-500">
-            <Sparkles className="size-3 text-[#0F766E]" />
+            <Sparkles className="size-3 text-[#2D5536]" />
             <span>Popular Categories</span>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-2 gap-2 pt-1">
@@ -49,10 +49,10 @@ export const SearchResults: React.FC<SearchResultsProps> = ({
                 key={cat.name}
                 href={cat.href}
                 onClick={onItemClick}
-                className="flex items-center justify-between rounded-xl border border-gray-200 bg-slate-50 px-3.5 py-2.5 text-xs font-semibold text-gray-700 hover:border-teal-300 hover:bg-[#F0FDFA] hover:text-[#0F766E] transition-all group"
+                className="flex items-center justify-between rounded-xl border border-gray-200 bg-slate-50 px-3.5 py-2.5 text-xs font-semibold text-gray-700 hover:border-[#A8CFB2] hover:bg-[#F2F8F3] hover:text-[#2D5536] transition-all group"
               >
                 <span className="truncate">{cat.name}</span>
-                <ArrowRight className="size-3 text-gray-400 group-hover:text-[#0F766E] group-hover:translate-x-0.5 transition-all shrink-0" />
+                <ArrowRight className="size-3 text-gray-400 group-hover:text-[#2D5536] group-hover:translate-x-0.5 transition-all shrink-0" />
               </Link>
             ))}
           </div>
@@ -67,21 +67,21 @@ export const SearchResults: React.FC<SearchResultsProps> = ({
             <Link
               href="/products"
               onClick={onItemClick}
-              className="rounded-full border border-gray-200 bg-white px-3 py-1 text-xs text-gray-600 hover:border-[#0F766E] hover:text-[#0F766E] transition-colors"
+              className="rounded-full border border-gray-200 bg-white px-3 py-1 text-xs text-gray-600 hover:border-[#A8CFB2] hover:text-[#2D5536] transition-colors"
             >
               Browse Products
             </Link>
             <Link
               href="/about"
               onClick={onItemClick}
-              className="rounded-full border border-gray-200 bg-white px-3 py-1 text-xs text-gray-600 hover:border-[#0F766E] hover:text-[#0F766E] transition-colors"
+              className="rounded-full border border-gray-200 bg-white px-3 py-1 text-xs text-gray-600 hover:border-[#A8CFB2] hover:text-[#2D5536] transition-colors"
             >
               About Careproff
             </Link>
             <Link
               href="/blog"
               onClick={onItemClick}
-              className="rounded-full border border-gray-200 bg-white px-3 py-1 text-xs text-gray-600 hover:border-[#0F766E] hover:text-[#0F766E] transition-colors"
+              className="rounded-full border border-gray-200 bg-white px-3 py-1 text-xs text-gray-600 hover:border-[#A8CFB2] hover:text-[#2D5536] transition-colors"
             >
               Care Journal
             </Link>
@@ -95,7 +95,7 @@ export const SearchResults: React.FC<SearchResultsProps> = ({
   if (isLoading && flatItems.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center p-12 text-center text-gray-900 bg-white">
-        <Loader2 className="size-6 animate-spin text-[#0F766E] mb-3" />
+        <Loader2 className="size-6 animate-spin text-[#2D5536] mb-3" />
         <p className="text-sm font-medium text-gray-700">Searching Careproff...</p>
         <p className="text-xs text-gray-500 mt-1">
           Looking for products, services, and articles for &ldquo;{query}&rdquo;
@@ -119,7 +119,7 @@ export const SearchResults: React.FC<SearchResultsProps> = ({
           <Link
             href="/products"
             onClick={onItemClick}
-            className="inline-flex items-center gap-1.5 rounded-full bg-[#0F766E] px-4 py-1.5 text-xs font-bold text-white transition-all hover:bg-[#115E59]"
+            className="inline-flex items-center gap-1.5 rounded-full bg-[#A8CFB2] px-4 py-1.5 text-xs font-bold text-[#1C3A22] shadow-sm hover:brightness-95 transition-all"
           >
             <span>Browse care products</span>
             <ArrowRight className="size-3.5 stroke-[2.5]" />
@@ -218,7 +218,7 @@ export const SearchResults: React.FC<SearchResultsProps> = ({
         <Link
           href={`/search?q=${encodeURIComponent(query)}`}
           onClick={onItemClick}
-          className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0F766E] hover:underline underline-offset-4 group transition-colors"
+          className="inline-flex items-center gap-1.5 text-xs font-bold text-[#2D5536] hover:underline underline-offset-4 group transition-colors"
         >
           <span>View all {results.totalCount} results for &ldquo;{query}&rdquo;</span>
           <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" />

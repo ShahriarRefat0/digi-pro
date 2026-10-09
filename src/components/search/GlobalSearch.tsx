@@ -203,10 +203,10 @@ export function GlobalSearch() {
 
   return (
     <>
-      {/* Desktop Search Bar (Integrated inside Navbar) */}
+      {/* Desktop Search Bar (Integrated inside Navbar Top Row) */}
       <div
         ref={containerRef}
-        className="relative hidden lg:flex items-center flex-1 max-w-xs xl:max-w-sm mx-4"
+        className="relative hidden md:flex items-center flex-1 max-w-md lg:max-w-xl mx-4 lg:mx-8"
         role="combobox"
         aria-expanded={isOpen}
         aria-haspopup="listbox"
@@ -220,13 +220,13 @@ export function GlobalSearch() {
           onKeyDown={handleKeyDown}
           isLoading={isLoading}
           shortcutKey={shortcutKey}
-          placeholder="Search products, articles..."
+          placeholder="Search baby & mom care products..."
           variant="compact"
         />
 
         {/* Desktop Suggestions Dropdown */}
         {isOpen && (
-          <div className="absolute top-full left-0 right-0 mt-2 z-50 rounded-2xl border border-gray-200 bg-white shadow-xl shadow-gray-300/40 overflow-hidden animate-in fade-in-0 zoom-in-95 duration-150">
+          <div className="absolute top-full left-0 right-0 mt-2 z-50 rounded-2xl border border-[#29332D]/10 bg-white shadow-xl overflow-hidden animate-in fade-in-0 zoom-in-95 duration-150">
             <SearchResults
               query={query}
               results={results}
@@ -240,7 +240,7 @@ export function GlobalSearch() {
         )}
       </div>
 
-      {/* Mobile Search Trigger Button (Visible on Screens < 1024px) */}
+      {/* Mobile Search Trigger Button (Visible on Screens < 768px) */}
       <button
         type="button"
         onClick={() => {
@@ -248,7 +248,7 @@ export function GlobalSearch() {
           setTimeout(() => mobileInputRef.current?.focus(), 50);
         }}
         aria-label="Open search dialog"
-        className="flex lg:hidden ml-auto size-9 rounded-full border border-gray-300 bg-white items-center justify-center text-gray-700 hover:border-[#0F766E] hover:text-[#0F766E] transition-colors shrink-0"
+        className="flex md:hidden ml-auto size-9 rounded-full border border-[#29332D]/10 bg-white items-center justify-center text-[#29332D] hover:border-[#7C9473] hover:text-[#7C9473] transition-colors shrink-0"
       >
         <Search className="size-4" />
       </button>
@@ -261,7 +261,7 @@ export function GlobalSearch() {
             <button
               type="button"
               onClick={closeAll}
-              className="flex size-9 shrink-0 items-center justify-center rounded-full border border-gray-300 bg-white text-gray-700 hover:text-[#0F766E]"
+              className="flex size-9 shrink-0 items-center justify-center rounded-full border border-gray-300 bg-white text-gray-700 hover:text-[#2D5536]"
               aria-label="Close search"
             >
               <ArrowLeft className="size-4" />

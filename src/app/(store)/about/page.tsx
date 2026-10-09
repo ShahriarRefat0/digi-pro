@@ -16,19 +16,19 @@ import {
 } from "@/components/about";
 
 export const metadata: Metadata = {
-  title: "About Careproff — Digital Products for Maternal & Baby Care",
+  title: "About Careoffbd.com — Bangladesh's Trusted Baby & Mother Care Store",
   description:
-    "We create practical digital products and provide care resources that help families and caregivers nurture with confidence.",
+    "We provide safe, dermatologist-tested baby care, maternity essentials, and women's personal care products in Bangladesh.",
 };
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 selection:bg-teal-100 selection:text-teal-900">
+    <div className="min-h-screen flex flex-col bg-[#FAF7F0] text-[#29332D] selection:bg-[#7C9473]/20 selection:text-[#29332D]">
       {/* 1. Navbar */}
       <Navbar />
 
       {/* Main Content Sections */}
-      <main className="flex-1 bg-slate-50">
+      <main className="flex-1 bg-[#FAF7F0]">
         {/* 2. Hero */}
         <AboutHero />
 

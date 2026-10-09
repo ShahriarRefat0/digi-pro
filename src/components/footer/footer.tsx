@@ -20,119 +20,128 @@ export function Footer() {
   }
 
   return (
-    <footer className="w-full border-t border-gray-200 bg-[#FAFAF8] text-gray-900 mt-auto">
+    <footer className="w-full border-t border-[#e2e8e3] bg-[#FAF7F0] text-[#29332D] mt-auto">
       <div className="mx-auto max-w-7xl px-6 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
-        {/* Top Section: Newsletter + Link Columns */}
+        {/* Top Section: Brand Story, Newsletter & Links */}
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-12">
-          {/* Left Column: Heading & Newsletter Form */}
-          <div className="lg:col-span-7 flex flex-col justify-between">
-            <div className="max-w-xl">
-              <h2 className="text-2xl font-bold tracking-tight sm:text-3xl lg:text-[36px] lg:leading-[1.2] text-gray-900">
-                Subscribe for gentle care tips, expert pediatric advice & exclusive offers.
-              </h2>
-              <p className="mt-3 text-sm text-gray-600">
-                Join over 25,000+ caregivers receiving weekly dermatologist-approved advice.
+          {/* Left Column: Brand Story & Newsletter Form */}
+          <div className="lg:col-span-6 flex flex-col justify-between space-y-6">
+            <div className="max-w-xl space-y-4">
+              <Link href="/" className="inline-flex items-center gap-2 text-2xl font-black text-[#29332D]">
+                <span className="size-8 rounded-xl bg-[#7C9473] text-white flex items-center justify-center text-sm font-black shadow-xs">C</span>
+                <span>Careoffbd.com</span>
+              </Link>
+
+              <p className="text-sm text-[#536358] leading-relaxed">
+                Bangladesh&apos;s dedicated e-commerce destination for safe baby care, maternity essentials, and gentle women&apos;s personal care products. Tested, trusted, and delivered straight to your doorstep.
               </p>
 
-              <form onSubmit={handleSubmit} className="mt-8 max-w-md">
-                <div className="flex items-center rounded-xl border border-gray-300 bg-white overflow-hidden shadow-xs transition-colors focus-within:border-[#0F766E] focus-within:ring-1 focus-within:ring-[#0F766E]">
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder={status === "success" ? "Subscribed! Thank you." : "Enter your email address"}
-                    disabled={status === "loading" || status === "success"}
-                    required
-                    className="flex-1 bg-transparent px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none disabled:opacity-60"
-                  />
-                  <button
-                    type="submit"
-                    disabled={status === "loading"}
-                    aria-label="Subscribe"
-                    className="flex h-11 w-12 shrink-0 items-center justify-center bg-[#0F766E] text-white font-semibold transition-all hover:bg-[#115E59] active:scale-95 disabled:opacity-75"
-                  >
-                    {status === "success" ? (
-                      <Check className="size-4 stroke-[2.5]" />
-                    ) : (
-                      <ArrowRight className="size-4 stroke-[2.5]" />
-                    )}
-                  </button>
-                </div>
-              </form>
+              <div className="pt-2">
+                <h3 className="text-sm font-bold text-[#29332D] mb-1">
+                  Subscribe for gentle care tips &amp; exclusive offers
+                </h3>
+                <p className="text-xs text-[#536358] mb-4">
+                  Join caregivers receiving weekly expert advice across Bangladesh.
+                </p>
+
+                <form onSubmit={handleSubmit} className="max-w-md">
+                  <div className="flex items-center rounded-xl border border-[#e2e8e3] bg-white overflow-hidden shadow-xs transition-colors focus-within:border-[#7C9473] focus-within:ring-1 focus-within:ring-[#7C9473]">
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder={status === "success" ? "Subscribed! Thank you." : "Enter your email address"}
+                      disabled={status === "loading" || status === "success"}
+                      required
+                      className="flex-1 bg-transparent px-4 py-3 text-xs sm:text-sm text-[#29332D] placeholder:text-gray-400 focus:outline-none disabled:opacity-60"
+                    />
+                    <button
+                      type="submit"
+                      disabled={status === "loading"}
+                      aria-label="Subscribe"
+                      className="flex h-11 w-12 shrink-0 items-center justify-center bg-[#7C9473] text-white font-semibold transition-all hover:bg-[#5A7052] active:scale-95 disabled:opacity-75 cursor-pointer"
+                    >
+                      {status === "success" ? (
+                        <Check className="size-4 stroke-[2.5]" />
+                      ) : (
+                        <ArrowRight className="size-4 stroke-[2.5]" />
+                      )}
+                    </button>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
 
           {/* Right Columns: Nav Links */}
-          <div className="grid grid-cols-2 gap-8 sm:gap-16 lg:col-span-5 lg:justify-end">
-            {/* Column 1 */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 lg:col-span-6 lg:justify-end">
+            {/* Column 1: Shop Categories */}
             <div className="flex flex-col space-y-3.5">
-              <span className="text-xs font-bold uppercase tracking-wider text-gray-400">Care Catalog</span>
-              <Link href="/products" className="text-sm text-gray-600 transition-colors hover:text-[#0F766E] hover:underline underline-offset-4">
-                Maternal Care
+              <span className="text-xs font-bold uppercase tracking-wider text-[#7C9473]">Shop Categories</span>
+              <Link href="/products?category=Baby+Essentials" className="text-xs sm:text-sm text-[#536358] transition-colors hover:text-[#7C9473] hover:underline underline-offset-4">
+                Baby Care Essentials
               </Link>
-              <Link href="/products" className="text-sm text-gray-600 transition-colors hover:text-[#0F766E] hover:underline underline-offset-4">
-                Baby Essentials
+              <Link href="/products?category=Maternal+Care" className="text-xs sm:text-sm text-[#536358] transition-colors hover:text-[#7C9473] hover:underline underline-offset-4">
+                Maternity &amp; Pregnancy
               </Link>
-              <Link href="/blog" className="text-sm text-gray-600 transition-colors hover:text-[#0F766E] hover:underline underline-offset-4">
-                Care Journal
+              <Link href="/products" className="text-xs sm:text-sm text-[#536358] transition-colors hover:text-[#7C9473] hover:underline underline-offset-4">
+                Bath &amp; Skincare
+              </Link>
+              <Link href="/products" className="text-xs sm:text-sm text-[#536358] transition-colors hover:text-[#7C9473] hover:underline underline-offset-4">
+                Feeding &amp; Nursing
               </Link>
             </div>
 
-            {/* Column 2 */}
+            {/* Column 2: Information */}
             <div className="flex flex-col space-y-3.5">
-              <span className="text-xs font-bold uppercase tracking-wider text-gray-400">Company & Help</span>
-              <Link href="/about" className="text-sm text-gray-600 transition-colors hover:text-[#0F766E] hover:underline underline-offset-4">
-                About Careproff
+              <span className="text-xs font-bold uppercase tracking-wider text-[#7C9473]">Information</span>
+              <Link href="/about" className="text-xs sm:text-sm text-[#536358] transition-colors hover:text-[#7C9473] hover:underline underline-offset-4">
+                About Careoffbd
               </Link>
-              <Link href="/contact" className="text-sm text-gray-600 transition-colors hover:text-[#0F766E] hover:underline underline-offset-4">
-                Contact Support
+              <Link href="/care-journal" className="text-xs sm:text-sm text-[#536358] transition-colors hover:text-[#7C9473] hover:underline underline-offset-4">
+                Care Journal &amp; Tips
               </Link>
-              <Link href="/contact" className="text-sm text-gray-600 transition-colors hover:text-[#0F766E] hover:underline underline-offset-4">
-                FAQs & Delivery
+              <Link href="/contact" className="text-xs sm:text-sm text-[#536358] transition-colors hover:text-[#7C9473] hover:underline underline-offset-4">
+                Contact &amp; Help
               </Link>
-              <Link href="/about" className="text-sm text-gray-600 transition-colors hover:text-[#0F766E] hover:underline underline-offset-4">
-                Safety Guarantee
+              <Link href="/contact" className="text-xs sm:text-sm text-[#536358] transition-colors hover:text-[#7C9473] hover:underline underline-offset-4">
+                FAQs &amp; Shipping
               </Link>
+            </div>
+
+            {/* Column 3: Trust & Delivery */}
+            <div className="flex flex-col space-y-3.5 col-span-2 sm:col-span-1">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#7C9473]">Customer Promise</span>
+              <p className="text-xs text-[#536358] leading-relaxed">
+                ✅ Cash on Delivery in Bangladesh
+              </p>
+              <p className="text-xs text-[#536358] leading-relaxed">
+                ✅ 100% Genuine Guarantee
+              </p>
+              <p className="text-xs text-[#536358] leading-relaxed">
+                ✅ Easy Returns &amp; Exchange
+              </p>
             </div>
           </div>
         </div>
 
         {/* Bottom Row: Copyright + Social Icons */}
-        <div className="mt-16 sm:mt-20 border-t border-gray-200 pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-          {/* Logo / Copyright */}
-          <div className="flex items-center gap-2.5">
-            <span className="flex size-6 items-center justify-center rounded-md bg-[#0F766E] text-xs font-black text-white leading-none">
+        <div className="mt-12 sm:mt-16 border-t border-[#e2e8e3] pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-2.5 text-center sm:text-left">
+            <span className="flex size-6 items-center justify-center rounded-md bg-[#7C9473] text-xs font-black text-white">
               C
             </span>
-            <span className="text-sm font-medium text-gray-700">
-              © {new Date().getFullYear()} Careproff. All rights reserved. Gentle, safe maternal & baby care.
+            <span className="text-xs sm:text-sm font-medium text-[#536358]">
+              © {new Date().getFullYear()} Careoffbd.com. All rights reserved. Gentle Baby &amp; Maternal Care.
             </span>
           </div>
 
-          {/* Social Icons */}
-          <div className="flex items-center gap-6 text-gray-500">
-            <a
-              href="https://facebook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Facebook"
-              className="hover:text-[#0F766E] transition-colors"
-            >
-              <svg className="size-5 fill-current" viewBox="0 0 24 24">
-                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-              </svg>
-            </a>
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram"
-              className="hover:text-[#0F766E] transition-colors"
-            >
-              <svg className="size-5 fill-current" viewBox="0 0 24 24">
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-              </svg>
-            </a>
+          <div className="flex items-center gap-4 text-xs font-semibold text-[#536358]">
+            <span>Cash on Delivery</span>
+            <span>•</span>
+            <span>bKash / Nagad</span>
+            <span>•</span>
+            <span>Express Delivery</span>
           </div>
         </div>
       </div>

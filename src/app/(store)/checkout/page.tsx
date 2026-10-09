@@ -2,8 +2,8 @@ import { Metadata } from "next";
 import { CheckoutClient } from "./checkout-client";
 
 export const metadata: Metadata = {
-  title: "Checkout | Careproff",
-  description: "Complete your order with Careproff e-commerce.",
+  title: "Checkout — Careoffbd.com",
+  description: "Complete your order safely with Careoffbd.com.",
 };
 
 export default function CheckoutPage() {

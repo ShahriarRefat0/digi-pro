@@ -94,42 +94,42 @@ export function SearchView({ initialQuery, initialResults }: SearchViewProps) {
   const totalResults = results.totalCount;
 
   return (
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 sm:py-16 text-slate-900">
+    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 sm:py-16 text-[#29332D]">
       {/* Page Header */}
       <div className="max-w-3xl mb-8 sm:mb-12">
-        <div className="inline-flex items-center gap-2 rounded-full border border-teal-200 bg-teal-50 px-3.5 py-1 text-xs font-semibold text-[#0F766E] mb-4">
-          <Sparkles className="size-3.5 text-[#0F766E]" />
-          <span>Global Website Search</span>
+        <div className="inline-flex items-center gap-2 rounded-full border border-[#7C9473]/30 bg-[#7C9473]/10 px-3.5 py-1 text-xs font-semibold text-[#7C9473] mb-4">
+          <Sparkles className="size-3.5 text-[#7C9473]" />
+          <span>Careoffbd.com Search</span>
         </div>
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight font-heading text-slate-900">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight font-heading text-[#29332D]">
           {query.trim() ? (
             <span>
-              Search results for <span className="text-[#0F766E]">&ldquo;{query}&rdquo;</span>
+              Search results for <span className="text-[#7C9473]">&ldquo;{query}&rdquo;</span>
             </span>
           ) : (
-            <span>Explore Careproff</span>
+            <span>Explore Careoffbd.com</span>
           )}
         </h1>
-        <p className="text-sm sm:text-base text-slate-500 mt-2.5">
-          Find digital assets, care resources, guides, and services.
+        <p className="text-sm sm:text-base text-[#29332D]/70 mt-2.5">
+          Find baby care products, maternity essentials, and health journal guides.
         </p>
 
         {/* Large Interactive Search Input */}
-        <div className="relative mt-6 flex items-center rounded-2xl border border-slate-300 bg-white px-4 py-3.5 shadow-xs focus-within:border-[#0F766E] focus-within:ring-2 focus-within:ring-[#0F766E]/20 transition-all">
-          <Search className="size-5 text-slate-400 mr-3 shrink-0" />
+        <div className="relative mt-6 flex items-center rounded-2xl border border-[#29332D]/10 bg-white px-4 py-3.5 shadow-sm focus-within:border-[#7C9473] focus-within:ring-2 focus-within:ring-[#7C9473]/20 transition-all">
+          <Search className="size-5 text-[#29332D]/40 mr-3 shrink-0" />
           <input
             type="text"
             value={query}
             onChange={(e) => handleQueryChange(e.target.value)}
-            placeholder="Type anything to search products, services, articles..."
-            className="flex-1 bg-transparent text-sm sm:text-base text-slate-900 placeholder:text-slate-400 focus:outline-none min-w-0"
+            placeholder="Search baby products, maternal care, articles..."
+            className="flex-1 bg-transparent text-sm sm:text-base text-[#29332D] placeholder:text-[#29332D]/40 focus:outline-none min-w-0"
           />
           {isLoading ? (
-            <Loader2 className="size-5 animate-spin text-[#0F766E] ml-2 shrink-0" />
+            <Loader2 className="size-5 animate-spin text-[#7C9473] ml-2 shrink-0" />
           ) : query ? (
             <button
               onClick={handleClear}
-              className="text-xs font-semibold text-slate-600 hover:text-slate-900 bg-slate-100 border border-slate-200 px-2.5 py-1 rounded-md transition-colors"
+              className="text-xs font-semibold text-[#29332D] hover:bg-[#FAF7F0] bg-[#FAF7F0] border border-[#29332D]/10 px-2.5 py-1 rounded-md transition-colors"
             >
               Clear
             </button>
@@ -139,19 +139,19 @@ export function SearchView({ initialQuery, initialResults }: SearchViewProps) {
 
       {/* Tabs / Filters */}
       {query.trim() && (
-        <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-8 border-b border-slate-200">
+        <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-8 border-b border-[#29332D]/10">
           <button
             onClick={() => setActiveTab("all")}
-            className={`flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-bold transition-all whitespace-nowrap ${
+            className={`flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-bold transition-all whitespace-nowrap cursor-pointer ${
               activeTab === "all"
-                ? "bg-[#0F766E] text-white shadow-sm"
-                : "border border-slate-300 bg-white text-slate-600 hover:border-slate-400 hover:text-slate-900"
+                ? "bg-[#7C9473] text-white shadow-sm"
+                : "border border-[#29332D]/10 bg-white text-[#29332D]/70 hover:border-[#7C9473] hover:text-[#29332D]"
             }`}
           >
             <span>All Results</span>
             <span
               className={`rounded-full px-1.5 py-0.2 text-[10px] font-mono ${
-                activeTab === "all" ? "bg-teal-900 text-white" : "bg-slate-100 text-slate-500"
+                activeTab === "all" ? "bg-white/20 text-white" : "bg-[#FAF7F0] text-[#29332D]/60"
               }`}
             >
               {totalResults}
@@ -160,38 +160,36 @@ export function SearchView({ initialQuery, initialResults }: SearchViewProps) {
 
           <button
             onClick={() => setActiveTab("products")}
-            className={`flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-bold transition-all whitespace-nowrap ${
+            className={`flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-bold transition-all whitespace-nowrap cursor-pointer ${
               activeTab === "products"
-                ? "bg-[#0F766E] text-white shadow-sm"
-                : "border border-slate-300 bg-white text-slate-600 hover:border-slate-400 hover:text-slate-900"
+                ? "bg-[#7C9473] text-white shadow-sm"
+                : "border border-[#29332D]/10 bg-white text-[#29332D]/70 hover:border-[#7C9473] hover:text-[#29332D]"
             }`}
           >
             <Package className="size-3.5" />
             <span>Products</span>
             <span
               className={`rounded-full px-1.5 py-0.2 text-[10px] font-mono ${
-                activeTab === "products" ? "bg-teal-900 text-white" : "bg-slate-100 text-slate-500"
+                activeTab === "products" ? "bg-white/20 text-white" : "bg-[#FAF7F0] text-[#29332D]/60"
               }`}
             >
               {results.products.length}
             </span>
           </button>
 
-
-
           <button
             onClick={() => setActiveTab("blogs")}
-            className={`flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-bold transition-all whitespace-nowrap ${
+            className={`flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-bold transition-all whitespace-nowrap cursor-pointer ${
               activeTab === "blogs"
-                ? "bg-[#0F766E] text-white shadow-sm"
-                : "border border-slate-300 bg-white text-slate-600 hover:border-slate-400 hover:text-slate-900"
+                ? "bg-[#7C9473] text-white shadow-sm"
+                : "border border-[#29332D]/10 bg-white text-[#29332D]/70 hover:border-[#7C9473] hover:text-[#29332D]"
             }`}
           >
             <FileText className="size-3.5" />
             <span>Articles</span>
             <span
               className={`rounded-full px-1.5 py-0.2 text-[10px] font-mono ${
-                activeTab === "blogs" ? "bg-teal-900 text-white" : "bg-slate-100 text-slate-500"
+                activeTab === "blogs" ? "bg-white/20 text-white" : "bg-[#FAF7F0] text-[#29332D]/60"
               }`}
             >
               {results.blogs.length}
@@ -200,17 +198,17 @@ export function SearchView({ initialQuery, initialResults }: SearchViewProps) {
 
           <button
             onClick={() => setActiveTab("pages")}
-            className={`flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-bold transition-all whitespace-nowrap ${
+            className={`flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-bold transition-all whitespace-nowrap cursor-pointer ${
               activeTab === "pages"
-                ? "bg-[#0F766E] text-white shadow-sm"
-                : "border border-slate-300 bg-white text-slate-600 hover:border-slate-400 hover:text-slate-900"
+                ? "bg-[#7C9473] text-white shadow-sm"
+                : "border border-[#29332D]/10 bg-white text-[#29332D]/70 hover:border-[#7C9473] hover:text-[#29332D]"
             }`}
           >
             <Compass className="size-3.5" />
             <span>Pages</span>
             <span
               className={`rounded-full px-1.5 py-0.2 text-[10px] font-mono ${
-                activeTab === "pages" ? "bg-teal-900 text-white" : "bg-slate-100 text-slate-500"
+                activeTab === "pages" ? "bg-white/20 text-white" : "bg-[#FAF7F0] text-[#29332D]/60"
               }`}
             >
               {results.pages.length}
@@ -221,18 +219,18 @@ export function SearchView({ initialQuery, initialResults }: SearchViewProps) {
 
       {/* Main Results Display */}
       {query.trim() === "" ? (
-        <div className="rounded-3xl border border-slate-200 bg-white p-8 sm:p-12 text-center shadow-xs">
-          <Compass className="size-10 text-slate-400 mx-auto mb-4" />
-          <h3 className="text-lg font-bold text-slate-900 font-heading">Start searching Careproff</h3>
-          <p className="text-sm text-slate-500 max-w-md mx-auto mt-1">
-            Type keywords like &ldquo;Care Guides&rdquo;, &ldquo;Maternal&rdquo;, &ldquo;Baby Products&rdquo;, or &ldquo;Services&rdquo; to find instant matches.
+        <div className="rounded-3xl border border-[#29332D]/10 bg-white p-8 sm:p-12 text-center shadow-xs">
+          <Compass className="size-10 text-[#29332D]/40 mx-auto mb-4" />
+          <h3 className="text-lg font-bold text-[#29332D] font-heading">Start searching Careoffbd.com</h3>
+          <p className="text-sm text-[#29332D]/60 max-w-md mx-auto mt-1">
+            Type keywords like &ldquo;Newborn&rdquo;, &ldquo;Maternal Care&rdquo;, &ldquo;Diapers&rdquo;, or &ldquo;Journal&rdquo; to find instant matches.
           </p>
           <div className="flex flex-wrap justify-center gap-2 mt-6">
-            {["Care Guides", "Maternal Health", "Baby Kits", "Nutrition", "Parenting Tools", "Consultation"].map((tag) => (
+            {["Newborn Care", "Maternal Health", "Diapers & Wipes", "Feeding & Nursing", "Care Journal"].map((tag) => (
               <button
                 key={tag}
                 onClick={() => handleQueryChange(tag)}
-                className="rounded-full border border-slate-300 bg-slate-100 px-3.5 py-1.5 text-xs font-medium text-slate-700 hover:border-[#0F766E] hover:text-[#0F766E] transition-colors"
+                className="rounded-full border border-[#29332D]/10 bg-[#FAF7F0] px-3.5 py-1.5 text-xs font-medium text-[#29332D] hover:border-[#7C9473] hover:text-[#7C9473] transition-colors cursor-pointer"
               >
                 {tag}
               </button>
@@ -240,18 +238,18 @@ export function SearchView({ initialQuery, initialResults }: SearchViewProps) {
           </div>
         </div>
       ) : totalResults === 0 && !isLoading ? (
-        <div className="rounded-3xl border border-slate-200 bg-white p-12 text-center shadow-xs">
-          <div className="flex size-14 items-center justify-center rounded-2xl border border-slate-200 bg-slate-50 mx-auto mb-4">
-            <Compass className="size-6 text-slate-400" />
+        <div className="rounded-3xl border border-[#29332D]/10 bg-white p-12 text-center shadow-xs">
+          <div className="flex size-14 items-center justify-center rounded-2xl border border-[#29332D]/10 bg-[#FAF7F0] mx-auto mb-4">
+            <Compass className="size-6 text-[#29332D]/40" />
           </div>
-          <h3 className="text-lg font-bold text-slate-900 font-heading">No results found for &ldquo;{query}&rdquo;</h3>
-          <p className="text-sm text-slate-500 max-w-md mx-auto mt-1">
-            We couldn&apos;t find any products, services, or articles matching your query. Try searching with different terms or categories.
+          <h3 className="text-lg font-bold text-[#29332D] font-heading">No results found for &ldquo;{query}&rdquo;</h3>
+          <p className="text-sm text-[#29332D]/60 max-w-md mx-auto mt-1">
+            We couldn&apos;t find any products or articles matching your query. Try searching with different terms.
           </p>
           <div className="mt-6 flex justify-center gap-3">
             <Link
               href="/products"
-              className="inline-flex items-center gap-2 rounded-full bg-[#0F766E] px-5 py-2 text-xs font-bold text-white hover:bg-[#115E59] transition-colors shadow-xs"
+              className="inline-flex items-center gap-2 rounded-full bg-[#7C9473] px-5 py-2 text-xs font-bold text-white hover:bg-[#6b8262] transition-colors shadow-xs"
             >
               <span>Browse all products</span>
               <ArrowRight className="size-3.5" />
@@ -265,15 +263,15 @@ export function SearchView({ initialQuery, initialResults }: SearchViewProps) {
             <div>
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center gap-2">
-                  <Package className="size-5 text-[#0F766E]" />
-                  <h2 className="text-xl font-bold font-heading text-slate-900">Digital Products</h2>
-                  <span className="rounded-full bg-slate-100 border border-slate-200 px-2 py-0.5 text-xs font-mono text-slate-500">
+                  <Package className="size-5 text-[#7C9473]" />
+                  <h2 className="text-xl font-bold font-heading text-[#29332D]">Care Products</h2>
+                  <span className="rounded-full bg-[#FAF7F0] border border-[#29332D]/10 px-2 py-0.5 text-xs font-mono text-[#29332D]/60">
                     {results.products.length}
                   </span>
                 </div>
                 <Link
                   href="/products"
-                  className="text-xs font-semibold text-slate-500 hover:text-slate-900 inline-flex items-center gap-1 group"
+                  className="text-xs font-semibold text-[#29332D]/70 hover:text-[#29332D] inline-flex items-center gap-1 group"
                 >
                   <span>Explore store</span>
                   <ArrowRight className="size-3 transition-transform group-hover:translate-x-1" />
@@ -285,11 +283,11 @@ export function SearchView({ initialQuery, initialResults }: SearchViewProps) {
                   <Link
                     key={item.id}
                     href={item.href}
-                    className="group flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-5 hover:border-teal-300 hover:shadow-md transition-all shadow-xs"
+                    className="group flex flex-col justify-between rounded-2xl border border-[#29332D]/10 bg-white p-5 hover:border-[#7C9473]/40 hover:shadow-md transition-all shadow-xs"
                   >
                     <div>
                       <div className="flex items-start justify-between gap-3 mb-3">
-                        <div className="flex size-11 shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-slate-50 overflow-hidden">
+                        <div className="flex size-11 shrink-0 items-center justify-center rounded-xl border border-[#29332D]/10 bg-[#FAF7F0] overflow-hidden">
                           {item.thumbnail && item.thumbnail !== "/images/placeholder.webp" ? (
                             <Image
                               src={item.thumbnail}
@@ -299,11 +297,11 @@ export function SearchView({ initialQuery, initialResults }: SearchViewProps) {
                               className="size-full object-cover"
                             />
                           ) : (
-                            <Package className="size-5 text-[#0F766E]" />
+                            <Package className="size-5 text-[#7C9473]" />
                           )}
                         </div>
                         {item.price !== undefined && (
-                          <span className="rounded-full border border-teal-200 bg-teal-50 px-2.5 py-0.5 text-xs font-bold text-[#0F766E] font-mono">
+                          <span className="rounded-full border border-[#7C9473]/30 bg-[#7C9473]/10 px-2.5 py-0.5 text-xs font-bold text-[#7C9473] font-mono">
                             ৳{item.price}
                           </span>
                         )}
@@ -311,20 +309,20 @@ export function SearchView({ initialQuery, initialResults }: SearchViewProps) {
 
                       <div className="space-y-1">
                         {item.category && (
-                          <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400">
+                          <span className="text-[10px] font-semibold uppercase tracking-wider text-[#7C9473]">
                             {item.category}
                           </span>
                         )}
-                        <h3 className="text-base font-bold text-slate-900 group-hover:text-[#0F766E] transition-colors font-heading line-clamp-1">
+                        <h3 className="text-base font-bold text-[#29332D] group-hover:text-[#7C9473] transition-colors font-heading line-clamp-1">
                           {item.title}
                         </h3>
-                        <p className="text-xs text-slate-500 line-clamp-2 leading-relaxed mt-1">
+                        <p className="text-xs text-[#29332D]/60 line-clamp-2 leading-relaxed mt-1">
                           {item.description}
                         </p>
                       </div>
                     </div>
 
-                    <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-slate-500 group-hover:text-slate-900">
+                    <div className="mt-4 pt-3 border-t border-[#29332D]/10 flex items-center justify-between text-xs font-semibold text-[#29332D]/60 group-hover:text-[#29332D]">
                       <span>View product</span>
                       <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" />
                     </div>
@@ -334,24 +332,22 @@ export function SearchView({ initialQuery, initialResults }: SearchViewProps) {
             </div>
           )}
 
-
-
           {/* Blog Section */}
           {(activeTab === "all" || activeTab === "blogs") && results.blogs.length > 0 && (
             <div>
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center gap-2">
-                  <FileText className="size-5 text-teal-600" />
-                  <h2 className="text-xl font-bold font-heading text-slate-900">Articles &amp; Guides</h2>
-                  <span className="rounded-full bg-slate-100 border border-slate-200 px-2 py-0.5 text-xs font-mono text-slate-500">
+                  <FileText className="size-5 text-[#7C9473]" />
+                  <h2 className="text-xl font-bold font-heading text-[#29332D]">Articles &amp; Care Journal</h2>
+                  <span className="rounded-full bg-[#FAF7F0] border border-[#29332D]/10 px-2 py-0.5 text-xs font-mono text-[#29332D]/60">
                     {results.blogs.length}
                   </span>
                 </div>
                 <Link
-                  href="/blog"
-                  className="text-xs font-semibold text-slate-500 hover:text-slate-900 inline-flex items-center gap-1 group"
+                  href="/care-journal"
+                  className="text-xs font-semibold text-[#29332D]/70 hover:text-[#29332D] inline-flex items-center gap-1 group"
                 >
-                  <span>Browse blog</span>
+                  <span>Browse journal</span>
                   <ArrowRight className="size-3 transition-transform group-hover:translate-x-1" />
                 </Link>
               </div>
@@ -361,11 +357,11 @@ export function SearchView({ initialQuery, initialResults }: SearchViewProps) {
                   <Link
                     key={item.id}
                     href={item.href}
-                    className="group flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-5 hover:border-teal-300 hover:shadow-md transition-all shadow-xs"
+                    className="group flex flex-col justify-between rounded-2xl border border-[#29332D]/10 bg-white p-5 hover:border-[#7C9473]/40 hover:shadow-md transition-all shadow-xs"
                   >
                     <div>
-                      <div className="flex items-center justify-between text-[11px] text-slate-400 font-mono mb-2">
-                        {item.category && <span className="text-[#0F766E] font-semibold">{item.category}</span>}
+                      <div className="flex items-center justify-between text-[11px] text-[#29332D]/50 font-mono mb-2">
+                        {item.category && <span className="text-[#7C9473] font-semibold">{item.category}</span>}
                         {item.date && (
                           <span className="flex items-center gap-1">
                             <Calendar className="size-3" />
@@ -373,15 +369,15 @@ export function SearchView({ initialQuery, initialResults }: SearchViewProps) {
                           </span>
                         )}
                       </div>
-                      <h3 className="text-base font-bold text-slate-900 group-hover:text-[#0F766E] transition-colors font-heading line-clamp-2">
+                      <h3 className="text-base font-bold text-[#29332D] group-hover:text-[#7C9473] transition-colors font-heading line-clamp-2">
                         {item.title}
                       </h3>
-                      <p className="text-xs text-slate-500 line-clamp-3 leading-relaxed mt-1.5">
+                      <p className="text-xs text-[#29332D]/60 line-clamp-3 leading-relaxed mt-1.5">
                         {item.description}
                       </p>
                     </div>
 
-                    <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-slate-500 group-hover:text-slate-900">
+                    <div className="mt-4 pt-3 border-t border-[#29332D]/10 flex items-center justify-between text-xs font-semibold text-[#29332D]/60 group-hover:text-[#29332D]">
                       <span>Read article</span>
                       <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" />
                     </div>
@@ -396,9 +392,9 @@ export function SearchView({ initialQuery, initialResults }: SearchViewProps) {
             <div>
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center gap-2">
-                  <Compass className="size-5 text-teal-600" />
-                  <h2 className="text-xl font-bold font-heading text-slate-900">Important Pages</h2>
-                  <span className="rounded-full bg-slate-100 border border-slate-200 px-2 py-0.5 text-xs font-mono text-slate-500">
+                  <Compass className="size-5 text-[#7C9473]" />
+                  <h2 className="text-xl font-bold font-heading text-[#29332D]">Store Pages</h2>
+                  <span className="rounded-full bg-[#FAF7F0] border border-[#29332D]/10 px-2 py-0.5 text-xs font-mono text-[#29332D]/60">
                     {results.pages.length}
                   </span>
                 </div>
@@ -409,21 +405,21 @@ export function SearchView({ initialQuery, initialResults }: SearchViewProps) {
                   <Link
                     key={item.id}
                     href={item.href}
-                    className="group flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-5 hover:border-teal-300 hover:shadow-md transition-all shadow-xs"
+                    className="group flex flex-col justify-between rounded-2xl border border-[#29332D]/10 bg-white p-5 hover:border-[#7C9473]/40 hover:shadow-md transition-all shadow-xs"
                   >
                     <div>
-                      <div className="flex size-10 items-center justify-center rounded-xl border border-slate-200 bg-teal-50 text-[#0F766E] mb-3">
+                      <div className="flex size-10 items-center justify-center rounded-xl border border-[#7C9473]/20 bg-[#7C9473]/10 text-[#7C9473] mb-3">
                         <Compass className="size-5" />
                       </div>
-                      <h3 className="text-base font-bold text-slate-900 group-hover:text-[#0F766E] transition-colors font-heading">
+                      <h3 className="text-base font-bold text-[#29332D] group-hover:text-[#7C9473] transition-colors font-heading">
                         {item.title}
                       </h3>
-                      <p className="text-xs text-slate-500 line-clamp-2 leading-relaxed mt-1">
+                      <p className="text-xs text-[#29332D]/60 line-clamp-2 leading-relaxed mt-1">
                         {item.description}
                       </p>
                     </div>
 
-                    <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-slate-500 group-hover:text-slate-900">
+                    <div className="mt-4 pt-3 border-t border-[#29332D]/10 flex items-center justify-between text-xs font-semibold text-[#29332D]/60 group-hover:text-[#29332D]">
                       <span>Visit page</span>
                       <ArrowUpRight className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </div>
